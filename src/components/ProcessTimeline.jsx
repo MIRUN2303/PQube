@@ -2,8 +2,6 @@ import { useRef, useEffect } from 'react';
 import { processSteps } from '../data/processSteps';
 import ShinyText from './ShinyText';
 
-const STEP_COUNT = processSteps.length;
-
 export default function ProcessTimeline() {
   return (
     <section className="section-padding bg-[var(--pqube-gray-50)] overflow-hidden">
@@ -35,6 +33,39 @@ export default function ProcessTimeline() {
           <DesktopRoadmap />
         </div>
       </div>
+
+      {/* Shared animation styles */}
+      <style>{`
+        /* ── Desktop items ── */
+        .desk-dot,
+        .desk-card {
+          opacity: 0;
+          transform: scale(0.55) translateY(20px);
+          transition: opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+                      transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+          will-change: opacity, transform;
+        }
+        .desk-dot.rm-show,
+        .desk-card.rm-show {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+
+        /* ── Mobile items ── */
+        .mob-dot,
+        .mob-card {
+          opacity: 0;
+          transform: translateX(-22px);
+          transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          will-change: opacity, transform;
+        }
+        .mob-dot.rm-show,
+        .mob-card.rm-show {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      `}</style>
     </section>
   );
 }
@@ -45,10 +76,11 @@ function DesktopRoadmap() {
   const offsetY = 8;
   const containerRef = useRef(null);
   const pathActiveRef = useRef(null);
+  const triggered = useRef(false);
 
   const pathD = (() => {
     const segW = 100 / (n - 1);
-    let d = `M 0,${50 + (0 % 2 === 0 ? offsetY : -offsetY)}`;
+    let d = `M 0,${50 + offsetY}`;
     for (let i = 1; i < n; i++) {
       const x1 = (i - 1) * segW;
       const y1 = 50 + ((i - 1) % 2 === 0 ? offsetY : -offsetY);
@@ -66,31 +98,33 @@ function DesktopRoadmap() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !triggered.current) {
+          triggered.current = true;
           observer.disconnect();
 
-          // Animate the connecting path
+          // 1. Draw the path
           const path = pathActiveRef.current;
           if (path) {
-            path.style.transition = 'stroke-dashoffset 1.4s ease-in-out';
+            path.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1)';
             path.style.strokeDashoffset = '0';
           }
 
-          // Reveal dots and cards one-by-one with staggered delays
+          // 2. Stagger-reveal dots then cards, one step at a time
           const dots = container.querySelectorAll('.desk-dot');
           const cards = container.querySelectorAll('.desk-card');
+          const STAGGER = 0.28; // seconds between each step
 
           dots.forEach((dot, i) => {
-            dot.style.transitionDelay = `${i * 0.22}s`;
-            dot.classList.add('rm-revealed');
+            dot.style.transitionDelay = `${i * STAGGER}s`;
+            dot.classList.add('rm-show');
           });
           cards.forEach((card, i) => {
-            card.style.transitionDelay = `${0.12 + i * 0.22}s`;
-            card.classList.add('rm-revealed');
+            card.style.transitionDelay = `${0.14 + i * STAGGER}s`;
+            card.classList.add('rm-show');
           });
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     observer.observe(container);
@@ -99,12 +133,13 @@ function DesktopRoadmap() {
 
   return (
     <div ref={containerRef} className="relative pt-8 pb-4">
-      {/* SVG path */}
+      {/* SVG connecting path */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >
+        {/* Grey baseline */}
         <path
           d={pathD}
           fill="none"
@@ -112,6 +147,7 @@ function DesktopRoadmap() {
           strokeWidth="0.8"
           strokeLinecap="round"
         />
+        {/* Animated gradient path */}
         <path
           ref={pathActiveRef}
           d={pathD}
@@ -130,7 +166,7 @@ function DesktopRoadmap() {
         </defs>
       </svg>
 
-      {/* Step items */}
+      {/* Step items row */}
       <div className="flex justify-between items-start relative z-10">
         {processSteps.map((step, idx) => {
           const Icon = step.icon;
@@ -138,18 +174,19 @@ function DesktopRoadmap() {
 
           return (
             <div key={step.id} className="flex flex-col items-center w-48 shrink-0">
-              {/* Dot */}
-              <div className="desk-dot rm-init">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md bg-[var(--pqube-cyan)]">
+              {/* Number dot */}
+              <div className="desk-dot">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg bg-gradient-to-br from-[var(--pqube-cyan)] to-[var(--pqube-blue)]">
                   {idx + 1}
                 </div>
               </div>
 
+              {/* Vertical spacer alternates top/bottom cards */}
               {isTop ? <div className="mt-20" /> : <div className="mt-4" />}
 
               {/* Card */}
-              <div className="desk-card rm-init">
-                <div className="bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 shadow-sm">
+              <div className="desk-card">
+                <div className="bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs font-bold uppercase tracking-wider text-[var(--pqube-cyan)]">
                       Step {idx + 1}
@@ -164,19 +201,6 @@ function DesktopRoadmap() {
           );
         })}
       </div>
-
-      <style>{`
-        .rm-init {
-          opacity: 0;
-          transform: scale(0.55) translateY(18px);
-          transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-                      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .rm-revealed.rm-init {
-          opacity: 1;
-          transform: scale(1) translateY(0);
-        }
-      `}</style>
     </div>
   );
 }
@@ -199,11 +223,13 @@ function MobileRoadmap() {
       const obs = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            dot.classList.add('mob-revealed');
-            cards[i]?.classList.add('mob-revealed');
+            // Reveal dot first, then card with a small delay
+            dot.classList.add('rm-show');
+            setTimeout(() => cards[i]?.classList.add('rm-show'), 130);
 
             maxRevealed = Math.max(maxRevealed, i + 1);
 
+            // Grow the colored vertical line
             const lineEl = lineProgressRef.current;
             if (lineEl) {
               const pct = Math.min((maxRevealed / totalSteps) * 100, 100);
@@ -213,7 +239,7 @@ function MobileRoadmap() {
             obs.disconnect();
           }
         },
-        { threshold: 0.5, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.45, rootMargin: '0px 0px -30px 0px' }
       );
       obs.observe(dot);
       return obs;
@@ -224,13 +250,13 @@ function MobileRoadmap() {
 
   return (
     <div ref={containerRef} className="relative max-w-md mx-auto">
-      {/* Gray track */}
+      {/* Grey track */}
       <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[var(--pqube-gray-200)]" />
-      {/* Animated colored fill */}
+      {/* Animated gradient fill */}
       <div
         ref={lineProgressRef}
         className="absolute left-4 top-0 w-0.5 bg-gradient-to-b from-[var(--pqube-cyan)] to-[var(--pqube-blue)]"
-        style={{ height: '0%', transition: 'height 0.6s ease-in-out' }}
+        style={{ height: '0%', transition: 'height 0.65s ease-in-out' }}
       />
 
       <div className="relative space-y-8">
@@ -238,34 +264,15 @@ function MobileRoadmap() {
           <MobileStep key={step.id} step={step} index={idx} />
         ))}
       </div>
-
-      <style>{`
-        .mob-dot, .mob-card {
-          opacity: 0;
-          transform: translateX(-18px);
-          transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-                      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .mob-card {
-          transform: translateX(-14px);
-          transition-delay: 0.12s;
-        }
-        .mob-revealed.mob-dot,
-        .mob-revealed.mob-card {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      `}</style>
     </div>
   );
 }
 
 function MobileStep({ step, index }) {
   const Icon = step.icon;
-
   return (
     <div className="relative flex items-start gap-4 pl-10">
-      <div className="mob-dot absolute left-4 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md z-10 bg-[var(--pqube-cyan)]">
+      <div className="mob-dot absolute left-4 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md z-10 bg-gradient-to-br from-[var(--pqube-cyan)] to-[var(--pqube-blue)]">
         {index + 1}
       </div>
       <div className="mob-card flex-1">
