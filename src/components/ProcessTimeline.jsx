@@ -9,7 +9,14 @@ export default function ProcessTimeline() {
     <section className="section-padding bg-[var(--pqube-gray-50)] overflow-hidden">
       <div className="container-page">
         <div className="text-center mb-10 md:mb-14">
-          <ShinyText text="How We Work" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText
+            text="How We Work"
+            color="#29ABE2"
+            shineColor="#ffffff"
+            speed={3}
+            spread={120}
+            className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3"
+          />
           <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]">
             Our Engagement Roadmap
           </h2>
@@ -18,12 +25,12 @@ export default function ProcessTimeline() {
           </p>
         </div>
 
-        {/* Mobile layout */}
-        <div className="md:hidden relative max-w-md mx-auto">
+        {/* Mobile */}
+        <div className="md:hidden">
           <MobileRoadmap />
         </div>
 
-        {/* Desktop layout */}
+        {/* Desktop */}
         <div className="hidden md:block relative max-w-5xl mx-auto">
           <DesktopRoadmap />
         </div>
@@ -38,7 +45,6 @@ function DesktopRoadmap() {
   const offsetY = 8;
   const containerRef = useRef(null);
   const pathActiveRef = useRef(null);
-  const revealedCount = useRef(0);
 
   const pathD = (() => {
     const segW = 100 / (n - 1);
@@ -54,57 +60,51 @@ function DesktopRoadmap() {
     return d;
   })();
 
-  // Update the path draw progress based on how many steps are revealed
-  const updatePath = (count) => {
-    const path = pathActiveRef.current;
-    if (!path) return;
-    // Each step draws 1/n of the total path
-    const progress = Math.min(count / (n - 1), 1);
-    const total = 1000;
-    path.style.strokeDashoffset = total * (1 - progress);
-  };
-
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const dots = container.querySelectorAll('.rm-dot');
-    const cards = container.querySelectorAll('.rm-card');
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          observer.disconnect();
 
-    const observers = [];
-
-    dots.forEach((dot, i) => {
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            // Small stagger between dot and card
-            dot.classList.add('rm-visible');
-            setTimeout(() => {
-              cards[i]?.classList.add('rm-visible');
-            }, 150);
-
-            revealedCount.current = Math.max(revealedCount.current, i + 1);
-            updatePath(revealedCount.current);
-            obs.disconnect();
+          // Animate the connecting path
+          const path = pathActiveRef.current;
+          if (path) {
+            path.style.transition = 'stroke-dashoffset 1.4s ease-in-out';
+            path.style.strokeDashoffset = '0';
           }
-        },
-        { threshold: 0.4, rootMargin: '0px 0px -60px 0px' }
-      );
-      obs.observe(dot);
-      observers.push(obs);
-    });
 
-    return () => observers.forEach((obs) => obs.disconnect());
+          // Reveal dots and cards one-by-one with staggered delays
+          const dots = container.querySelectorAll('.desk-dot');
+          const cards = container.querySelectorAll('.desk-card');
+
+          dots.forEach((dot, i) => {
+            dot.style.transitionDelay = `${i * 0.22}s`;
+            dot.classList.add('rm-revealed');
+          });
+          cards.forEach((card, i) => {
+            card.style.transitionDelay = `${0.12 + i * 0.22}s`;
+            card.classList.add('rm-revealed');
+          });
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div ref={containerRef} className="relative pt-8 pb-4">
+      {/* SVG path */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >
-        {/* Gray baseline path */}
         <path
           d={pathD}
           fill="none"
@@ -112,7 +112,6 @@ function DesktopRoadmap() {
           strokeWidth="0.8"
           strokeLinecap="round"
         />
-        {/* Active gradient path — drawn as cards reveal */}
         <path
           ref={pathActiveRef}
           d={pathD}
@@ -122,7 +121,6 @@ function DesktopRoadmap() {
           strokeLinecap="round"
           strokeDasharray="1000"
           strokeDashoffset="1000"
-          style={{ transition: 'stroke-dashoffset 0.6s ease-in-out' }}
         />
         <defs>
           <linearGradient id="roadGrad" x1="0" y1="0" x2="1" y2="0">
@@ -132,6 +130,7 @@ function DesktopRoadmap() {
         </defs>
       </svg>
 
+      {/* Step items */}
       <div className="flex justify-between items-start relative z-10">
         {processSteps.map((step, idx) => {
           const Icon = step.icon;
@@ -140,7 +139,7 @@ function DesktopRoadmap() {
           return (
             <div key={step.id} className="flex flex-col items-center w-48 shrink-0">
               {/* Dot */}
-              <div className="rm-dot rm-hidden">
+              <div className="desk-dot rm-init">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md bg-[var(--pqube-cyan)]">
                   {idx + 1}
                 </div>
@@ -149,7 +148,7 @@ function DesktopRoadmap() {
               {isTop ? <div className="mt-20" /> : <div className="mt-4" />}
 
               {/* Card */}
-              <div className="rm-card rm-hidden">
+              <div className="desk-card rm-init">
                 <div className="bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 shadow-sm">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs font-bold uppercase tracking-wider text-[var(--pqube-cyan)]">
@@ -167,13 +166,13 @@ function DesktopRoadmap() {
       </div>
 
       <style>{`
-        .rm-hidden {
+        .rm-init {
           opacity: 0;
-          transform: scale(0.6) translateY(16px);
-          transition: opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
-                      transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transform: scale(0.55) translateY(18px);
+          transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .rm-visible.rm-hidden {
+        .rm-revealed.rm-init {
           opacity: 1;
           transform: scale(1) translateY(0);
         }
@@ -186,33 +185,28 @@ function DesktopRoadmap() {
 function MobileRoadmap() {
   const containerRef = useRef(null);
   const lineProgressRef = useRef(null);
-  const revealedCount = useRef(0);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const dots = container.querySelectorAll('.rm-dot');
-    const cards = container.querySelectorAll('.rm-card');
+    const dots = Array.from(container.querySelectorAll('.mob-dot'));
+    const cards = Array.from(container.querySelectorAll('.mob-card'));
     const totalSteps = dots.length;
+    let maxRevealed = 0;
 
-    const observers = [];
-
-    dots.forEach((dot, i) => {
+    const observers = dots.map((dot, i) => {
       const obs = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            dot.classList.add('rm-visible');
-            setTimeout(() => {
-              cards[i]?.classList.add('rm-visible');
-            }, 150);
+            dot.classList.add('mob-revealed');
+            cards[i]?.classList.add('mob-revealed');
 
-            revealedCount.current = Math.max(revealedCount.current, i + 1);
+            maxRevealed = Math.max(maxRevealed, i + 1);
 
-            // Update vertical line progress
             const lineEl = lineProgressRef.current;
             if (lineEl) {
-              const pct = Math.min((revealedCount.current / totalSteps) * 100, 100);
+              const pct = Math.min((maxRevealed / totalSteps) * 100, 100);
               lineEl.style.height = `${pct}%`;
             }
 
@@ -222,7 +216,7 @@ function MobileRoadmap() {
         { threshold: 0.5, rootMargin: '0px 0px -40px 0px' }
       );
       obs.observe(dot);
-      observers.push(obs);
+      return obs;
     });
 
     return () => observers.forEach((obs) => obs.disconnect());
@@ -230,9 +224,9 @@ function MobileRoadmap() {
 
   return (
     <div ref={containerRef} className="relative max-w-md mx-auto">
-      {/* Gray vertical line */}
+      {/* Gray track */}
       <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[var(--pqube-gray-200)]" />
-      {/* Active vertical line progress */}
+      {/* Animated colored fill */}
       <div
         ref={lineProgressRef}
         className="absolute left-4 top-0 w-0.5 bg-gradient-to-b from-[var(--pqube-cyan)] to-[var(--pqube-blue)]"
@@ -246,13 +240,18 @@ function MobileRoadmap() {
       </div>
 
       <style>{`
-        .rm-hidden {
+        .mob-dot, .mob-card {
           opacity: 0;
-          transform: translateX(-20px);
-          transition: opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
-                      transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transform: translateX(-18px);
+          transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .rm-visible.rm-hidden {
+        .mob-card {
+          transform: translateX(-14px);
+          transition-delay: 0.12s;
+        }
+        .mob-revealed.mob-dot,
+        .mob-revealed.mob-card {
           opacity: 1;
           transform: translateX(0);
         }
@@ -266,10 +265,10 @@ function MobileStep({ step, index }) {
 
   return (
     <div className="relative flex items-start gap-4 pl-10">
-      <div className="rm-dot rm-hidden absolute left-4 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md z-10 bg-[var(--pqube-cyan)]">
+      <div className="mob-dot absolute left-4 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md z-10 bg-[var(--pqube-cyan)]">
         {index + 1}
       </div>
-      <div className="rm-card rm-hidden flex-1">
+      <div className="mob-card flex-1">
         <div className="bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 shadow-sm">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[var(--pqube-cyan)]">
