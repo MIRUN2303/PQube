@@ -80,6 +80,7 @@ export default function HeroSlideshow() {
 
             {/* Blue tint overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-[var(--pqube-navy)]/90 via-[var(--pqube-navy)]/70 to-[var(--pqube-blue)]/50" />
+            {s.darken && <div className="absolute inset-0 bg-[var(--pqube-navy)]/50" />}
 
             {/* Subtle geometric accents on top */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -90,8 +91,9 @@ export default function HeroSlideshow() {
 
             {/* Content */}
             <div className="container-page relative z-10 h-full flex items-center">
-              <div className="w-full py-16 md:py-20">
-                <span className="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--pqube-cyan)] mb-5 opacity-0 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
+              <div className="w-full py-16 md:py-20 flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+                <div className="max-w-2xl">
+                <span className="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--pqube-cyan)] mb-5 opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
                   {s.kicker}
                 </span>
                 <h1 className="text-[clamp(1.75rem,5vw,3.75rem)] font-extrabold leading-[1.1] tracking-tight text-white max-w-3xl mb-5 opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
@@ -108,6 +110,18 @@ export default function HeroSlideshow() {
                     {s.ctaSecondaryLabel}
                   </SpecularButton>
                 </div>
+                </div>
+                {s.logo && (
+                  <div className="relative hidden md:flex items-center justify-center">
+                    <div className="absolute w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(41,171,226,0.28)_0%,rgba(41,171,226,0.1)_45%,transparent_70%)]" />
+                    <img
+                      src={s.logo}
+                      alt="PQube"
+                      className="relative h-28 md:h-[410px] w-auto md:mr-8 lg:mr-12 opacity-0 animate-fade-in-up [filter:drop-shadow(0_0_18px_rgba(255,255,255,0.45))_drop-shadow(0_0_4px_rgba(255,255,255,0.35))]"
+                      style={{ animationDelay: '300ms' }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>

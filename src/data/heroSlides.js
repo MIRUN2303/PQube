@@ -1,5 +1,18 @@
 export const heroSlides = [
   {
+    id: 0,
+    kicker: 'WELCOME TO PQUBE',
+    headline: 'Welcome to PQube.',
+    supporting:
+      'Your trusted partner for business IT solutions — innovation, quality, and ownership in everything we build.',
+    cta: { primary: '/contact', secondary: '#what-we-do' },
+    ctaPrimaryLabel: 'Schedule Free Demo',
+    ctaSecondaryLabel: 'See What We Do',
+    logo: '/logo/1.png',
+    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80',
+    darken: true,
+  },
+  {
     id: 1,
     kicker: 'BUSINESS IT SOLUTIONS · BANGALORE, INDIA',
     headline: 'Business IT Solutions That Build People — and Business.',
