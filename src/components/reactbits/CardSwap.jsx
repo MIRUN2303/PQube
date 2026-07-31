@@ -35,6 +35,7 @@ const CardSwap = ({
   pauseOnHover = false,
   onCardClick,
   onSwap,
+  controlRef,
   skewAmount = 6,
   easing = 'elastic',
   children
@@ -67,12 +68,64 @@ const CardSwap = ({
 
   const order = useRef(Array.from({ length: childArr.length }, (_, i) => i));
 
+  const reorderTo = newOrder => {
+    if (order.current.length < 2 || newOrder[0] === order.current[0]) return;
+    tlRef.current?.kill();
+    tlRef.current = null;
+    order.current = newOrder;
+    newOrder.forEach((cardIdx, i) => {
+      const el = refs[cardIdx].current;
+      const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
+      gsap.to(el, {
+        x: slot.x,
+        y: slot.y,
+        z: slot.z,
+        zIndex: slot.zIndex,
+        duration: 0.7,
+        ease: 'power2.inOut',
+        force3D: true
+      });
+    });
+    onSwapRef.current?.(newOrder[0]);
+  };
+
+  const bringToFront = idx => {
+    if (order.current.length < 2 || idx === order.current[0]) return;
+    reorderTo([idx, ...order.current.filter(i => i !== idx)]);
+  };
+
   const onSwapRef = useRef(onSwap);
   onSwapRef.current = onSwap;
 
+  useEffect(() => {
+    if (!controlRef) return;
+    controlRef.current = {
+      next: () => {
+        if (order.current.length < 2) return;
+        const [front, ...rest] = order.current;
+        reorderTo([...rest, front]);
+        kickTimer();
+      },
+      prev: () => {
+        if (order.current.length < 2) return;
+        reorderTo([order.current[order.current.length - 1], ...order.current.slice(0, -1)]);
+        kickTimer();
+      }
+    };
+    return () => {
+      controlRef.current = null;
+    };
+  });
+
   const tlRef = useRef(null);
   const intervalRef = useRef();
+  const swapRef = useRef(null);
   const container = useRef(null);
+
+  const kickTimer = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = window.setInterval(() => swapRef.current?.(), delay);
+  };
 
   useEffect(() => {
     const total = refs.length;
@@ -83,6 +136,7 @@ const CardSwap = ({
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
+      onSwapRef.current?.(rest[0]);
       const elFront = refs[front].current;
       const tl = gsap.timeline();
       tlRef.current = tl;
@@ -134,11 +188,11 @@ const CardSwap = ({
 
       tl.call(() => {
         order.current = [...rest, front];
-        onSwapRef.current?.(rest[0]);
       });
     };
 
     swap();
+    swapRef.current = swap;
     intervalRef.current = window.setInterval(swap, delay);
 
     if (pauseOnHover) {
@@ -172,6 +226,7 @@ const CardSwap = ({
           onClick: e => {
             child.props.onClick?.(e);
             onCardClick?.(i);
+            bringToFront(i);
           }
         })
       : child

@@ -3,7 +3,10 @@
   height: 100%;
   overflow: hidden;
   border-radius: 1.5rem;
-  border: 1px solid var(--pqube-gray-200, #e3e8ef);
+  border: 2px solid rgba(41, 171, 226, 0.55);
+  box-shadow:
+    0 0 0 4px rgba(41, 171, 226, 0.08),
+    0 0 22px rgba(41, 171, 226, 0.18);
 }
 
 .menu {
