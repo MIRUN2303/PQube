@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import BlurReveal from './BlurReveal';
 import { testimonials } from '../data/testimonials';
 
 const INTERVAL = 5000;
@@ -92,10 +93,20 @@ export default function TestimonialsPlaceholder() {
   return (
     <section className="section-padding">
       <div className="container-page">
+        {/* Section title — same style as the rest of the site, above the container */}
+        <BlurReveal
+          text="Kind Words from our Customers"
+          className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)] mb-8 md:mb-12"
+          blur={12}
+          y={24}
+          rotate={5}
+          stagger={0.12}
+        />
+
         {/* Rounded panel — grainy dark-blue texture blended with the PQube theme gradient.
-            Fixed height: heading row on top, card fills the remaining space (constant size per slide) */}
+            Fixed height: arrows on top, card fills the remaining space (constant size per slide) */}
         <div
-          className="relative overflow-hidden rounded-[40px] md:rounded-[60px] px-5 md:px-14 pt-12 pb-8 md:pt-16 md:pb-10 h-[500px] md:h-[590px] lg:h-[610px] flex flex-col"
+          className="relative overflow-hidden rounded-[40px] md:rounded-[60px] px-5 md:px-14 pt-10 pb-8 md:pt-12 md:pb-10 h-[460px] md:h-[520px] lg:h-[540px] flex flex-col"
           style={{
             backgroundImage:
               "linear-gradient(135deg, rgba(16,26,66,0.94) 0%, rgba(27,42,107,0.88) 45%, rgba(34,52,138,0.82) 100%), url('/images/grainy-gradient-bg.jpg')",
@@ -108,29 +119,21 @@ export default function TestimonialsPlaceholder() {
           <div className="absolute -bottom-28 -right-20 w-[420px] h-[420px] rounded-full bg-[var(--pqube-blue)]/20 blur-3xl pointer-events-none" aria-hidden="true" />
           <div className="absolute top-1/3 right-1/4 w-24 h-24 rounded-3xl border border-white/5 rotate-45 pointer-events-none" aria-hidden="true" />
 
-          {/* Heading row: title left, round arrows right */}
-          <div className="relative flex items-end justify-between gap-6 mb-8 md:mb-12 shrink-0">
-            <h2 className="text-white font-extrabold text-[28px] leading-[1.15] md:text-5xl lg:text-[54px]">
-              <span className="text-[var(--pqube-cyan)]">Kind Words</span>
-              <br className="hidden md:block" />
-              from our Customers
-            </h2>
-
-            <div className="flex shrink-0">
-              {[
-                { icon: ChevronLeft, label: 'Previous testimonial', action: prev },
-                { icon: ChevronRight, label: 'Next testimonial', action: next },
-              ].map(({ icon: Icon, label, action }) => (
-                <button
-                  key={label}
-                  onClick={action}
-                  aria-label={label}
-                  className="w-[50px] h-[50px] md:w-[60px] md:h-[60px] rounded-full text-white border-2 border-white/15 hover:bg-white hover:text-[#111] hover:scale-110 transition-all duration-300 flex items-center justify-center ml-2.5"
-                >
-                  <Icon size={30} />
-                </button>
-              ))}
-            </div>
+          {/* Arrow controls, top-right inside the panel */}
+          <div className="relative flex justify-end gap-2.5 mb-5 md:mb-6 shrink-0">
+            {[
+              { icon: ChevronLeft, label: 'Previous testimonial', action: prev },
+              { icon: ChevronRight, label: 'Next testimonial', action: next },
+            ].map(({ icon: Icon, label, action }) => (
+              <button
+                key={label}
+                onClick={action}
+                aria-label={label}
+                className="w-[46px] h-[46px] md:w-[54px] md:h-[54px] rounded-full text-white border-2 border-white/15 hover:bg-white hover:text-[#111] hover:scale-110 transition-all duration-300 flex items-center justify-center"
+              >
+                <Icon size={26} />
+              </button>
+            ))}
           </div>
 
           {/* Carousel — fills remaining space; card keeps a constant size */}
