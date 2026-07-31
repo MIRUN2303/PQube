@@ -117,8 +117,7 @@ function Band({
     card = useRef();
   const vec = new THREE.Vector3(),
     ang = new THREE.Vector3(),
-    rot = new THREE.Quaternion(),
-    euler = new THREE.Euler(),
+    rot = new THREE.Vector3(),
     dir = new THREE.Vector3();
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
   const { nodes, materials } = useGLTF(cardGLB);
@@ -220,17 +219,7 @@ function Band({
       band.current.geometry.setPoints(curve.getPoints(isMobile ? 16 : 32));
       ang.copy(card.current.angvel());
       rot.copy(card.current.rotation());
-      // Straighten the card after a drag: damp the pendulum swing and twist so
-      // it hangs upright, facing the camera (rest rotation = identity). Not
-      // applied while dragging so it never fights the pointer.
-      euler.setFromQuaternion(rot);
-      if (!dragged) {
-        card.current.setAngvel({
-          x: ang.x - euler.x * 1.5,
-          y: ang.y - euler.y * 0.5,
-          z: ang.z - euler.z * 1.5
-        });
-      }
+      card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
     }
   });
 
