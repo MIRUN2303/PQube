@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Phone, Menu, X, ChevronDown } from 'lucide-react';
 import MegaMenu from './MegaMenu';
 import NavCard from './NavCard';
 import MobileDrawer from './MobileDrawer';
+import SpecularButton from './SpecularButton';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -83,11 +86,21 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA — specular highlight, the site's key conversion button */}
           <div className="hidden lg:flex items-center gap-3">
-            <a href="/contact" className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-[var(--pqube-navy)] hover:bg-[var(--pqube-blue)] rounded-lg transition-all duration-200 shadow-sm hover:shadow-md hover:ring-2 hover:ring-[var(--pqube-cyan)]/40">
+            <SpecularButton
+              size="md"
+              radius={10}
+              tint="#1B2A6B"
+              tintOpacity={1}
+              baseColor="#1B2A6B"
+              lineColor="#29ABE2"
+              textColor="#FFFFFF"
+              intensity={1.3}
+              onClick={() => navigate('/contact')}
+            >
               Schedule Free Demo
-            </a>
+            </SpecularButton>
           </div>
 
           {/* Mobile Hamburger */}

@@ -103,14 +103,24 @@ body {
 }
 
 .section-padding {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
-  .section-padding { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .section-padding { padding-top: 3rem; padding-bottom: 3rem; }
 }
 
 @media (min-width: 1024px) {
-  .section-padding { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+}
+
+/* Smooth glass blur-in for the testimonial card (native CSS, runs on compositor) */
+@keyframes card-blur-in {
+  from { backdrop-filter: blur(0px) saturate(120%); -webkit-backdrop-filter: blur(0px) saturate(120%); }
+  to { backdrop-filter: blur(8px) saturate(120%); -webkit-backdrop-filter: blur(8px) saturate(120%); }
+}
+
+.card-blur-in {
+  animation: card-blur-in 0.5s ease-out both;
 }

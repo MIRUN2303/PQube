@@ -27,11 +27,11 @@ export default function ServiceCard({ service }) {
   return (
     <a
       href={service.link}
-      className="group relative bg-white border border-[var(--pqube-gray-200)] rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+      className="group relative bg-gradient-to-br from-[#F0F6FF] via-[#E3EEFF] to-[#D2E2FC] border border-[var(--pqube-blue)]/20 rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--pqube-blue)]/10"
     >
-      <div className="w-12 h-12 rounded-full bg-[var(--pqube-blue)]/10 flex items-center justify-center mb-4 group-hover:bg-[var(--pqube-cyan)]/10 transition-colors">
+      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center mb-4 shadow-md shadow-[var(--pqube-blue)]/30 transition-transform duration-200 group-hover:scale-110">
         <span className={`icon-wrap ${animClass}`}>
-          <Icon size={22} className="text-[var(--pqube-blue)] group-hover:text-[var(--pqube-navy)] transition-colors" />
+          <Icon size={22} className="text-white" />
         </span>
       </div>
 

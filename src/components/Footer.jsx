@@ -4,12 +4,26 @@ import { services } from '../data/services';
 export default function Footer() {
   return (
     <footer className="bg-[var(--pqube-navy)] text-white" role="contentinfo">
-      <div className="container-page py-12 md:py-16">
+
+      {/* ── Notch bar ──────────────────────────────────────────────────────────
+          Wrapped in container-page so the logo left-edge aligns perfectly
+          with the first column of the footer grid below.
+      ──────────────────────────────────────────────────────────────────────── */}
+      <div className="container-page">
+        <div
+          className="bg-white rounded-b-[28px] inline-flex items-center px-6 md:px-8 py-2.5"
+          aria-label="PQube logo"
+        >
+          <img src="/logo/3.png" alt="PQube" className="h-20 md:h-[84px] w-auto" />
+        </div>
+      </div>
+
+      {/* ── Main grid ─────────────────────────────────────────────────────── */}
+      <div className="container-page pt-4 pb-10 md:pt-6 md:pb-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Column 1: Brand */}
           <div>
-            <img src="/logo/3.png" alt="PQube" className="h-8 w-auto" />
-            <p className="mt-3 text-sm text-white/50 leading-relaxed max-w-xs">
+            <p className="text-sm text-white/50 leading-relaxed max-w-xs">
               Build People to Build Business<sup>&reg;</sup>
             </p>
             <div className="flex items-center gap-3 mt-5">
