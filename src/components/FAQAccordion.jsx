@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { faqItems } from '../data/faq';
 import ShinyText from './ShinyText';
-import ScrollReveal from './ScrollReveal';
+import BlurReveal from './BlurReveal';
 
 function AccordionItem({ item, isOpen, onClick }) {
   return (
@@ -30,9 +30,7 @@ export default function FAQAccordion() {
       <div className="container-page">
         <div className="text-center mb-12">
           <ShinyText text="FAQ" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
-          <ScrollReveal textClassName="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" baseOpacity={0} baseRotation={5} blurStrength={10}>
-            Frequently Asked Questions
-          </ScrollReveal>
+          <BlurReveal text="Frequently Asked Questions" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
         </div>
 
         <div className="max-w-3xl mx-auto space-y-3">

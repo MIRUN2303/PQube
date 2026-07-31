@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { processSteps } from '../data/processSteps';
 import ShinyText from './ShinyText';
+import BlurReveal from './BlurReveal';
 
 export default function ProcessTimeline() {
   return (
@@ -15,9 +16,7 @@ export default function ProcessTimeline() {
             spread={120}
             className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3"
           />
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]">
-            Our Engagement Roadmap
-          </h2>
+          <BlurReveal text="Our Engagement Roadmap" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
             A proven methodology built on two decades of delivery experience.
           </p>

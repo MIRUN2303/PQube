@@ -3,6 +3,7 @@ import { valueTabs } from '../data/values';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 import SpecularButton from './SpecularButton';
 import ShinyText from './ShinyText';
+import BlurReveal from './BlurReveal';
 
 const INTERVAL = 6000;
 
@@ -66,7 +67,7 @@ export default function WhyPQubeTabs() {
       <div className="container-page">
         <div className="text-center mb-8 md:mb-10">
           <ShinyText text="Why PQube" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]">What Drives Us</h2>
+          <BlurReveal text="What Drives Us" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
         </div>
 
         <div className="max-w-3xl mx-auto">

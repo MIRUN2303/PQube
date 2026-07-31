@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Freepik premium originals (122 MB) — only the optimized web copy is committed
+public/images/grainy-gradient-background-dark-blue/

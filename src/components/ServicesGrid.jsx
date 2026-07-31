@@ -1,7 +1,7 @@
 import { services } from '../data/services';
 import ServiceCard from './ServiceCard';
 import ShinyText from './ShinyText';
-import ScrollReveal from './ScrollReveal';
+import BlurReveal from './BlurReveal';
 
 export default function ServicesGrid() {
   return (
@@ -9,9 +9,7 @@ export default function ServicesGrid() {
       <div className="container-page">
         <div className="text-center mb-12">
           <ShinyText text="What We Do" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
-          <ScrollReveal className="mb-4" textClassName="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" baseOpacity={0} baseRotation={5} blurStrength={10}>
-            Business IT Solutions We Offer
-          </ScrollReveal>
+          <BlurReveal text="Business IT Solutions We Offer" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)] mb-4" blur={12} y={24} rotate={5} stagger={0.12} />
           <p className="text-[var(--pqube-gray-500)] max-w-2xl mx-auto">
             From cloud infrastructure to digital marketing — we deliver end-to-end technology solutions that help businesses operate smarter, scale faster, and compete stronger.
           </p>

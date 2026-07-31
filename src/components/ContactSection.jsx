@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { MapPin, Phone, Mail, Send } from 'lucide-react';
 import SpecularButton from './SpecularButton';
 import ShinyText from './ShinyText';
-import ScrollReveal from './ScrollReveal';
+import BlurReveal from './BlurReveal';
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -21,9 +21,7 @@ export default function ContactSection() {
       <div className="container-page">
         <div className="text-center mb-12">
           <ShinyText text="Contact" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
-          <ScrollReveal textClassName="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" baseOpacity={0} baseRotation={5} blurStrength={10}>
-            Get a Free Consultation
-          </ScrollReveal>
+          <BlurReveal text="Get a Free Consultation" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
             Tell us about your project and we&apos;ll get back to you within 24 hours with a no-obligation assessment.
           </p>

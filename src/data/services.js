@@ -90,16 +90,19 @@ export const outcomes = [
   {
     title: '20+ Years of Delivery Experience',
     icon: Cloud,
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=85',
     description: 'Over two decades of successfully delivering IT solutions across industries — we know what works, what doesn\'t, and how to get it right the first time.',
   },
   {
     title: 'Global Reach, India-Native Collaboration',
     icon: Globe,
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=85',
     description: 'Headquartered in Bengaluru with a presence in Delaware, USA. We combine global delivery standards with the cost-efficiency of an India-native team across all time zones.',
   },
   {
     title: 'Quality, Passion & Ownership',
     icon: Heart,
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=85',
     description: 'Every engagement is driven by quality, a passion for solving real business problems, and a culture of ownership — our clients\' outcomes are our outcomes.',
   },
 ];

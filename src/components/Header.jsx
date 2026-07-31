@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown } from 'lucide-react';
 import MegaMenu from './MegaMenu';
+import NavCard from './NavCard';
 import MobileDrawer from './MobileDrawer';
 
 export default function Header() {
@@ -66,15 +67,12 @@ export default function Header() {
                 <MegaMenu key={item.label} label={item.label} />
               ) : item.dropdown ? (
                 <div key={item.label} className="relative group">
-                  <a href={item.href} className="px-3 py-2 text-sm font-medium text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] rounded-md transition-colors relative after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:bg-[var(--pqube-blue)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100">
+                  <a href={item.href} className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] rounded-md transition-colors relative after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:bg-[var(--pqube-blue)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100">
                     {item.label}
+                    <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
                   </a>
-                  <div className="absolute top-full left-0 mt-0 w-48 bg-white shadow-lg border border-[var(--pqube-gray-200)] rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    {item.dropdown.map((sub) => (
-                      <a key={sub.label} href={sub.href} className="block px-4 py-2 text-sm text-[var(--pqube-ink)] hover:bg-[var(--pqube-gray-50)] hover:text-[var(--pqube-blue)] transition-colors">
-                        {sub.label}
-                      </a>
-                    ))}
+                  <div className="absolute top-full left-0 mt-0 w-72 bg-white shadow-xl border border-[var(--pqube-gray-200)] rounded-xl p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <NavCard label="About PQube" bg="#1B2A6B" minHeight="190px" links={item.dropdown.map((sub) => ({ label: sub.label, href: sub.href }))} />
                   </div>
                 </div>
               ) : (
