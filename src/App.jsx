@@ -19,6 +19,8 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 import CookieBanner from './components/CookieBanner';
 import CursorFollower from './components/CursorFollower';
 import PlaceholderPage from './pages/PlaceholderPage';
+import PressReleases from './pages/PressReleases';
+import Portfolio from './pages/Portfolio';
 
 export default function App() {
   return (
@@ -44,8 +46,8 @@ export default function App() {
             </main>
           } />
           <Route path="/about" element={<PlaceholderPage title="About Us" />} />
-          <Route path="/portfolio" element={<PlaceholderPage title="Portfolio" />} />
-          <Route path="/press-releases" element={<PlaceholderPage title="Press Releases" />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/press-releases" element={<PressReleases />} />
           <Route path="/clients" element={<PlaceholderPage title="Our Clients" />} />
           <Route path="/clients/:slug" element={<PlaceholderPage title="Client" />} />
           <Route path="/insights" element={<PlaceholderPage title="Insights" />} />

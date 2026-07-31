@@ -24,6 +24,35 @@
 
 html { scroll-behavior: smooth; }
 
+/* Services (What We Deliver) — center the CardSwap stack inside its column
+   and keep the complete stack within the section boundaries. The stack fans
+   out right/up (x = i*18, y = -i*20), so the anchor is pre-compensated. */
+.services-cardswap .card-swap-container {
+  bottom: auto;
+  right: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% - 45px), calc(-50% + 40px));
+  transform-origin: center center;
+}
+
+@media (max-width: 768px) {
+  .services-cardswap .card-swap-container {
+    transform: translate(calc(-50% - 32px), calc(-50% + 29px)) scale(0.62);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-cardswap .card-swap-container {
+    transform: translate(calc(-50% - 25px), calc(-50% + 22px)) scale(0.55);
+  }
+}
+
+/* Team stage — the Cubes grid must fill its wrapper (default CSS is 50%). */
+.team-stage .default-animation {
+  width: 100%;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);

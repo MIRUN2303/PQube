@@ -28,6 +28,7 @@ const ScrollStack = ({
   const cardsRef = useRef([]);
   const lastTransformsRef = useRef(new Map());
   const isUpdatingRef = useRef(false);
+  const offsetCacheRef = useRef(new Map());
 
   const calculateProgress = useCallback((scrollTop, start, end) => {
     if (scrollTop < start) return 0;
@@ -61,12 +62,18 @@ const ScrollStack = ({
 
   const getElementOffset = useCallback(
     element => {
+      const cached = offsetCacheRef.current.get(element);
+      if (cached !== undefined) return cached;
+
+      let offset;
       if (useWindowScroll) {
         const rect = element.getBoundingClientRect();
-        return rect.top + window.scrollY;
+        offset = rect.top + window.scrollY;
       } else {
-        return element.offsetTop;
+        offset = element.offsetTop;
       }
+      offsetCacheRef.current.set(element, offset);
+      return offset;
     },
     [useWindowScroll]
   );
@@ -130,7 +137,7 @@ const ScrollStack = ({
         translateY: Math.round(translateY * 100) / 100,
         scale: Math.round(scale * 1000) / 1000,
         rotation: Math.round(rotation * 100) / 100,
-        blur: Math.round(blur * 100) / 100
+        blur: Math.round(blur)
       };
 
       const lastTransform = lastTransformsRef.current.get(i);
@@ -139,7 +146,7 @@ const ScrollStack = ({
         Math.abs(lastTransform.translateY - newTransform.translateY) > 0.1 ||
         Math.abs(lastTransform.scale - newTransform.scale) > 0.001 ||
         Math.abs(lastTransform.rotation - newTransform.rotation) > 0.1 ||
-        Math.abs(lastTransform.blur - newTransform.blur) > 0.1;
+        Math.abs(lastTransform.blur - newTransform.blur) > 0.5;
 
       if (hasChanged) {
         const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
@@ -272,6 +279,14 @@ const ScrollStack = ({
 
     updateCardTransforms();
 
+    const clearOffsetCache = () => offsetCacheRef.current.clear();
+    window.addEventListener('resize', clearOffsetCache);
+    document.fonts?.ready?.then(() => {
+      clearOffsetCache();
+      updateCardTransforms();
+    });
+    const refreshTimer = setTimeout(clearOffsetCache, 1000);
+
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -279,9 +294,12 @@ const ScrollStack = ({
       if (lenisRef.current) {
         lenisRef.current.destroy();
       }
+      window.removeEventListener('resize', clearOffsetCache);
+      clearTimeout(refreshTimer);
       stackCompletedRef.current = false;
       cardsRef.current = [];
       transformsCache.clear();
+      offsetCacheRef.current.clear();
       isUpdatingRef.current = false;
     };
   }, [
