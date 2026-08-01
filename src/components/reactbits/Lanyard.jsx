@@ -235,7 +235,7 @@ export default function Lanyard({
   );
 }
 function Band({
-  maxSpeed = 50,
+  maxSpeed = 20,
   minSpeed = 0,
   isMobile = false,
   frontImage = null,
@@ -254,7 +254,7 @@ function Band({
     ang = new THREE.Vector3(),
     rot = new THREE.Vector3(),
     dir = new THREE.Vector3();
-  const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
+  const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 8, linearDamping: 8 };
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyardImage || lanyard);
   // Photos load imperatively (never suspend) so switching profiles can never
@@ -342,6 +342,33 @@ function Band({
       return () => void (document.body.style.cursor = 'auto');
     }
   }, [hovered, dragged]);
+
+  useEffect(() => {
+    window.__ldMounts = (window.__ldMounts || 0) + 1;
+    return () => { window.__ldUnmounts = (window.__ldUnmounts || 0) + 1; };
+  }, []);
+
+  // Debug publisher — exposes live state for QA probes (inert in prod)
+  useFrame((state) => {
+    try {
+      window.__ldFrames = (window.__ldFrames || 0) + 1;
+      let cardPos = null;
+      try {
+        const t = card.current?.translation?.();
+        cardPos = t ? [t.x, t.y, t.z].map((v) => +v.toFixed(2)) : 'no-vec';
+      } catch (e) { cardPos = 'err:' + String(e).slice(0, 60); }
+      window.__lanyardDebug = {
+        frames: window.__ldFrames,
+        cardPos,
+        triangles: state.gl.info.render.triangles,
+        mounts: window.__ldMounts || 0,
+        unmounts: window.__ldUnmounts || 0,
+        camPos: state.camera.position.toArray().map(v => +v.toFixed(1)),
+      };
+    } catch (e) {
+      window.__lanyardDebug = { err: String(e).slice(0, 120) };
+    }
+  });
 
   useFrame((state, delta) => {
     if (dragged) {

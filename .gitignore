@@ -27,3 +27,5 @@ dist-ssr
 public/images/grainy-gradient-background-dark-blue/
 .vercel
 .env*
+
+lanyard-lab/
