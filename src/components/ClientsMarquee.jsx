@@ -1,10 +1,12 @@
+import { useRef, useEffect } from 'react';
 import { clients } from '../data/clients';
 import ShinyText from './ShinyText';
 import BlurReveal from './BlurReveal';
 
-export default function ClientsMarquee() {
-  const doubled = [...clients, ...clients];
+const rowA = clients.filter((_, i) => i % 2 === 0);
+const rowB = clients.filter((_, i) => i % 2 === 1);
 
+export default function ClientsMarquee() {
   return (
     <section className="section-padding bg-white">
       <div className="container-page">
@@ -16,19 +18,9 @@ export default function ClientsMarquee() {
           </p>
         </div>
 
-        <div className="overflow-hidden group">
-          <div className="flex gap-16 animate-marquee w-max group-hover:[animation-play-state:paused]">
-            {doubled.map((c, idx) => (
-              <a key={`${c.slug}-${idx}`} href={c.link} className="flex items-center justify-center shrink-0 h-16 px-2" aria-label={c.name}>
-                <img
-                  src={c.logo}
-                  alt={`${c.name} logo`}
-                  className="max-h-14 w-auto max-w-[160px] object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                  loading={idx < clients.length ? 'eager' : 'lazy'}
-                />
-              </a>
-            ))}
-          </div>
+        <div className="space-y-12">
+          <MarqueeRow items={rowA} reverse={false} />
+          <MarqueeRow items={rowB} reverse />
         </div>
 
         <div className="text-center mt-10">
@@ -38,5 +30,76 @@ export default function ClientsMarquee() {
         </div>
       </div>
     </section>
+  );
+}
+
+function MarqueeRow({ items, reverse }) {
+  const wrapRef = useRef(null);
+  const trackRef = useRef(null);
+  const doubled = [...items, ...items];
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const track = trackRef.current;
+    if (!wrap || !track) return;
+
+    let raf = 0;
+    let current = 1; // playback rate
+    let target = 1;
+
+    const apply = () => {
+      track.getAnimations().forEach((a) => {
+        a.playbackRate = current;
+      });
+    };
+
+    // Exponential easing toward target → gradual slow-down / speed-up
+    const tick = () => {
+      const diff = target - current;
+      if (Math.abs(diff) < 0.005) {
+        current = target;
+        apply();
+        raf = 0;
+        return;
+      }
+      current += diff * 0.09;
+      apply();
+      raf = requestAnimationFrame(tick);
+    };
+
+    const onEnter = () => {
+      target = 0;
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+    const onLeave = () => {
+      target = 1;
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+
+    wrap.addEventListener('mouseenter', onEnter);
+    wrap.addEventListener('mouseleave', onLeave);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      wrap.removeEventListener('mouseenter', onEnter);
+      wrap.removeEventListener('mouseleave', onLeave);
+    };
+  }, []);
+
+  return (
+    <div ref={wrapRef} className="overflow-hidden">
+      <div ref={trackRef} className={`flex gap-16 w-max ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}>
+        {doubled.map((c, idx) => (
+          <a key={`${c.slug}-${idx}`} href={c.link} className="flex items-center justify-center shrink-0 h-16 px-2" aria-label={c.name}>
+            <img
+              src={c.logo}
+              alt={`${c.name} logo`}
+              className="max-h-14 w-auto max-w-[160px] object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              loading={idx < items.length ? 'eager' : 'lazy'}
+            />
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }

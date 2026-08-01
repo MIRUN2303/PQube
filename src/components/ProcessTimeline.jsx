@@ -40,8 +40,8 @@ export default function ProcessTimeline() {
         .desk-card {
           opacity: 0;
           transform: scale(0.55) translateY(20px);
-          transition: opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
-                      transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transition: opacity 0.9s cubic-bezier(0.34, 1.56, 0.64, 1),
+                      transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
           will-change: opacity, transform;
         }
         .desk-dot.rm-show,
@@ -75,7 +75,6 @@ function DesktopRoadmap() {
   const offsetY = 8;
   const containerRef = useRef(null);
   const pathActiveRef = useRef(null);
-  const triggered = useRef(false);
 
   const pathD = (() => {
     const segW = 100 / (n - 1);
@@ -95,39 +94,63 @@ function DesktopRoadmap() {
     const container = containerRef.current;
     if (!container) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !triggered.current) {
-          triggered.current = true;
-          observer.disconnect();
+    const n = processSteps.length;
+    const dots = Array.from(container.querySelectorAll('.desk-dot'));
+    const cards = Array.from(container.querySelectorAll('.desk-card'));
+    const path = pathActiveRef.current;
+    const segs = Math.max(n - 1, 1);
 
-          // 1. Draw the path
-          const path = pathActiveRef.current;
-          if (path) {
-            path.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            path.style.strokeDashoffset = '0';
-          }
+    // Use the real rendered path length so the line grows segment by segment
+    let totalLen = 1000;
+    if (path) {
+      totalLen = path.getTotalLength() || 1000;
+      path.style.strokeDasharray = String(totalLen);
+      path.style.strokeDashoffset = String(totalLen);
+    }
 
-          // 2. Stagger-reveal dots then cards, one step at a time
-          const dots = container.querySelectorAll('.desk-dot');
-          const cards = container.querySelectorAll('.desk-card');
-          const STAGGER = 0.28; // seconds between each step
+    let revealed = 0;
+    let raf = 0;
 
-          dots.forEach((dot, i) => {
-            dot.style.transitionDelay = `${i * STAGGER}s`;
-            dot.classList.add('rm-show');
-          });
-          cards.forEach((card, i) => {
-            card.style.transitionDelay = `${0.14 + i * STAGGER}s`;
-            card.classList.add('rm-show');
-          });
-        }
-      },
-      { threshold: 0.15 }
-    );
+    // Show the first `count` steps and draw the path up to them
+    const apply = (count) => {
+      const c = Math.max(0, Math.min(n, Math.round(count)));
+      if (c === revealed) return;
+      revealed = c;
+      dots.forEach((dot, i) => dot.classList.toggle('rm-show', i < c));
+      cards.forEach((card, i) => card.classList.toggle('rm-show', i < c));
+      if (path) {
+        // Line ends exactly at the dot of the last revealed step
+        const frac = Math.min(1, Math.max(0, (revealed - 1) / segs));
+        path.style.transition = 'stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1)';
+        path.style.strokeDashoffset = String(totalLen * (1 - frac));
+      }
+    };
 
-    observer.observe(container);
-    return () => observer.disconnect();
+    // Scroll progress: container top enters at 92% of the viewport (step 1),
+    // all steps are revealed once it reaches 12% — each step needs a scroll
+    const measure = () => {
+      const rect = container.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const start = vh * 0.92;
+      const end = vh * 0.12;
+      const span = start - end;
+      const p = Math.min(1, Math.max(0, (start - rect.top) / span));
+      apply(p * n);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(measure);
+    };
+
+    measure();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, []);
 
   return (

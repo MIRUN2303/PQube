@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { valueTabs } from '../data/values';
-import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Quote } from 'lucide-react';
 import SpecularButton from './SpecularButton';
 import ShinyText from './ShinyText';
 import BlurReveal from './BlurReveal';
 
 const INTERVAL = 6000;
+const total = valueTabs.length;
 
 export default function WhyPQubeTabs() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -16,8 +17,6 @@ export default function WhyPQubeTabs() {
   const timerRef = useRef(null);
   const rafRef = useRef(null);
   const animStartRef = useRef(null);
-
-  const total = valueTabs.length;
 
   const goTo = useCallback((idx) => {
     setPrevIdx(activeIdx);
@@ -64,42 +63,47 @@ export default function WhyPQubeTabs() {
 
   return (
     <section className="section-padding bg-[var(--pqube-gray-50)] relative overflow-hidden">
+      {/* Ambient background orbs */}
+      <div className="pointer-events-none absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[var(--pqube-cyan)]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[var(--pqube-blue)]/10 blur-3xl" />
+
       <div className="container-page">
         <div className="text-center mb-8 md:mb-10">
           <ShinyText text="Why PQube" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="What Drives Us" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          {/* Tab pills */}
-          <div className="flex flex-wrap justify-center gap-2 mb-6" role="tablist">
-            {valueTabs.map((t, idx) => (
-              <button
-                key={t.id}
-                role="tab"
-                aria-selected={activeIdx === idx}
-                onClick={() => goTo(idx)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
-                  activeIdx === idx
-                    ? 'bg-[var(--pqube-navy)] text-white shadow-sm'
-                    : 'bg-white text-[var(--pqube-gray-500)] hover:bg-[var(--pqube-gray-200)] border border-[var(--pqube-gray-200)]'
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="relative bg-white rounded-3xl shadow-[0_24px_70px_-24px_rgba(11,58,110,0.25)] border border-[var(--pqube-gray-200)] overflow-hidden flex flex-col" style={{ height: '540px' }}>
+            {/* Tab pills — inside container top */}
+            <div className="relative z-20 flex flex-wrap justify-center gap-2 px-4 pt-6 pb-4" role="tablist">
+              {valueTabs.map((t, idx) => (
+                <button
+                  key={t.id}
+                  role="tab"
+                  aria-selected={activeIdx === idx}
+                  onClick={() => goTo(idx)}
+                  className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                    activeIdx === idx
+                      ? 'bg-gradient-to-r from-[#29ABE2] to-[#1B6FD6] text-white shadow-md shadow-[#29ABE2]/30 scale-105'
+                      : 'bg-[var(--pqube-gray-50)] text-[var(--pqube-gray-500)] hover:bg-[var(--pqube-gray-200)] border border-[var(--pqube-gray-200)]'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
 
-          {/* Fixed-size slide container */}
-          <div className="relative bg-white rounded-2xl shadow-lg border border-[var(--pqube-gray-200)] overflow-hidden" style={{ height: '480px' }}>
-            {/* Auto-advance timer bar — clipped to container's rounded top */}
-            <div className="absolute top-0 left-0 right-0 h-1 z-30 bg-[var(--pqube-gray-200)]">
+            {/* Auto-advance timer — doubles as the divider */}
+            <div className="h-1 z-30 bg-[var(--pqube-gray-200)] shrink-0">
               <div
                 className="h-full bg-gradient-to-r from-[var(--pqube-cyan)] to-[var(--pqube-blue)] transition-none"
                 style={{ width: `${progress * 100}%` }}
               />
             </div>
-            <div className="relative w-full h-full" style={{ perspective: '1500px' }}>
+
+            {/* Slides */}
+            <div className="relative flex-1 min-h-0" style={{ perspective: '1500px' }}>
               {valueTabs.map((t, idx) => {
                 const isActive = activeIdx === idx;
                 const isPrev = prevIdx === idx;
@@ -122,22 +126,47 @@ export default function WhyPQubeTabs() {
                       transformOrigin: 'left center',
                     }}
                   >
-                    <div className="flex flex-col h-full">
-                      <div className="relative h-48 md:h-56 shrink-0 overflow-hidden">
-                        <img
-                          src={t.image}
-                          alt=""
-                          className="w-full h-full object-cover"
-                          loading={idx === 0 ? 'eager' : 'lazy'}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white pointer-events-none" />
-                      </div>
-                      <div className="flex-1 p-6 md:p-8 overflow-y-auto">
-                        <h3 className="text-xl md:text-2xl font-bold text-[var(--pqube-navy)] mb-3">{t.label}</h3>
-                        <div className="text-[var(--pqube-gray-500)] leading-relaxed whitespace-pre-line text-sm md:text-base">
-                          {t.content}
+                    {/* Full-bleed image */}
+                    <img
+                      src={t.image}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading={idx === 0 ? 'eager' : 'lazy'}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0B3A6E]/75 via-[#0B3A6E]/45 to-[#0B3A6E]/15" />
+                    {/* Dotted pattern */}
+                    <div
+                      className="absolute inset-0 opacity-20 mix-blend-overlay"
+                      style={{
+                        backgroundImage: 'radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)',
+                        backgroundSize: '24px 24px',
+                      }}
+                    />
+
+                    {/* Desktop index chip (image side) */}
+                    <div className="hidden md:flex absolute bottom-5 left-5 items-center gap-3 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 px-4 py-2.5 shadow-lg">
+                      <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-white/80">Chapter</span>
+                      <span className="text-lg font-extrabold text-white leading-none">0{idx + 1}<span className="text-white/60 text-sm">/{total}</span></span>
+                    </div>
+
+                    {/* Frosted glass content panel */}
+                    <div className="absolute inset-x-3 bottom-3 md:inset-y-4 md:right-4 md:left-auto md:w-[46%] bg-white/85 backdrop-blur-xl rounded-2xl border border-white/60 shadow-xl p-6 md:p-8 overflow-y-auto">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#29ABE2] to-[#1B6FD6] flex items-center justify-center shadow-lg shadow-[#29ABE2]/30 shrink-0">
+                          <Quote size={16} className="text-white" />
                         </div>
+                        <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[var(--pqube-cyan)] bg-[var(--pqube-cyan)]/10 rounded-full px-2.5 py-1">
+                          0{idx + 1} / 0{total}
+                        </span>
                       </div>
+
+                      <h3 className="text-xl md:text-2xl font-extrabold text-[var(--pqube-navy)] mb-4">{t.label}</h3>
+                      <div className="text-[var(--pqube-gray-600)] leading-relaxed whitespace-pre-line text-sm md:text-[15px]">
+                        {t.content}
+                      </div>
+
+                      {/* Decorative accent line */}
+                      <div className="mt-6 h-px w-16 bg-gradient-to-r from-[#29ABE2] to-transparent" />
                     </div>
                   </div>
                 );

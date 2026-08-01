@@ -27,32 +27,72 @@ export default function ServiceCard({ service }) {
   return (
     <a
       href={service.link}
-      className="group relative bg-gradient-to-br from-[#F0F6FF] via-[#E3EEFF] to-[#D2E2FC] border border-[var(--pqube-blue)]/20 rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--pqube-blue)]/10"
+      className="group relative overflow-hidden bg-gradient-to-br from-[#F0F6FF] via-[#E3EEFF] to-[#D2E2FC] border border-[var(--pqube-blue)]/20 rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--pqube-blue)]/10"
     >
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center mb-4 shadow-md shadow-[var(--pqube-blue)]/30 transition-transform duration-200 group-hover:scale-110">
-        <span className={`icon-wrap ${animClass}`}>
-          <Icon size={22} className="text-white" />
+      {/* Liquid image reveal — a soft blob of the service image blooms outward on hover */}
+      <div
+        className="card-liquid"
+        style={{
+          backgroundImage: `linear-gradient(135deg, rgba(240,246,255,0.78) 0%, rgba(211,226,252,0.55) 100%), url(${service.image})`,
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center mb-4 shadow-md shadow-[var(--pqube-blue)]/30 transition-transform duration-200 group-hover:scale-110">
+          <span className={`icon-wrap ${animClass}`}>
+            <Icon size={22} className="text-white" />
+          </span>
+        </div>
+
+        <h3 className="text-lg font-bold text-[var(--pqube-navy)] mb-2 group-hover:text-[var(--pqube-blue)] transition-colors">
+          {service.title}
+        </h3>
+        <p className="text-sm text-[var(--pqube-gray-500)] leading-relaxed mb-4 line-clamp-3 transition-colors duration-500 group-hover:text-white group-hover:[text-shadow:0_1px_2px_rgba(10,15,40,0.65),0_3px_10px_rgba(10,15,40,0.4)]">
+          {service.description}
+        </p>
+
+        {service.tag && (
+          <span className="inline-block text-[10px] uppercase tracking-wider bg-[var(--pqube-cyan)]/10 text-[var(--pqube-cyan)] px-2 py-0.5 rounded mb-3">
+            {service.tag}
+          </span>
+        )}
+
+        <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--pqube-navy)] group-hover:text-[var(--pqube-blue)] transition-colors">
+          Learn more <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
         </span>
       </div>
 
-      <h3 className="text-lg font-bold text-[var(--pqube-navy)] mb-2 group-hover:text-[var(--pqube-blue)] transition-colors">
-        {service.title}
-      </h3>
-      <p className="text-sm text-[var(--pqube-gray-500)] leading-relaxed mb-4 line-clamp-3">
-        {service.description}
-      </p>
-
-      {service.tag && (
-        <span className="inline-block text-[10px] uppercase tracking-wider bg-[var(--pqube-cyan)]/10 text-[var(--pqube-cyan)] px-2 py-0.5 rounded mb-3">
-          {service.tag}
-        </span>
-      )}
-
-      <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--pqube-navy)] group-hover:text-[var(--pqube-blue)] transition-colors">
-        Learn more <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
-      </span>
-
       <style>{`
+        .card-liquid {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          opacity: 0;
+          transform: scale(1.08);
+          -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, black 42%, transparent 74%);
+          mask-image: radial-gradient(circle at 50% 50%, black 0%, black 42%, transparent 74%);
+          -webkit-mask-size: 5% 5%;
+          mask-size: 5% 5%;
+          -webkit-mask-position: center;
+          mask-position: center;
+          transition:
+            opacity 0.7s ease,
+            transform 2.4s cubic-bezier(0.22, 1, 0.36, 1),
+            -webkit-mask-size 2.2s cubic-bezier(0.22, 1, 0.36, 1),
+            mask-size 2.2s cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: mask-size, transform, opacity;
+          pointer-events: none;
+        }
+
+        .group:hover .card-liquid {
+          opacity: 1;
+          transform: scale(1.02);
+          -webkit-mask-size: 340% 340%;
+          mask-size: 340% 340%;
+        }
+
         .icon-wrap {
           display: inline-flex;
           align-items: center;
