@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { valueTabs } from '../data/values';
-import { ChevronLeft, ChevronRight, Play, Pause, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Quote, Users, ShieldCheck, TrendingUp, Sparkles } from 'lucide-react';
 import SpecularButton from './SpecularButton';
 import ShinyText from './ShinyText';
 import BlurReveal from './BlurReveal';
@@ -73,8 +73,53 @@ export default function WhyPQubeTabs() {
           <BlurReveal text="What Drives Us" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="relative bg-white rounded-3xl shadow-[0_24px_70px_-24px_rgba(11,58,110,0.25)] border border-[var(--pqube-gray-200)] overflow-hidden flex flex-col" style={{ height: '540px' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="relative">
+            {/* ── Floating formula card (left) ── */}
+            <aside className="hidden xl:block absolute -left-24 top-1/2 -translate-y-1/2 -rotate-6 z-30 transition-transform duration-500 hover:rotate-0 hover:-translate-y-[58%]">
+              <div className="w-60 rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--pqube-gray-200)] shadow-[0_18px_44px_-16px_rgba(11,58,110,0.25)] p-5">
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[var(--pqube-cyan)] mb-4">The PQube Formula</p>
+                <ul className="space-y-2.5">
+                  <li className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-[#29ABE2]/10 text-[#0e6ab3] flex items-center justify-center"><Users size={13} /></span>
+                    <span className="text-sm font-semibold text-[var(--pqube-navy)]">People</span>
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-[#1B6FD6]/10 text-[#12539f] flex items-center justify-center"><ShieldCheck size={13} /></span>
+                    <span className="text-sm font-semibold text-[var(--pqube-navy)]">Principles</span>
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-lg bg-[#4C5BD4]/10 text-[#3b4bc0] flex items-center justify-center"><TrendingUp size={13} /></span>
+                    <span className="text-sm font-semibold text-[var(--pqube-navy)]">Prosperity</span>
+                  </li>
+                </ul>
+                <div className="mt-4 pt-3.5 border-t border-dashed border-[var(--pqube-gray-200)] flex items-center justify-between">
+                  <span className="text-sm font-extrabold text-[var(--pqube-navy)]">= Quantum</span>
+                  <Sparkles size={14} className="text-[var(--pqube-cyan)]" />
+                </div>
+              </div>
+            </aside>
+
+            {/* ── Floating philosophy card (right) ── */}
+            <aside className="hidden xl:block absolute -right-24 top-1/2 -translate-y-1/2 rotate-6 z-30 transition-transform duration-500 hover:rotate-0 hover:-translate-y-[58%]">
+              <div className="w-56 rounded-2xl bg-gradient-to-br from-[#1B2A6B] to-[#0B3A6E] text-white shadow-[0_18px_44px_-16px_rgba(11,58,110,0.5)] p-5">
+                <Quote size={16} className="text-[#29ABE2]" />
+                <p className="mt-3 text-sm font-bold leading-snug">"Build People to Build Business®"</p>
+                <p className="mt-1 text-[11px] text-white/60">Our operating philosophy since day one.</p>
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  <div className="rounded-xl bg-white/10 border border-white/15 py-2.5 text-center">
+                    <div className="text-lg font-extrabold leading-none">20+</div>
+                    <div className="mt-1 text-[9px] uppercase tracking-wider text-white/60">Years</div>
+                  </div>
+                  <div className="rounded-xl bg-white/10 border border-white/15 py-2.5 text-center">
+                    <div className="text-lg font-extrabold leading-none">2</div>
+                    <div className="mt-1 text-[9px] uppercase tracking-wider text-white/60">Continents</div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <div className="relative bg-white rounded-3xl shadow-[0_24px_70px_-24px_rgba(11,58,110,0.25)] border border-[var(--pqube-gray-200)] overflow-hidden flex flex-col" style={{ height: '540px' }}>
             {/* Tab pills — inside container top */}
             <div className="relative z-20 flex flex-wrap justify-center gap-2 px-4 pt-6 pb-4" role="tablist">
               {valueTabs.map((t, idx) => (
@@ -173,10 +218,10 @@ export default function WhyPQubeTabs() {
               })}
             </div>
           </div>
+          </div>
 
           {/* Controls — fixed outside container */}
-          <div className="flex items-center justify-between mt-5">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between mt-5">            <div className="flex items-center gap-3">
               <div className="flex items-center gap-2" role="tablist" aria-label="Slide indicators">
                 {valueTabs.map((_, idx) => (
                   <button
