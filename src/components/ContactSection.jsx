@@ -84,7 +84,7 @@ export default function ContactSection() {
 
           <div className="space-y-6">
             <div className="bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-xl p-6">
-              <a href="https://maps.app.goo.gl/LZXzMktEGX8Wr7S56" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group">
+              <div className="flex items-start gap-4 group">
                 <MapPin size={20} className="text-[var(--pqube-cyan)] mt-1 shrink-0 group-hover:text-[var(--pqube-blue)] transition-colors" />
                 <div>
                   <h3 className="text-sm font-bold text-[var(--pqube-navy)] group-hover:text-[var(--pqube-blue)] transition-colors mb-1">Bengaluru, India (HQ)</h3>
@@ -98,7 +98,7 @@ export default function ContactSection() {
                     <a href="mailto:info@pqube.in" className="text-[var(--pqube-navy)] hover:text-[var(--pqube-blue)] transition-colors font-medium">info@pqube.in</a>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
 
             <div className="bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-xl p-6">
