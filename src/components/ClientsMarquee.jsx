@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react';
 import { clients } from '../data/clients';
 import ShinyText from './ShinyText';
 import BlurReveal from './BlurReveal';
@@ -34,67 +33,11 @@ export default function ClientsMarquee() {
 }
 
 function MarqueeRow({ items, reverse }) {
-  const wrapRef = useRef(null);
-  const trackRef = useRef(null);
   const repeated = [...items, ...items, ...items, ...items];
 
-  useEffect(() => {
-    const wrap = wrapRef.current;
-    const track = trackRef.current;
-    if (!wrap || !track) return;
-
-    let raf = 0;
-    let current = 1; // playback rate
-    let target = 1;
-
-    const apply = () => {
-      // Only the track's own marquee animation — never the logos' hover
-      // transitions, otherwise the tick pokes their playbackRate and they
-      // freeze/stutter mid-fade ("logo suddenly stands still" glitch).
-      track.getAnimations().forEach((a) => {
-        const name = a.animationName || '';
-        if (name === 'marquee-4x' || name === 'marquee-4x-reverse') {
-          a.playbackRate = current;
-        }
-      });
-    };
-
-    // Exponential easing toward target → gradual slow-down / speed-up
-    const tick = () => {
-      const diff = target - current;
-      if (Math.abs(diff) < 0.005) {
-        current = target;
-        apply();
-        raf = 0;
-        return;
-      }
-      current += diff * 0.09;
-      apply();
-      raf = requestAnimationFrame(tick);
-    };
-
-    const onEnter = () => {
-      target = 0;
-      if (!raf) raf = requestAnimationFrame(tick);
-    };
-    const onLeave = () => {
-      target = 1;
-      if (!raf) raf = requestAnimationFrame(tick);
-    };
-
-    wrap.addEventListener('mouseenter', onEnter);
-    wrap.addEventListener('mouseleave', onLeave);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      wrap.removeEventListener('mouseenter', onEnter);
-      wrap.removeEventListener('mouseleave', onLeave);
-    };
-  }, []);
-
   return (
-    <div ref={wrapRef} className="overflow-hidden">
-      <div ref={trackRef} className={`flex w-max ${reverse ? 'animate-marquee-4x-reverse' : 'animate-marquee-4x'}`}>
+    <div className="overflow-hidden">
+      <div className={`flex w-max ${reverse ? 'animate-marquee-4x-reverse' : 'animate-marquee-4x'}`}>
         {repeated.map((c, idx) => (
           <a key={`${c.slug}-${idx}`} href={c.link} className="flex items-center justify-center shrink-0 h-16 px-2 mr-16" aria-label={c.name}>
             <img
