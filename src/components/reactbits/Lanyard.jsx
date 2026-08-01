@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
 import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
@@ -15,10 +15,44 @@ import './Lanyard.css';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
-// 1x1 transparent pixel — lets useTexture be called unconditionally when a
-// front/back image isn't supplied.
-const BLANK_PIXEL =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+// ── Photo textures ──────────────────────────────────────────────────────────
+// The card photos are loaded imperatively (NOT via suspending useTexture).
+// If useTexture suspends on a profile switch, the whole Band unmounts out of
+// the live rapier world; when it remounts, the rope/spherical joints fail to
+// re-establish and the card free-falls out of frame. Loading without suspense
+// means the physics scene is never torn down. Textures are cached per URL so
+// revisiting a profile is instant.
+const PHOTO_TEX_CACHE = new Map();
+
+function usePhotoTexture(url) {
+  const [tex, setTex] = useState(null);
+  useEffect(() => {
+    if (!url) {
+      setTex(null);
+      return;
+    }
+    if (PHOTO_TEX_CACHE.has(url)) {
+      setTex(PHOTO_TEX_CACHE.get(url));
+      return;
+    }
+    let alive = true;
+    new THREE.TextureLoader().load(
+      url,
+      (t) => {
+        t.colorSpace = THREE.SRGBColorSpace;
+        t.anisotropy = 16;
+        PHOTO_TEX_CACHE.set(url, t);
+        if (alive) setTex(t);
+      },
+      undefined,
+      () => {}
+    );
+    return () => {
+      alive = false;
+    };
+  }, [url]);
+  return tex;
+}
 
 // The card model's front face is UV-mapped to the LEFT half of the texture
 // atlas and the back face to the RIGHT half (measured from card.glb). Each
@@ -26,6 +60,103 @@ const BLANK_PIXEL =
 // independently, aspect-preserving (no stretching).
 const FRONT_UV_RECT = { x: 0, y: 0, w: 0.5, h: 0.755 };
 const BACK_UV_RECT = { x: 0.5, y: 0, w: 0.5, h: 0.757 };
+
+// ── Custom-branded band ──────────────────────────────────────────────────────
+// Landscape tile: U scrolls along the strap length, V across its width. The
+// design is a slim dark-navy ribbon with cyan pinstripes and a centred white
+// logo badge that repeats along the strap. Used as the default band texture.
+const STRAP_LOGO_URL = '/logo/1.png';
+
+function buildBrandedStrap() {
+  const W = 640; // along the strap (U)
+  const H = 128; // across the strap (V)
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // ── Base: dark-navy centre, slightly lighter at edges ────────────────────
+  const base = ctx.createLinearGradient(0, 0, 0, H);
+  base.addColorStop(0,    '#0d1640');
+  base.addColorStop(0.18, '#142058');
+  base.addColorStop(0.5,  '#1B2A6B');
+  base.addColorStop(0.82, '#142058');
+  base.addColorStop(1,    '#0d1640');
+  ctx.fillStyle = base;
+  ctx.fillRect(0, 0, W, H);
+
+  // ── Subtle weave texture ─────────────────────────────────────────────────
+  ctx.fillStyle = 'rgba(255,255,255,0.03)';
+  for (let y = 6; y < H - 6; y += 8) ctx.fillRect(0, y, W, 2);
+  ctx.fillStyle = 'rgba(0,0,0,0.08)';
+  for (let x = 0; x < W; x += 12) ctx.fillRect(x, 0, 1, H);
+
+  // ── Cyan pinstripe accent lines (near edges) ─────────────────────────────
+  const stripe = ctx.createLinearGradient(0, 0, W, 0);
+  stripe.addColorStop(0,    'rgba(41,171,226,0.0)');
+  stripe.addColorStop(0.08, 'rgba(41,171,226,0.9)');
+  stripe.addColorStop(0.92, 'rgba(41,171,226,0.9)');
+  stripe.addColorStop(1,    'rgba(41,171,226,0.0)');
+  ctx.fillStyle = stripe;
+  ctx.fillRect(0, 8,      W, 2);  // top stripe
+  ctx.fillRect(0, H - 10, W, 2); // bottom stripe
+
+  // ── Thinner secondary accent lines ──────────────────────────────────────
+  ctx.fillStyle = 'rgba(41,171,226,0.35)';
+  ctx.fillRect(0, 13,     W, 1);
+  ctx.fillRect(0, H - 14, W, 1);
+
+  // ── Logo badge (centred in the tile, white rounded rect) ────────────────
+  const badgeW = 80;
+  const badgeH = 80;
+  const bx = W / 2 - badgeW / 2;
+  const by = H / 2 - badgeH / 2;
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.55)';
+  ctx.shadowBlur = 8;
+  ctx.fillStyle = 'rgba(255,255,255,0.96)';
+  ctx.beginPath();
+  ctx.roundRect(bx, by, badgeW, badgeH, 10);
+  ctx.fill();
+  ctx.restore();
+  // Badge border
+  ctx.strokeStyle = 'rgba(41,171,226,0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(bx, by, badgeW, badgeH, 10);
+  ctx.stroke();
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 16;
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+
+  // Load the logo image into the badge area
+  new THREE.TextureLoader().load(
+    STRAP_LOGO_URL,
+    (img) => {
+      // Draw logo centred and fitted inside the badge with 8px padding
+      const pad = 8;
+      const iw = img.image.width || badgeW;
+      const ih = img.image.height || badgeH;
+      const scale = Math.min((badgeW - pad * 2) / iw, (badgeH - pad * 2) / ih);
+      const dw = iw * scale;
+      const dh = ih * scale;
+      const dx = bx + (badgeW - dw) / 2;
+      const dy = by + (badgeH - dh) / 2;
+      ctx.save();
+      ctx.beginPath();
+      ctx.roundRect(bx, by, badgeW, badgeH, 10);
+      ctx.clip();
+      ctx.drawImage(img.image, dx, dy, dw, dh);
+      ctx.restore();
+      tex.needsUpdate = true;
+    },
+    undefined,
+    () => { tex.needsUpdate = true; }
+  );
+  return tex;
+}
 
 export default function Lanyard({
   position = [0, 0, 30],
@@ -39,6 +170,8 @@ export default function Lanyard({
   lanyardWidth = 1
 }) {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  const wrapRef = useRef(null);
+  const [inView, setInView] = useState(true);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -46,24 +179,40 @@ export default function Lanyard({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Pause the WebGL loop entirely while the stage is off-screen — no rAF,
+  // no physics, no GPU work — so it can never cause page-wide lag.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className="lanyard-wrapper">
+    <div ref={wrapRef} className="lanyard-wrapper">
       <Canvas
+        frameloop={inView ? 'always' : 'never'}
         camera={{ position: position, fov: fov }}
-        dpr={[1, isMobile ? 1.5 : 2]}
-        gl={{ alpha: transparent }}
+        dpr={[1, isMobile ? 1.25 : 1.5]}
+        gl={{ alpha: transparent, antialias: true, powerPreference: 'high-performance' }}
         onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
       >
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-          <Band
-            isMobile={isMobile}
-            frontImage={frontImage}
-            backImage={backImage}
-            imageFit={imageFit}
-            lanyardImage={lanyardImage}
-            lanyardWidth={lanyardWidth}
-          />
+          <Suspense fallback={null}>
+            <Band
+              isMobile={isMobile}
+              frontImage={frontImage}
+              backImage={backImage}
+              imageFit={imageFit}
+              lanyardImage={lanyardImage}
+              lanyardWidth={lanyardWidth}
+            />
+          </Suspense>
         </Physics>
         <Environment blur={0.75}>
           <Lightformer
@@ -122,10 +271,14 @@ function Band({
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyardImage || lanyard);
-  // useTexture must be called unconditionally; use a blank pixel when an image
-  // isn't supplied for a given face, then skip compositing it below.
-  const frontTex = useTexture(frontImage || BLANK_PIXEL);
-  const backTex = useTexture(backImage || BLANK_PIXEL);
+  // Photos load imperatively (never suspend) so switching profiles can never
+  // unmount the physics scene — see usePhotoTexture above.
+  const frontTex = usePhotoTexture(frontImage || null);
+  const backTex = usePhotoTexture(backImage || null);
+
+  // Custom band image takes priority; otherwise fall back to the branded
+  // PQube strap (navy ribbon with the logo printed along it).
+  const strapTex = useMemo(() => (lanyardImage ? texture : buildBrandedStrap()), [lanyardImage, texture]);
 
   // Composite the front/back images into the card's texture atlas (front = left
   // half, back = right half). Each image is drawn aspect-preserving (no stretch).
@@ -163,8 +316,8 @@ function Band({
       ctx.restore();
     };
 
-    if (frontImage && frontTex.image) drawFitted(frontTex.image, FRONT_UV_RECT);
-    if (backImage && backTex.image) drawFitted(backTex.image, BACK_UV_RECT);
+    if (frontImage && frontTex && frontTex.image) drawFitted(frontTex.image, FRONT_UV_RECT);
+    if (backImage && backTex && backTex.image) drawFitted(backTex.image, BACK_UV_RECT);
 
     const composite = new THREE.CanvasTexture(canvas);
     composite.colorSpace = THREE.SRGBColorSpace;
@@ -179,6 +332,15 @@ function Band({
   );
   const [dragged, drag] = useState(false);
   const [hovered, hover] = useState(false);
+
+  // Preallocated scratch buffers — no per-frame allocations, so the band
+  // rebuild never causes GC hiccups.
+  const linePoints = useMemo(
+    () => Array.from({ length: (isMobile ? 12 : 24) + 1 }, () => new THREE.Vector3()),
+    [isMobile]
+  );
+  const lineDivisions = isMobile ? 12 : 24;
+  const tmpPoint = useMemo(() => new THREE.Vector3(), []);
 
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
@@ -216,7 +378,12 @@ function Band({
       curve.points[1].copy(j2.current.lerped);
       curve.points[2].copy(j1.current.lerped);
       curve.points[3].copy(fixed.current.translation());
-      band.current.geometry.setPoints(curve.getPoints(isMobile ? 16 : 32));
+      for (let i = 0; i <= lineDivisions; i++) {
+        curve.getPoint(i / lineDivisions, linePoints[i]);
+      }
+      if (band.current?.geometry) {
+        band.current.geometry.setPoints(linePoints);
+      }
       ang.copy(card.current.angvel());
       rot.copy(card.current.rotation());
       card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
@@ -224,7 +391,7 @@ function Band({
   });
 
   curve.curveType = 'chordal';
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  strapTex.wrapS = strapTex.wrapT = THREE.RepeatWrapping;
 
   return (
     <>
@@ -267,14 +434,14 @@ function Band({
           </group>
         </RigidBody>
       </group>
-      <mesh ref={band}>
+      <mesh ref={band} frustumCulled={false} raycast={() => null}>
         <meshLineGeometry />
         <meshLineMaterial
           color="white"
           depthTest={false}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
           useMap
-          map={texture}
+          map={strapTex}
           repeat={[-4, 1]}
           lineWidth={lanyardWidth}
         />

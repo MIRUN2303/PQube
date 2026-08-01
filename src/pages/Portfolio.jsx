@@ -529,11 +529,12 @@ export default function Portfolio() {
                 )}
                 <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[var(--pqube-navy)]/40 via-transparent to-[var(--pqube-navy)]/80 pointer-events-none" />
 
-                {/* lanyard ID card with drag/swing physics */}
+                {/* lanyard ID card with drag/swing physics — single persistent
+                    instance; switching profiles only swaps the card photos so the
+                    physics world/GLB/shaders are never rebuilt */}
                 <div className="absolute inset-0 z-10">
                   <Suspense fallback={null}>
                     <Lanyard
-                      key={`${activeMember.name}-1.5-3-16`}
                       position={[1.5, 3, 16]}
                       frontImage={activeMember.photo}
                       backImage={activeMember.photo}

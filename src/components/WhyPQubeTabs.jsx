@@ -67,17 +67,17 @@ export default function WhyPQubeTabs() {
       <div className="pointer-events-none absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[var(--pqube-cyan)]/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[var(--pqube-blue)]/10 blur-3xl" />
 
-      <div className="container-page">
+      <div className="w-full max-w-[1600px] mx-auto px-6 md:px-8">
         <div className="text-center mb-8 md:mb-10">
           <ShinyText text="Why PQube" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="What Drives Us" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="relative">
-            {/* ── Floating formula card (left) ── */}
-            <aside className="hidden xl:block absolute -left-24 top-1/2 -translate-y-1/2 -rotate-6 z-30 transition-transform duration-500 hover:rotate-0 hover:-translate-y-[58%]">
-              <div className="w-60 rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--pqube-gray-200)] shadow-[0_18px_44px_-16px_rgba(11,58,110,0.25)] p-5">
+        <div className="xl:grid xl:grid-cols-[11rem_minmax(0,64rem)_11rem] xl:justify-center xl:items-center xl:gap-6">
+          {/* ── Formula card — aligned beside the slideshow (left) ── */}
+          <div className="hidden xl:flex justify-end">
+            <aside className="w-full -rotate-6 hover:rotate-0 hover:-translate-y-1.5 transition-transform duration-500">
+              <div className="rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--pqube-gray-200)] shadow-[0_18px_44px_-16px_rgba(11,58,110,0.25)] p-5">
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[var(--pqube-cyan)] mb-4">The PQube Formula</p>
                 <ul className="space-y-2.5">
                   <li className="flex items-center gap-2.5">
@@ -99,26 +99,9 @@ export default function WhyPQubeTabs() {
                 </div>
               </div>
             </aside>
+          </div>
 
-            {/* ── Floating philosophy card (right) ── */}
-            <aside className="hidden xl:block absolute -right-24 top-1/2 -translate-y-1/2 rotate-6 z-30 transition-transform duration-500 hover:rotate-0 hover:-translate-y-[58%]">
-              <div className="w-56 rounded-2xl bg-gradient-to-br from-[#1B2A6B] to-[#0B3A6E] text-white shadow-[0_18px_44px_-16px_rgba(11,58,110,0.5)] p-5">
-                <Quote size={16} className="text-[#29ABE2]" />
-                <p className="mt-3 text-sm font-bold leading-snug">"Build People to Build Business®"</p>
-                <p className="mt-1 text-[11px] text-white/60">Our operating philosophy since day one.</p>
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  <div className="rounded-xl bg-white/10 border border-white/15 py-2.5 text-center">
-                    <div className="text-lg font-extrabold leading-none">20+</div>
-                    <div className="mt-1 text-[9px] uppercase tracking-wider text-white/60">Years</div>
-                  </div>
-                  <div className="rounded-xl bg-white/10 border border-white/15 py-2.5 text-center">
-                    <div className="text-lg font-extrabold leading-none">2</div>
-                    <div className="mt-1 text-[9px] uppercase tracking-wider text-white/60">Continents</div>
-                  </div>
-                </div>
-              </div>
-            </aside>
-
+          <div className="relative max-w-5xl mx-auto w-full">
             <div className="relative bg-white rounded-3xl shadow-[0_24px_70px_-24px_rgba(11,58,110,0.25)] border border-[var(--pqube-gray-200)] overflow-hidden flex flex-col" style={{ height: '540px' }}>
             {/* Tab pills — inside container top */}
             <div className="relative z-20 flex flex-wrap justify-center gap-2 px-4 pt-6 pb-4" role="tablist">
@@ -220,8 +203,30 @@ export default function WhyPQubeTabs() {
           </div>
           </div>
 
+          {/* ── Philosophy card — aligned beside the slideshow (right) ── */}
+          <div className="hidden xl:flex justify-start">
+            <aside className="w-full rotate-6 hover:rotate-0 hover:-translate-y-1.5 transition-transform duration-500">
+              <div className="rounded-2xl bg-gradient-to-br from-[#1B2A6B] to-[#0B3A6E] text-white shadow-[0_18px_44px_-16px_rgba(11,58,110,0.5)] p-5">
+                <Quote size={16} className="text-[#29ABE2]" />
+                <p className="mt-3 text-sm font-bold leading-snug">"Build People to Build Business®"</p>
+                <p className="mt-1 text-[11px] text-white/60">Our operating philosophy since day one.</p>
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  <div className="rounded-xl bg-white/10 border border-white/15 py-2.5 text-center">
+                    <div className="text-lg font-extrabold leading-none">20+</div>
+                    <div className="mt-1 text-[9px] uppercase tracking-wider text-white/60">Years</div>
+                  </div>
+                  <div className="rounded-xl bg-white/10 border border-white/15 py-2.5 text-center">
+                    <div className="text-lg font-extrabold leading-none">2</div>
+                    <div className="mt-1 text-[9px] uppercase tracking-wider text-white/60">Continents</div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+          </div>
+
           {/* Controls — fixed outside container */}
-          <div className="flex items-center justify-between mt-5">            <div className="flex items-center gap-3">
+          <div className="max-w-5xl mx-auto flex items-center justify-between mt-5">            <div className="flex items-center gap-3">
               <div className="flex items-center gap-2" role="tablist" aria-label="Slide indicators">
                 {valueTabs.map((_, idx) => (
                   <button
@@ -282,10 +287,9 @@ export default function WhyPQubeTabs() {
               </button>
             </div>
           </div>
-        </div>
 
         {/* CTA — fixed outside container, centered */}
-        <div className="mt-6 text-center">
+        <div className="max-w-5xl mx-auto mt-6 text-center">
           <SpecularButton href="/about" size="md" radius={10} baseColor="#1B2A6B" lineColor="#29ABE2" textColor="#FFFFFF" intensity={1.3}>
             Learn More About PQube &rarr;
           </SpecularButton>
