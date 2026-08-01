@@ -171,7 +171,6 @@ export default function Lanyard({
 }) {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
   const wrapRef = useRef(null);
-  const [inView, setInView] = useState(true);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -179,23 +178,10 @@ export default function Lanyard({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Pause the WebGL loop entirely while the stage is off-screen — no rAF,
-  // no physics, no GPU work — so it can never cause page-wide lag.
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-    const io = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
     <div ref={wrapRef} className="lanyard-wrapper">
       <Canvas
-        frameloop={inView ? 'always' : 'never'}
+        frameloop="always"
         camera={{ position: position, fov: fov }}
         dpr={[1, isMobile ? 1.25 : 1.5]}
         gl={{ alpha: transparent, antialias: true, powerPreference: 'high-performance' }}
