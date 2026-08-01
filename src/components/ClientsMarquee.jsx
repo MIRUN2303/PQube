@@ -48,8 +48,14 @@ function MarqueeRow({ items, reverse }) {
     let target = 1;
 
     const apply = () => {
+      // Only the track's own marquee animation — never the logos' hover
+      // transitions, otherwise the tick pokes their playbackRate and they
+      // freeze/stutter mid-fade ("logo suddenly stands still" glitch).
       track.getAnimations().forEach((a) => {
-        a.playbackRate = current;
+        const name = a.animationName || '';
+        if (name === 'marquee-4x' || name === 'marquee-4x-reverse') {
+          a.playbackRate = current;
+        }
       });
     };
 
