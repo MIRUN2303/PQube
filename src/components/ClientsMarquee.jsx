@@ -88,9 +88,9 @@ function MarqueeRow({ items, reverse }) {
 
   return (
     <div ref={wrapRef} className="overflow-hidden">
-      <div ref={trackRef} className={`flex gap-16 w-max ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}>
+      <div ref={trackRef} className={`flex w-max ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}>
         {doubled.map((c, idx) => (
-          <a key={`${c.slug}-${idx}`} href={c.link} className="flex items-center justify-center shrink-0 h-16 px-2" aria-label={c.name}>
+          <a key={`${c.slug}-${idx}`} href={c.link} className="flex items-center justify-center shrink-0 h-16 px-2 mr-16" aria-label={c.name}>
             <img
               src={c.logo}
               alt={`${c.name} logo`}
