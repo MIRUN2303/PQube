@@ -36,7 +36,7 @@ export default function ClientsMarquee() {
 function MarqueeRow({ items, reverse }) {
   const wrapRef = useRef(null);
   const trackRef = useRef(null);
-  const doubled = [...items, ...items];
+  const repeated = [...items, ...items, ...items, ...items];
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -88,8 +88,8 @@ function MarqueeRow({ items, reverse }) {
 
   return (
     <div ref={wrapRef} className="overflow-hidden">
-      <div ref={trackRef} className={`flex w-max ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}>
-        {doubled.map((c, idx) => (
+      <div ref={trackRef} className={`flex w-max ${reverse ? 'animate-marquee-4x-reverse' : 'animate-marquee-4x'}`}>
+        {repeated.map((c, idx) => (
           <a key={`${c.slug}-${idx}`} href={c.link} className="flex items-center justify-center shrink-0 h-16 px-2 mr-16" aria-label={c.name}>
             <img
               src={c.logo}

@@ -93,6 +93,16 @@ body {
   to { transform: translateX(0); }
 }
 
+@keyframes marquee-4x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
+}
+
+@keyframes marquee-4x-reverse {
+  from { transform: translateX(-25%); }
+  to { transform: translateX(0); }
+}
+
 @keyframes slide-fill {
   from { height: 0; }
   to { height: 100%; }
@@ -126,6 +136,14 @@ body {
 
 .animate-marquee-reverse {
   animation: marquee-reverse 40s linear infinite;
+}
+
+.animate-marquee-4x {
+  animation: marquee-4x 40s linear infinite;
+}
+
+.animate-marquee-4x-reverse {
+  animation: marquee-4x-reverse 40s linear infinite;
 }
 
 .container-page {
