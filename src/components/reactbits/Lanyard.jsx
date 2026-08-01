@@ -63,7 +63,7 @@ const BACK_UV_RECT = { x: 0.5, y: 0, w: 0.5, h: 0.757 };
 
 // ── Custom-branded band ──────────────────────────────────────────────────────
 // Landscape tile: U scrolls along the strap length, V across its width. The
-// design is a slim dark-navy ribbon with cyan pinstripes and a centred white
+// design is a white ribbon with black edge borders and a centred white
 // logo badge that repeats along the strap. Used as the default band texture.
 const STRAP_LOGO_URL = '/logo/1.png';
 
@@ -75,36 +75,26 @@ function buildBrandedStrap() {
   canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  // ── Base: dark-navy centre, slightly lighter at edges ────────────────────
+  // ── Base: white ribbon with very subtle vertical shading for depth ────────
   const base = ctx.createLinearGradient(0, 0, 0, H);
-  base.addColorStop(0,    '#0d1640');
-  base.addColorStop(0.18, '#142058');
-  base.addColorStop(0.5,  '#1B2A6B');
-  base.addColorStop(0.82, '#142058');
-  base.addColorStop(1,    '#0d1640');
+  base.addColorStop(0,    '#eef1f7');
+  base.addColorStop(0.18, '#fafbfe');
+  base.addColorStop(0.5,  '#ffffff');
+  base.addColorStop(0.82, '#fafbfe');
+  base.addColorStop(1,    '#eef1f7');
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, W, H);
 
   // ── Subtle weave texture ─────────────────────────────────────────────────
-  ctx.fillStyle = 'rgba(255,255,255,0.03)';
+  ctx.fillStyle = 'rgba(0,0,0,0.04)';
   for (let y = 6; y < H - 6; y += 8) ctx.fillRect(0, y, W, 2);
-  ctx.fillStyle = 'rgba(0,0,0,0.08)';
+  ctx.fillStyle = 'rgba(0,0,0,0.05)';
   for (let x = 0; x < W; x += 12) ctx.fillRect(x, 0, 1, H);
 
-  // ── Cyan pinstripe accent lines (near edges) ─────────────────────────────
-  const stripe = ctx.createLinearGradient(0, 0, W, 0);
-  stripe.addColorStop(0,    'rgba(41,171,226,0.0)');
-  stripe.addColorStop(0.08, 'rgba(41,171,226,0.9)');
-  stripe.addColorStop(0.92, 'rgba(41,171,226,0.9)');
-  stripe.addColorStop(1,    'rgba(41,171,226,0.0)');
-  ctx.fillStyle = stripe;
-  ctx.fillRect(0, 8,      W, 2);  // top stripe
-  ctx.fillRect(0, H - 10, W, 2); // bottom stripe
-
-  // ── Thinner secondary accent lines ──────────────────────────────────────
-  ctx.fillStyle = 'rgba(41,171,226,0.35)';
-  ctx.fillRect(0, 13,     W, 1);
-  ctx.fillRect(0, H - 14, W, 1);
+  // ── Black border lines along both edges ──────────────────────────────────
+  ctx.fillStyle = 'rgba(10,12,18,0.92)';
+  ctx.fillRect(0, 2, W, 3);     // top border
+  ctx.fillRect(0, H - 5, W, 3); // bottom border
 
   // ── Logo badge (centred in the tile, white rounded rect) ────────────────
   const badgeW = 80;
