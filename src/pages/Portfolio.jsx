@@ -1,13 +1,14 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Award, ChevronLeft, ChevronRight, Clock, Mail, MapPin, Phone, Star, Users, X, Globe } from 'lucide-react';
+import { ArrowRight, Award, ChevronLeft, ChevronRight, MapPin, Star, Users, X, Globe, Phone, Mail } from 'lucide-react';
 import ShinyText from '../components/ShinyText';
 import BlurReveal from '../components/BlurReveal';
 import SpecularButton from '../components/SpecularButton';
 import {
   pqubeFormula, portfolioStats, portfolioServices, portfolioIndustries,
-  journey, team, accreditations, mediaMentions, portfolioClients,
+  accreditations, mediaMentions, portfolioClients,
   caseStudies, testimonials, reviewSummary, stackLogos, deckSlides, contactInfo,
+  team,
 } from '../data/portfolio';
 
 const SLIDE_BASE = '/images/portfolio/slides';
@@ -37,10 +38,7 @@ const flowingMenuItems = portfolioIndustries.map((text, idx) => ({
 }));
 
 import CardSwap, { Card } from '../components/reactbits/CardSwap';
-import Cubes from '../components/reactbits/Cubes';
 import FlowingMenu from '../components/reactbits/FlowingMenu';
-
-const Lanyard = lazy(() => import('../components/reactbits/Lanyard'));
 
 const TESTIMONIAL_INTERVAL = 5000;
 
@@ -131,13 +129,10 @@ export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0);
   const [lightbox, setLightbox] = useState(null);
   const [activeService, setActiveService] = useState(0);
-  const [activeMember, setActiveMember] = useState(team[0]);
-  const [teamInView, setTeamInView] = useState(true);
   const [tIdx, setTIdx] = useState(0);
   const [tPaused, setTPaused] = useState(false);
   const [tPlaying, setTPlaying] = useState(true);
   const rafRef = useRef(null);
-  const teamStageRef = useRef(null);
   const servicesSwapRef = useRef(null);
 
   const tCount = testimonials.length;
@@ -150,23 +145,6 @@ export default function Portfolio() {
     const t = setInterval(tNext, TESTIMONIAL_INTERVAL);
     return () => clearInterval(t);
   }, [tRunning, tIdx]);
-
-  useEffect(() => {
-    const el = teamStageRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setTeamInView(entry.isIntersecting),
-      { rootMargin: '150px' }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  const forwardToCubes = (type, e) => {
-    const scene = teamStageRef.current?.querySelector('.team-stage .default-animation--scene');
-    if (!scene) return;
-    scene.dispatchEvent(new PointerEvent(type, { clientX: e.clientX, clientY: e.clientY }));
-  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -207,7 +185,7 @@ export default function Portfolio() {
       {/* Hero banner */}
       <section className="relative h-[420px] md:h-[500px] overflow-hidden bg-[var(--pqube-navy)]">
         <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&h=800&q=80"
+          src="https://img.magnific.com/free-vector/flat-illustration-social-media-day-celebration_23-2150340632.jpg?semt=ais_hybrid&w=740&q=80"
           alt=""
           className="absolute inset-0 w-full h-full object-cover will-change-transform"
           style={{ transform: `translateY(${scrollY * 0.2}px) scale(1.08)` }}
@@ -299,16 +277,16 @@ export default function Portfolio() {
             <BlurReveal text="Recognized & Certified" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
             {accreditations.map((a) => (
-              <div key={a.label} className="group bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 flex flex-col items-center justify-center gap-3 min-h-[120px] hover:border-[var(--pqube-cyan)]/50 hover:shadow-md transition-all" title={a.label}>
+              <div key={a.label} className="group w-full sm:w-[calc(25%-12px)] md:w-[calc(20%-13px)] bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 flex flex-col items-center justify-center gap-3 min-h-[120px] hover:border-[var(--pqube-cyan)]/50 hover:shadow-md transition-all" title={a.label}>
                 <img src={a.image} alt={a.label} className="max-h-14 w-auto max-w-full object-contain" loading="lazy" />
                 <span className="text-[10px] md:text-xs text-center text-[var(--pqube-gray-500)] leading-snug">{a.label}</span>
               </div>
             ))}
 
             {mediaMentions.map((m) => (
-              <div key={m.title} className="bg-[var(--pqube-navy)] rounded-xl p-4 flex flex-col justify-center gap-2 min-h-[120px]">
+              <div key={m.title} className="w-full sm:w-[calc(25%-12px)] md:w-[calc(25%-13px)] bg-[var(--pqube-navy)] rounded-xl p-4 flex flex-col justify-center gap-2 min-h-[120px]">
                 <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--pqube-cyan)]">
                   <Award size={11} /> {m.date}
                 </span>
@@ -458,151 +436,24 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Journey */}
-      <section className="section-padding bg-white">
-        <div className="container-page">
-          <div className="text-center mb-12">
-            <ShinyText text="Our Journey" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
-            <BlurReveal text="From 2013 to Today" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
-          </div>
-
-          <div className="relative max-w-3xl mx-auto">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--pqube-cyan)] via-[var(--pqube-blue)] to-transparent md:-translate-x-px" />
-            <div className="space-y-10">
-              {journey.map((m, idx) => (
-                <div key={m.year} className={`relative flex md:items-center gap-6 ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className="absolute left-4 -translate-x-1/2 md:left-1/2 top-1 w-3 h-3 rounded-full bg-[var(--pqube-cyan)] ring-4 ring-[var(--pqube-cyan)]/20 z-10" />
-                  <div className="md:w-1/2 pl-12 md:pl-0">
-                    <div className={`bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-xl p-5 ${idx % 2 === 1 ? 'md:ml-8' : 'md:mr-8'} hover:border-[var(--pqube-cyan)]/40 hover:shadow-md transition-all`}>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <Clock size={13} className="text-[var(--pqube-cyan)]" />
-                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--pqube-blue)]">{m.year}</span>
-                      </div>
-                      <h3 className="text-sm md:text-base font-bold text-[var(--pqube-navy)] mb-1">{m.title}</h3>
-                      <p className="text-xs md:text-sm text-[var(--pqube-gray-500)] leading-relaxed">{m.detail}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Team */}
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="The Team" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
-            <BlurReveal text="Select a Profile" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
+            <ShinyText text="The People" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <BlurReveal text="The Team Behind PQube" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
-              Pick a profile — their badge hangs from the strap and swings as you drag it, over a living cube-grid.
+              A leadership core in Bengaluru, backed by a 45+ strong delivery team across every engagement.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            {/* ID card stage */}
-            <div className="lg:col-span-6">
-              <div
-                ref={teamStageRef}
-                onPointerMove={(e) => forwardToCubes('pointermove', e)}
-                onPointerLeave={(e) => forwardToCubes('pointerleave', e)}
-                onClick={(e) => forwardToCubes('click', e)}
-                className="relative h-[480px] sm:h-[560px] lg:h-[640px] rounded-3xl overflow-hidden bg-[var(--pqube-navy)]"
-              >
-                {/* cubes background filling the whole container */}
-                {/* cubes background filling the whole container (paused off-screen) */}
-                {teamInView && (
-                  <div className="team-stage absolute inset-0 z-0 opacity-30 pointer-events-none">
-                    <Cubes
-                      gridSize={10}
-                      maxAngle={105}
-                      radius={2}
-                      borderStyle="3px solid #fff"
-                      faceColor="#1a1a2e"
-                      rippleColor="#29ABE2"
-                      rippleSpeed={1.5}
-                      autoAnimate
-                      rippleOnClick
-                    />
-                  </div>
-                )}
-                <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[var(--pqube-navy)]/40 via-transparent to-[var(--pqube-navy)]/80 pointer-events-none" />
-
-                {/* lanyard ID card with drag/swing physics — single persistent
-                    instance; switching profiles only swaps the card photos so the
-                    physics world/GLB/shaders are never rebuilt */}
-                <div className="absolute inset-0 z-10">
-                  <Suspense fallback={null}>
-                    <Lanyard
-                      position={[1.5, 3, 16]}
-                      frontImage={activeMember.photo}
-                      backImage={activeMember.photo}
-                      imageFit="cover"
-                      lanyardWidth={0.85}
-                    />
-                  </Suspense>
-                </div>
-
-                {/* member details below the card */}
-                <div className="absolute inset-x-0 bottom-0 z-20 pb-5 text-center pointer-events-none">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--pqube-cyan)]">{activeMember.role}</p>
-                  <h3 className="text-xl font-extrabold text-white mt-1">{activeMember.name}</h3>
-                  <p className="text-xs text-white/60 mt-0.5">{activeMember.phone}</p>
-                </div>
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+            {team.map((m) => (
+              <div key={m.name} className="bg-white border border-[var(--pqube-gray-200)] rounded-2xl p-4 text-center hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-all">
+                <img src={m.photo} alt={m.name} className="w-20 h-20 mx-auto rounded-full object-cover ring-2 ring-[var(--pqube-gray-200)] mb-3" loading="lazy" />
+                <h3 className="text-sm font-bold text-[var(--pqube-navy)]">{m.name}</h3>
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-[var(--pqube-cyan)] mt-0.5">{m.role}</p>
               </div>
-              <p className="mt-3 text-center text-xs text-[var(--pqube-gray-500)]">
-                Drag the badge — it hangs and swings like a real ID card over a living cube-grid.
-              </p>
-            </div>
-
-            {/* Profile selector */}
-            <div className="lg:col-span-6">
-              <div className="space-y-2.5">
-                {team.map((member) => {
-                  const active = member.name === activeMember.name;
-                  return (
-                    <button
-                      key={member.name}
-                      onClick={() => setActiveMember(member)}
-                      className={`w-full text-left rounded-2xl px-4 py-3.5 border transition-all duration-300 ${
-                        active
-                          ? 'bg-[var(--pqube-gray-50)] border-[var(--pqube-blue)]/50 shadow-lg shadow-[var(--pqube-blue)]/10'
-                          : 'bg-white border-[var(--pqube-gray-200)] hover:border-[var(--pqube-blue)]/40 hover:shadow-md'
-                      }`}
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className={`w-12 h-12 rounded-full overflow-hidden ring-2 transition-all duration-300 shrink-0 ${active ? 'ring-[var(--pqube-cyan)]' : 'ring-[var(--pqube-gray-200)]'}`}>
-                          <img src={member.photo} alt={member.name} className="w-full h-full object-cover" loading="lazy" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className={`text-sm font-bold ${active ? 'text-[var(--pqube-navy)]' : 'text-[var(--pqube-navy)]'}`}>{member.name}</p>
-                          <p className={`text-[11px] font-semibold uppercase tracking-wider ${active ? 'text-[var(--pqube-cyan)]' : 'text-[var(--pqube-gray-400)]'}`}>{member.role}</p>
-                          {active && (
-                            <div className="mt-1.5 space-y-0.5">
-                              <a href={`mailto:${member.email}`} className="flex items-center gap-1.5 text-[11px] text-[var(--pqube-gray-500)] hover:text-[var(--pqube-blue)] transition-colors">
-                                <Mail size={11} className="shrink-0" /> {member.email}
-                              </a>
-                              <a href={`tel:${member.phone.replace(/-/g, '')}`} className="flex items-center gap-1.5 text-[11px] text-[var(--pqube-gray-500)] hover:text-[var(--pqube-blue)] transition-colors">
-                                <Phone size={11} className="shrink-0" /> {member.phone}
-                              </a>
-                            </div>
-                          )}
-                        </div>
-                        <span className={`text-[var(--pqube-cyan)] transition-transform duration-300 ${active ? 'rotate-90' : ''}`}>
-                          <ArrowRight size={16} />
-                        </span>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="mt-6 bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] rounded-2xl p-5 flex items-center gap-4 text-white">
-                <Users size={28} className="opacity-90 shrink-0" />
-                <p className="text-sm font-bold leading-snug">And a 45+ strong delivery team behind every engagement.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

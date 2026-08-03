@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Phone, Menu, X, ChevronDown } from 'lucide-react';
 import MegaMenu from './MegaMenu';
 import NavCard from './NavCard';
@@ -10,6 +10,23 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const navItems = [
+    { label: 'Home', to: '/', match: (p) => p === '/' },
+    { label: 'What We Do', to: '#', mega: true, match: (p) => p.startsWith('/services') },
+    { label: 'Our Clients', to: '/clients', match: (p) => p.startsWith('/clients') },
+    { label: 'Insights', to: '/insights', match: (p) => p.startsWith('/insights') },
+    {
+      label: 'About Us', to: '/about', match: (p) => p.startsWith('/about') || p.startsWith('/portfolio') || p.startsWith('/press-releases'),
+      dropdown: [
+        { label: 'Our Story', to: '/about' },
+        { label: 'Portfolio', to: '/portfolio' },
+        { label: 'Press Releases', to: '/press-releases' },
+      ],
+    },
+    { label: 'Contact', to: '/contact', match: (p) => p.startsWith('/contact') },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -54,34 +71,23 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
-            {[
-              { label: 'Home', href: '/' },
-              { label: 'What We Do', href: '#', mega: true },
-              { label: 'Our Clients', href: '/clients' },
-              { label: 'Insights', href: '/insights' },
-              { label: 'About Us', href: '/about', dropdown: [
-                { label: 'Our Story', href: '/about' },
-                { label: 'Portfolio', href: '/portfolio' },
-                { label: 'Press Releases', href: '/press-releases' },
-              ]},
-              { label: 'Contact', href: '/contact' },
-            ].map((item) => (
+            {navItems.map((item) => (
               item.mega ? (
-                <MegaMenu key={item.label} label={item.label} />
+                <MegaMenu key={item.label} label={item.label} active={item.match(pathname)} />
               ) : item.dropdown ? (
                 <div key={item.label} className="relative group">
-                  <a href={item.href} className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] rounded-md transition-colors relative after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:bg-[var(--pqube-blue)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100">
+                  <Link to={item.to} className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors relative after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:bg-[var(--pqube-blue)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 ${item.match(pathname) ? 'text-[var(--pqube-blue)] after:scale-x-100' : 'text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)]'}`}>
                     {item.label}
                     <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
-                  </a>
+                  </Link>
                   <div className="absolute top-full left-0 mt-0 w-72 bg-white shadow-xl border border-[var(--pqube-gray-200)] rounded-xl p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <NavCard label="About PQube" bg="#1B2A6B" minHeight="190px" links={item.dropdown.map((sub) => ({ label: sub.label, href: sub.href }))} />
+                    <NavCard label="About PQube" bg="#1B2A6B" minHeight="190px" links={item.dropdown.map((sub) => ({ label: sub.label, to: sub.to }))} />
                   </div>
                 </div>
               ) : (
-                <a key={item.label} href={item.href} className="px-3 py-2 text-sm font-medium text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] rounded-md transition-colors relative after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:bg-[var(--pqube-blue)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100">
+                <Link key={item.label} to={item.to} className={`px-3 py-2 text-sm font-medium rounded-md transition-colors relative after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:bg-[var(--pqube-blue)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 ${item.match(pathname) ? 'text-[var(--pqube-blue)] after:scale-x-100' : 'text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)]'}`}>
                   {item.label}
-                </a>
+                </Link>
               )
             ))}
           </nav>

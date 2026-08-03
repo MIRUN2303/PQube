@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 /**
  * NavCard — a single CardNav-style card:
@@ -11,15 +12,15 @@ const NavCard = ({ label, bg, links, onLinkClick, minHeight = '210px' }) => (
 
     <div className="mt-auto flex flex-col gap-0.5 pt-4">
       {links.map((l) => (
-        <a
+        <Link
           key={l.label}
-          href={l.href}
+          to={l.to}
           onClick={onLinkClick}
           className="flex items-center gap-1.5 py-1 text-sm text-white/80 hover:text-white transition-opacity duration-300"
         >
           <ArrowUpRight size={14} className="text-[var(--pqube-cyan)] shrink-0" />
           {l.label}
-        </a>
+        </Link>
       ))}
     </div>
   </div>

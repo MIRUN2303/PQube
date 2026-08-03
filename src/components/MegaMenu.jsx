@@ -14,14 +14,14 @@ const cardStyles = [
   { name: 'Grow & Support', bg: '#22348a' },
 ];
 
-export default function MegaMenu({ label }) {
+export default function MegaMenu({ label, active = false }) {
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
 
   return (
     <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={close}>
       <button
-        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] rounded-md transition-colors relative after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:bg-[var(--pqube-blue)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100"
+        className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors relative after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:bg-[var(--pqube-blue)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 ${active ? 'text-[var(--pqube-blue)] after:scale-x-100' : 'text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)]'}`}
         aria-expanded={open}
         aria-haspopup="true"
       >
@@ -43,7 +43,7 @@ export default function MegaMenu({ label }) {
               onLinkClick={close}
               links={services
                 .filter((s) => s.category === cat.name)
-                .map((s) => ({ label: s.title, href: s.link }))}
+                .map((s) => ({ label: s.title, to: s.link }))}
             />
           ))}
         </div>

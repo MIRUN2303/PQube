@@ -30,7 +30,7 @@ const BlurReveal = ({
         <motion.span
           key={`${word}-${i}`}
           className="inline-block will-change-[transform,opacity,filter]"
-          style={{ marginRight: '0.25em' }}
+          style={{ marginRight: i < words.length - 1 ? '0.25em' : 0 }}
           initial={{ opacity: 0, y, rotate, filter: `blur(${blur}px)` }}
           whileInView={{ opacity: 1, y: 0, rotate: 0, filter: 'blur(0px)' }}
           viewport={{ once, amount }}

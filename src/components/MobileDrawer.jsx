@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { X, ChevronDown, Phone } from 'lucide-react';
 import { services } from '../data/services';
 
@@ -48,7 +49,7 @@ export default function MobileDrawer({ isOpen, onClose }) {
 
         {/* Nav items */}
         <nav className="flex-1 overflow-y-auto px-5 py-4" aria-label="Mobile navigation">
-          <NavLink href="/" onClick={onClose}>Home</NavLink>
+          <NavLink to="/" onClick={onClose}>Home</NavLink>
 
           {/* Services accordion */}
           <div className="border-b border-[var(--pqube-gray-200)]">
@@ -67,11 +68,11 @@ export default function MobileDrawer({ isOpen, onClose }) {
                   {services.filter((s) => s.category === cat).map((s) => {
                     const Icon = s.icon;
                     return (
-                      <a key={s.id} href={s.link} className="flex items-center gap-3 px-3 py-2 text-sm rounded-lg hover:bg-[var(--pqube-gray-50)] transition-colors" onClick={onClose}>
+                      <Link key={s.id} to={s.link} className="flex items-center gap-3 px-3 py-2 text-sm rounded-lg hover:bg-[var(--pqube-gray-50)] transition-colors" onClick={onClose}>
                         <Icon size={15} className="text-[var(--pqube-blue)] shrink-0" />
                         <span>{s.title}</span>
                         {s.tag && <span className="text-[9px] uppercase bg-[var(--pqube-cyan)]/10 text-[var(--pqube-cyan)] px-1.5 py-0.5 rounded">{s.tag}</span>}
-                      </a>
+                      </Link>
                     );
                   })}
                 </div>
@@ -79,8 +80,8 @@ export default function MobileDrawer({ isOpen, onClose }) {
             </div>
           </div>
 
-          <NavLink href="/clients" onClick={onClose}>Our Clients</NavLink>
-          <NavLink href="/insights" onClick={onClose}>Insights</NavLink>
+          <NavLink to="/clients" onClick={onClose}>Our Clients</NavLink>
+          <NavLink to="/insights" onClick={onClose}>Insights</NavLink>
 
           {/* About accordion */}
           <div className="border-b border-[var(--pqube-gray-200)]">
@@ -93,20 +94,20 @@ export default function MobileDrawer({ isOpen, onClose }) {
               <ChevronDown size={16} className={`transition-transform duration-200 ${expanded.about ? 'rotate-180' : ''}`} />
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${expanded.about ? 'max-h-[200px] pb-3' : 'max-h-0'}`}>
-              <SubLink href="/about" onClick={onClose}>Our Story</SubLink>
-              <SubLink href="/portfolio" onClick={onClose}>Portfolio</SubLink>
-              <SubLink href="/press-releases" onClick={onClose}>Press Releases</SubLink>
+              <SubLink to="/about" onClick={onClose}>Our Story</SubLink>
+              <SubLink to="/portfolio" onClick={onClose}>Portfolio</SubLink>
+              <SubLink to="/press-releases" onClick={onClose}>Press Releases</SubLink>
             </div>
           </div>
 
-          <NavLink href="/contact" onClick={onClose}>Contact</NavLink>
+          <NavLink to="/contact" onClick={onClose}>Contact</NavLink>
         </nav>
 
         {/* Bottom CTA */}
         <div className="px-5 py-4 border-t border-[var(--pqube-gray-200)] shrink-0 space-y-2">
-          <a href="/contact" onClick={onClose} className="flex items-center justify-center w-full px-5 py-3 text-sm font-semibold text-white bg-[var(--pqube-navy)] hover:bg-[var(--pqube-blue)] rounded-lg transition-all">
+          <Link to="/contact" onClick={onClose} className="flex items-center justify-center w-full px-5 py-3 text-sm font-semibold text-white bg-[var(--pqube-navy)] hover:bg-[var(--pqube-blue)] rounded-lg transition-all">
             Schedule Free Demo
-          </a>
+          </Link>
           <a href="tel:+919731249009" onClick={onClose} className="flex items-center justify-center gap-2 w-full px-5 py-3 text-sm font-medium text-[var(--pqube-navy)] border border-[var(--pqube-gray-200)] rounded-lg hover:bg-[var(--pqube-gray-50)] transition-colors">
             <Phone size={14} /> +91 97312 49009
           </a>
@@ -116,18 +117,18 @@ export default function MobileDrawer({ isOpen, onClose }) {
   );
 }
 
-function NavLink({ href, onClick, children }) {
+function NavLink({ to, onClick, children }) {
   return (
-    <a href={href} onClick={onClick} className="block py-3 text-sm font-medium text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] border-b border-[var(--pqube-gray-200)] transition-colors">
+    <Link to={to} onClick={onClick} className="block py-3 text-sm font-medium text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] border-b border-[var(--pqube-gray-200)] transition-colors">
       {children}
-    </a>
+    </Link>
   );
 }
 
-function SubLink({ href, onClick, children }) {
+function SubLink({ to, onClick, children }) {
   return (
-    <a href={href} onClick={onClick} className="block px-3 py-2 text-sm rounded-lg hover:bg-[var(--pqube-gray-50)] text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] transition-colors">
+    <Link to={to} onClick={onClick} className="block px-3 py-2 text-sm rounded-lg hover:bg-[var(--pqube-gray-50)] text-[var(--pqube-ink)] hover:text-[var(--pqube-blue)] transition-colors">
       {children}
-    </a>
+    </Link>
   );
 }

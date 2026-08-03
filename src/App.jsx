@@ -18,13 +18,25 @@ import WhatsAppButton from './components/WhatsAppButton';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import CookieBanner from './components/CookieBanner';
 import CursorFollower from './components/CursorFollower';
+import RouteScrollTop from './components/RouteScrollTop';
 import PlaceholderPage from './pages/PlaceholderPage';
 import PressReleases from './pages/PressReleases';
 import Portfolio from './pages/Portfolio';
+import About from './pages/About';
+import Clients from './pages/Clients';
+import ClientStory from './pages/ClientStory';
+import Insights from './pages/Insights';
+import InsightArticle from './pages/InsightArticle';
+import Contact from './pages/Contact';
+import ServiceDetail from './pages/ServiceDetail';
+import Services from './pages/Services';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
+      <RouteScrollTop />
       <Header />
 
       <div className="flex-1">
@@ -45,17 +57,18 @@ export default function App() {
               <ContactSection />
             </main>
           } />
-          <Route path="/about" element={<PlaceholderPage title="About Us" />} />
+          <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/press-releases" element={<PressReleases />} />
-          <Route path="/clients" element={<PlaceholderPage title="Our Clients" />} />
-          <Route path="/clients/:slug" element={<PlaceholderPage title="Client" />} />
-          <Route path="/insights" element={<PlaceholderPage title="Insights" />} />
-          <Route path="/insights/:slug" element={<PlaceholderPage title="Article" />} />
-          <Route path="/contact" element={<PlaceholderPage title="Contact Us" />} />
-          <Route path="/services/:slug" element={<PlaceholderPage title="Service" />} />
-          <Route path="/terms" element={<PlaceholderPage title="Terms of Service" />} />
-          <Route path="/privacy" element={<PlaceholderPage title="Privacy Policy" />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/clients/:slug" element={<ClientStory />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/insights/:slug" element={<InsightArticle />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<PlaceholderPage title="Page Not Found" />} />
         </Routes>
       </div>
