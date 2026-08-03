@@ -109,14 +109,14 @@ export const portfolioIndustries = [
 ];
 
 export const journey = [
-  { year: 'Jun 2013', title: 'LTS Formed in Bengaluru', detail: 'Founded in the Silicon Valley of India.' },
-  { year: 'Mar 2019', title: 'Re-Branding LTS to PQube', detail: 'A fresh identity built on people, principles and prosperity.' },
-  { year: 'Aug 2020', title: 'Marketplace Launch in India', detail: 'Entered the Indian eCommerce marketplace.' },
-  { year: 'Oct 2020', title: 'Multi-Year Partner — Greenheck, USA', detail: 'Long-term engineering partnership with a global HVAC leader.' },
-  { year: 'Feb 2022', title: 'Exclusive Tech Partner — MessageMyCustomer, Ireland', detail: 'Multi-tenant SaaS and conversational commerce expertise.' },
-  { year: 'Oct 2023', title: 'PQube LLC in USA', detail: 'Expanded into Delaware, United States.' },
-  { year: 'Dec 2023', title: 'Digital Transformation — ISSI Inc, USA', detail: 'Enterprise digital transformation solution delivery.' },
-  { year: 'Oct 2024', title: 'Enterprise ERP Solution, USA', detail: 'Build, Operate & Transfer engagement valued at $8M.' },
+  { year: 'Jun 2013', title: 'LTS Formed in Bengaluru', detail: 'Founded in the Silicon Valley of India. What started as a small engineering team set out with one belief — build people to build business. From a single office in Bengaluru, we began delivering quality technology services to clients who valued craftsmanship over shortcuts.' },
+  { year: 'Mar 2019', title: 'Re-Branding LTS to PQube', detail: 'A fresh identity built on people, principles and prosperity. The move to PQube marked a strategic evolution — a sharper focus on quality, technology and growth, unified under one brand that reflects who we truly are and where we are headed.' },
+  { year: 'Aug 2020', title: 'Marketplace Launch in India', detail: 'Entered the Indian eCommerce marketplace. We built and launched scalable marketplace solutions for domestic brands, helping them digitize their commerce operations and reach customers across the country with confidence.' },
+  { year: 'Oct 2020', title: 'Multi-Year Partner — Greenheck, USA', detail: 'Long-term engineering partnership with a global HVAC leader. Our teams became an extension of Greenheck\u2019s own — owning design, development and delivery of mission-critical systems across multiple product lines, year after year.' },
+  { year: 'Feb 2022', title: 'Exclusive Tech Partner — MessageMyCustomer, Ireland', detail: 'Multi-tenant SaaS and conversational commerce expertise. As exclusive technology partners, we engineered the platform backbone, product features and integrations that power their global conversational commerce offering.' },
+  { year: 'Oct 2023', title: 'PQube LLC in USA', detail: 'Expanded into Delaware, United States. Establishing PQube LLC gave us a permanent home in North America — closer to our growing list of US clients, with full enterprise sales, delivery and support capabilities on the ground.' },
+  { year: 'Dec 2023', title: 'Digital Transformation — ISSI Inc, USA', detail: 'Enterprise digital transformation solution delivery. We partnered with ISSI Inc to modernize their enterprise technology landscape — reimagining processes, systems and data flows to drive measurable business outcomes.' },
+  { year: 'Oct 2024', title: 'Enterprise ERP Solution, USA', detail: 'Build, Operate & Transfer engagement valued at $8M. A landmark engagement — we designed, built and now operate a full enterprise ERP for a US client, with a defined roadmap to hand over complete ownership, at an $8M value.' },
 ];
 
 export const team = [

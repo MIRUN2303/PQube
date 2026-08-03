@@ -36,8 +36,18 @@ export default function About() {
   const [active, setActive] = useState(valueTabs[0]);
   const [activeMember, setActiveMember] = useState(team[0]);
   const [teamInView, setTeamInView] = useState(false);
+  const [activeJourney, setActiveJourney] = useState(null);
+  const [journeyHover, setJourneyHover] = useState(false);
   const teamStageRef = useRef(null);
   const teamObserverRef = useRef(null);
+
+  useEffect(() => {
+    if (journeyHover) return;
+    const timer = setInterval(() => {
+      setActiveJourney((idx) => (idx === null ? 0 : (idx + 1) % journey.length));
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [journeyHover]);
 
   useEffect(() => {
     if (!teamStageRef.current) return;
@@ -203,26 +213,66 @@ export default function About() {
           <div className="text-center mb-12">
             <ShinyText text="Our Journey" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="From 2013 to Today" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
+            <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
+              Tap any milestone to expand it and read the story behind it.
+            </p>
           </div>
 
-          <div className="relative max-w-3xl mx-auto">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--pqube-cyan)] via-[var(--pqube-blue)] to-transparent md:-translate-x-px" />
-            <div className="space-y-10">
-              {journey.map((m, idx) => (
-                <div key={m.year} className={`relative flex md:items-center gap-6 ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className="absolute left-4 -translate-x-1/2 md:left-1/2 top-1 w-3 h-3 rounded-full bg-[var(--pqube-cyan)] ring-4 ring-[var(--pqube-cyan)]/20 z-10" />
-                  <div className="md:w-1/2 pl-12 md:pl-0">
-                    <div className={`bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-xl p-5 ${idx % 2 === 1 ? 'md:ml-8' : 'md:mr-8'} hover:border-[var(--pqube-cyan)]/40 hover:shadow-md transition-all`}>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <Clock size={13} className="text-[var(--pqube-cyan)]" />
-                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--pqube-blue)]">{m.year}</span>
+          <div className="max-w-4xl mx-auto pt-56 md:pt-52">
+            {/* horizontal timeline */}
+            <div
+              className="relative"
+              onMouseEnter={() => setJourneyHover(true)}
+              onMouseLeave={() => setJourneyHover(false)}
+            >
+              <div className="absolute top-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[var(--pqube-cyan)] via-[var(--pqube-blue)] to-[var(--pqube-cyan)]/30" />
+              <div className="flex items-start justify-between">
+                {journey.map((m, idx) => {
+                  const active = activeJourney === idx;
+                  return (
+                    <button
+                      key={m.year}
+                      onClick={() => setActiveJourney(active ? null : idx)}
+                      className="group relative flex flex-col items-center pt-4 w-16 md:w-24 shrink-0"
+                      aria-label={m.title}
+                    >
+                      {/* detail card anchored above this cube */}
+                      <AnimatePresence>
+                        {active && (
+                          <motion.div
+                            key={m.year}
+                            initial={{ opacity: 0, y: 14, scale: 0.94 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+                            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-60 md:w-72 bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] rounded-2xl p-4 shadow-xl shadow-[var(--pqube-blue)]/25 text-left"
+                          >
+                            <div className="flex items-center gap-2 mb-1">
+                              <Clock size={12} className="text-white/80" />
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-white/80">{m.year}</span>
+                            </div>
+                            <h3 className="text-sm font-bold text-white mb-1.5 leading-snug">{m.title}</h3>
+                            <p className="text-xs text-white/90 leading-relaxed">{m.detail}</p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      <span className={`absolute top-1 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 rounded-[3px] border-2 border-white bg-gradient-to-br from-[var(--pqube-cyan)] to-[var(--pqube-blue)] transition-all duration-300 ${
+                        active ? 'w-4 h-4 rotate-45 ring-4 ring-[var(--pqube-cyan)]/30 scale-110' : 'w-3 h-3 rotate-45 group-hover:scale-125'
+                      }`} />
+                      <div className="flex flex-col items-center justify-end h-16">
+                        <span className={`text-[10px] md:text-xs font-bold transition-colors ${
+                          active ? 'text-[var(--pqube-blue)]' : 'text-[var(--pqube-gray-500)] group-hover:text-[var(--pqube-blue)]'
+                        }`}>
+                          {m.year}
+                        </span>
+                        <span className="mt-1 text-[10px] md:text-[11px] font-medium leading-snug text-center text-[var(--pqube-gray-400)] group-hover:text-[var(--pqube-gray-600)] transition-colors w-full line-clamp-2">
+                          {m.title}
+                        </span>
                       </div>
-                      <h3 className="text-sm md:text-base font-bold text-[var(--pqube-navy)] mb-1">{m.title}</h3>
-                      <p className="text-xs md:text-sm text-[var(--pqube-gray-500)] leading-relaxed">{m.detail}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

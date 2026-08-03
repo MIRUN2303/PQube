@@ -1,9 +1,10 @@
-import { lazy, useEffect, useRef, useState } from 'react';
+import { lazy, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Award, ChevronLeft, ChevronRight, MapPin, Star, Users, X, Globe, Phone, Mail } from 'lucide-react';
+import { ArrowRight, Award, Check, ChevronLeft, ChevronRight, Download, FileText, MapPin, Star, Users, X, Globe, Phone, Mail } from 'lucide-react';
 import ShinyText from '../components/ShinyText';
 import BlurReveal from '../components/BlurReveal';
 import SpecularButton from '../components/SpecularButton';
+import Stack from '../components/reactbits/Stack';
 import {
   pqubeFormula, portfolioStats, portfolioServices, portfolioIndustries,
   accreditations, mediaMentions, portfolioClients,
@@ -132,6 +133,19 @@ export default function Portfolio() {
   const [tIdx, setTIdx] = useState(0);
   const [tPaused, setTPaused] = useState(false);
   const [tPlaying, setTPlaying] = useState(true);
+  const deckSlideCards = useMemo(
+    () =>
+      deckSlides.map((slide, idx) => (
+        <img
+          key={slide.file}
+          src={`${SLIDE_BASE}/${slide.file}`}
+          alt={`${idx + 1}. ${slide.label}`}
+          className="card-image"
+          loading="lazy"
+        />
+      )),
+    []
+  );
   const rafRef = useRef(null);
   const servicesSwapRef = useRef(null);
 
@@ -661,39 +675,73 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Full deck viewer */}
+      {/* Full deck — booklet */}
       <section id="deck" className="section-padding bg-[var(--pqube-navy)] relative overflow-hidden">
         <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[var(--pqube-cyan)]/10 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-[var(--pqube-blue)]/10 blur-3xl pointer-events-none" />
 
         <div className="container-page relative">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <ShinyText text="Company Profile" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="The Full Deck" className="text-3xl md:text-4xl font-extrabold text-white" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-white/60 max-w-xl mx-auto mt-4">
-              Our complete company profile, slide by slide — click any page to view it full screen.
+              Flip through the booklet — drag a page or click to send it to the back.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {deckSlides.map((slide, idx) => (
-              <button
-                key={slide.file}
-                onClick={() => setLightbox(idx)}
-                className="group relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-white/5 focus:outline-none focus:ring-2 focus:ring-[var(--pqube-cyan)]"
-              >
-                <img
-                  src={`${SLIDE_BASE}/${slide.file}`}
-                  alt={slide.label}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-300"
-                  loading="lazy"
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-5xl mx-auto">
+            <div className="w-full max-w-[540px] p-6 md:p-8 justify-self-center">
+              <div className="aspect-[16/10]">
+                <Stack
+                  cards={deckSlideCards}
+                  randomRotation={true}
+                  sensitivity={180}
+                  sendToBackOnClick={true}
+                  autoplay={true}
+                  autoplayDelay={2600}
+                  pauseOnHover={true}
+                  mobileClickOnly={true}
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[var(--pqube-navy)]/90 to-transparent px-3 pt-8 pb-2.5 text-left">
-                  <span className="text-[10px] font-bold text-[var(--pqube-cyan)] mr-1.5">{String(idx + 1).padStart(2, '0')}</span>
-                  <span className="text-[11px] font-semibold text-white/90">{slide.label}</span>
-                </div>
-              </button>
-            ))}
+              </div>
+            </div>
+
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-[var(--pqube-cyan)]/10 border border-[var(--pqube-cyan)]/30 rounded-full px-4 py-1.5 text-xs font-semibold text-[var(--pqube-cyan)] mb-5">
+                <FileText size={14} /> 14-page brochure · PDF
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                One Booklet, <span className="text-[var(--pqube-cyan)]">Everything PQube</span>
+              </h3>
+              <p className="text-white/60 mb-6 leading-relaxed">
+                Who we are, why clients choose us, our services, journey, accreditations, team,
+                clients, testimonials and case studies — all in a single shareable deck.
+              </p>
+              <ul className="text-left space-y-2.5 mb-8">
+                {['Drag pages like a real booklet', 'Autoplay flips pages for you', 'Full-screen view on any page'].map((line) => (
+                  <li key={line} className="flex items-start gap-2.5 text-sm text-white/80">
+                    <span className="w-5 h-5 rounded-full bg-[var(--pqube-cyan)]/15 text-[var(--pqube-cyan)] flex items-center justify-center shrink-0 mt-0.5">
+                      <Check size={12} strokeWidth={3} />
+                    </span>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <a
+                  href="/images/portfolio/PQube-Company-Profile.pdf"
+                  download="PQube-Company-Profile.pdf"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                >
+                  <Download size={16} /> Download Brochure (PDF)
+                </a>
+                <button
+                  onClick={() => setLightbox(0)}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-white/20 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
+                >
+                  Browse All Pages <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

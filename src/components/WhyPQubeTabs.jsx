@@ -74,34 +74,36 @@ export default function WhyPQubeTabs() {
         </div>
 
         <div className="xl:grid xl:grid-cols-[11rem_minmax(0,64rem)_11rem] xl:justify-center xl:items-center xl:gap-6">
-          {/* ── Formula card — aligned beside the slideshow (left) ── */}
+          {/* ── Formula card — tucked under the slideshow (left) ── */}
           <div className="hidden xl:flex justify-end">
-            <aside className="w-full -rotate-6 hover:rotate-0 hover:-translate-y-1.5 transition-transform duration-500">
-              <div className="rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--pqube-gray-200)] shadow-[0_18px_44px_-16px_rgba(11,58,110,0.25)] p-5">
-                <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[var(--pqube-cyan)] mb-4">The PQube Formula</p>
+            <aside className="w-full z-0">
+              <div className="rounded-2xl bg-gradient-to-br from-[#1B2A6B] to-[#0B3A6E] text-white shadow-[0_18px_44px_-16px_rgba(11,58,110,0.5)] p-5">
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#7FD1F2] mb-4">The PQube Formula</p>
                 <ul className="space-y-2.5">
                   <li className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-[#29ABE2]/10 text-[#0e6ab3] flex items-center justify-center"><Users size={13} /></span>
-                    <span className="text-sm font-semibold text-[var(--pqube-navy)]">People</span>
+                    <span className="w-7 h-7 rounded-lg bg-white/10 text-[#7FD1F2] flex items-center justify-center"><Users size={13} /></span>
+                    <span className="text-sm font-semibold">People</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-[#1B6FD6]/10 text-[#12539f] flex items-center justify-center"><ShieldCheck size={13} /></span>
-                    <span className="text-sm font-semibold text-[var(--pqube-navy)]">Principles</span>
+                    <span className="w-7 h-7 rounded-lg bg-white/10 text-[#7FD1F2] flex items-center justify-center"><ShieldCheck size={13} /></span>
+                    <span className="text-sm font-semibold">Principles</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-[#4C5BD4]/10 text-[#3b4bc0] flex items-center justify-center"><TrendingUp size={13} /></span>
-                    <span className="text-sm font-semibold text-[var(--pqube-navy)]">Prosperity</span>
+                    <span className="w-7 h-7 rounded-lg bg-white/10 text-[#7FD1F2] flex items-center justify-center"><TrendingUp size={13} /></span>
+                    <span className="text-sm font-semibold">Prosperity</span>
                   </li>
                 </ul>
-                <div className="mt-4 pt-3.5 border-t border-dashed border-[var(--pqube-gray-200)] flex items-center justify-between">
-                  <span className="text-sm font-extrabold text-[var(--pqube-navy)]">= Quantum</span>
-                  <Sparkles size={14} className="text-[var(--pqube-cyan)]" />
+                <div className="mt-4 pt-3.5 border-t border-dashed border-white/20 flex items-center justify-between">
+                  <span className="text-sm font-extrabold">= Quantum</span>
+                  <Sparkles size={14} className="text-[#7FD1F2]" />
                 </div>
               </div>
             </aside>
           </div>
 
-          <div className="relative max-w-5xl mx-auto w-full">
+          <div className="relative max-w-5xl mx-auto w-full z-10">
+            <span className="hidden xl:block absolute top-1/2 -translate-y-1/2 -left-6 w-6 h-[2px] bg-gradient-to-r from-[var(--pqube-cyan)]/40 to-[var(--pqube-cyan)]" />
+            <span className="hidden xl:block absolute top-1/2 -translate-y-1/2 -right-6 w-6 h-[2px] bg-gradient-to-l from-[var(--pqube-cyan)]/40 to-[var(--pqube-cyan)]" />
             <div className="relative bg-white rounded-3xl shadow-[0_24px_70px_-24px_rgba(11,58,110,0.25)] border border-[var(--pqube-gray-200)] overflow-hidden flex flex-col" style={{ height: '540px' }}>
             {/* Tab pills — inside container top */}
             <div className="relative z-20 flex flex-wrap justify-center gap-2 px-4 pt-6 pb-4" role="tablist">
@@ -203,9 +205,9 @@ export default function WhyPQubeTabs() {
           </div>
           </div>
 
-          {/* ── Philosophy card — aligned beside the slideshow (right) ── */}
+          {/* ── Philosophy card — connected to the slideshow (right) ── */}
           <div className="hidden xl:flex justify-start">
-            <aside className="w-full rotate-6 hover:rotate-0 hover:-translate-y-1.5 transition-transform duration-500">
+            <aside className="w-full z-0">
               <div className="rounded-2xl bg-gradient-to-br from-[#1B2A6B] to-[#0B3A6E] text-white shadow-[0_18px_44px_-16px_rgba(11,58,110,0.5)] p-5">
                 <Quote size={16} className="text-[#29ABE2]" />
                 <p className="mt-3 text-sm font-bold leading-snug">"Build People to Build Business®"</p>
