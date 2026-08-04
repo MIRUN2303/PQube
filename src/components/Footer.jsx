@@ -1,7 +1,29 @@
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { MapPin, Phone, Mail, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { services } from '../data/services';
 
+const CERT_ITEMS = [
+  { src: '/images/footer/tawk-partner.png', alt: 'tawk.to Official Partner', label: 'tawk.to Partner', bg: 'bg-white' },
+  { src: '/images/footer/peopleshost.png', alt: 'PeoplesHost Certified Partner', label: 'PeoplesHost Partner', bg: 'bg-[#0D1B2A]' },
+  { src: '/images/footer/microsoft-partner.png', alt: 'Microsoft Partner', label: 'Microsoft Partner', bg: 'bg-black' },
+  { src: '/images/footer/iso-2015.png', alt: 'ISO 2015 certified', label: 'ISO 2015', bg: 'bg-white' },
+  { src: '/images/footer/iso-9001-cert.jpg', alt: 'ISO 9001:2015 certificate', label: 'ISO 9001:2015 Certificate', bg: 'bg-[#0D1B2A]' },
+];
+
 export default function Footer() {
+  const [lightbox, setLightbox] = useState(null);
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setLightbox(null);
+      if (e.key === 'ArrowRight') setLightbox((i) => (i + 1) % CERT_ITEMS.length);
+      if (e.key === 'ArrowLeft') setLightbox((i) => (i - 1 + CERT_ITEMS.length) % CERT_ITEMS.length);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightbox]);
+
   return (
     <footer className="bg-[var(--pqube-navy)] text-white" role="contentinfo">
 
@@ -43,6 +65,17 @@ export default function Footer() {
                 </a>
               ))}
             </div>
+
+            {/* Review us on Clutch */}
+            <a
+              href="https://clutch.co/profile/pqube-business-solutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2.5 bg-white rounded-xl px-4 py-2.5 hover:bg-[var(--pqube-gray-50)] shadow-md hover:shadow-lg transition-all"
+            >
+              <img src="/images/footer/clutch-icon.png" alt="Clutch" className="w-6 h-6 object-contain" />
+              <span className="text-xs font-bold text-[var(--pqube-navy)]">Review us on Clutch</span>
+            </a>
           </div>
 
           {/* Column 2: What We Do */}
@@ -111,6 +144,30 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* ── Certifications & partnerships strip ───────────────────────────────
+          Uniform white tiles keep wildly different badge ratios (square,
+          landscape, portrait) reading as one consistent row.
+      ──────────────────────────────────────────────────────────────────────── */}
+      <div className="border-t border-white/10">
+        <div className="container-page py-8 md:py-12">
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] text-white/40">
+            Certifications &amp; Partnerships
+          </p>
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 max-w-4xl mx-auto">
+            {CERT_ITEMS.map((cert, i) => (
+              <button
+                key={cert.src}
+                onClick={() => setLightbox(i)}
+                className={`h-16 md:h-20 rounded-xl flex items-center justify-center p-2 hover:opacity-90 hover:ring-2 hover:ring-[var(--pqube-cyan)]/50 transition-all ${cert.bg}`}
+                title={cert.label}
+              >
+                <img src={cert.src} alt={cert.alt} className="max-h-full max-w-full object-contain" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col sm:flex-row items-center justify-between py-5 gap-3">
@@ -123,11 +180,83 @@ export default function Footer() {
             <button onClick={() => window.dispatchEvent(new CustomEvent('pqube-show-cookie-banner'))} className="hover:text-white/70 transition-colors">
               Cookie Settings
             </button>
-            <span className="hidden sm:inline mx-2">|</span>
-            <span className="hidden sm:inline text-white/20">Microsoft Partner · ISO 2015</span>
           </div>
         </div>
       </div>
+
+      {/* ── Certificate lightbox ─────────────────────────────────────────────── */}
+      {lightbox !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-[var(--pqube-navy)]/90 backdrop-blur-sm"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={CERT_ITEMS[lightbox].label}
+        >
+          <div
+            className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-5 md:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setLightbox(null)}
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[var(--pqube-gray-100)] hover:bg-[var(--pqube-gray-200)] flex items-center justify-center text-[var(--pqube-navy)] transition-colors"
+              aria-label="Close certificate viewer"
+            >
+              <X size={16} />
+            </button>
+
+            <div className="flex items-baseline justify-between mb-5 pr-12">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--pqube-gray-500)]">
+                Certificate {lightbox + 1} of {CERT_ITEMS.length}
+              </p>
+              <h3 className="text-sm font-bold text-[var(--pqube-navy)]">{CERT_ITEMS[lightbox].label}</h3>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-5 md:gap-6">
+              {/* main image */}
+              <div className={`relative flex-1 rounded-2xl flex items-center justify-center min-h-[320px] p-6 ${CERT_ITEMS[lightbox].bg}`}>
+                <img
+                  src={CERT_ITEMS[lightbox].src}
+                  alt={CERT_ITEMS[lightbox].alt}
+                  className="max-h-[60vh] w-auto max-w-full object-contain"
+                />
+                <button
+                  onClick={() => setLightbox((lightbox - 1 + CERT_ITEMS.length) % CERT_ITEMS.length)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-[var(--pqube-gray-200)] shadow-md flex items-center justify-center text-[var(--pqube-navy)] hover:border-[var(--pqube-cyan)] transition-colors"
+                  aria-label="Previous certificate"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  onClick={() => setLightbox((lightbox + 1) % CERT_ITEMS.length)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-[var(--pqube-gray-200)] shadow-md flex items-center justify-center text-[var(--pqube-navy)] hover:border-[var(--pqube-cyan)] transition-colors"
+                  aria-label="Next certificate"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+
+              {/* side thumbnails — switch certificates */}
+              <div className="flex md:flex-col gap-2.5 justify-center md:justify-start md:w-24 shrink-0">
+                {CERT_ITEMS.map((cert, i) => (
+                  <button
+                    key={cert.src}
+                    onClick={() => setLightbox(i)}
+                    className={`w-16 md:w-full h-14 md:h-16 rounded-xl border flex items-center justify-center p-1.5 transition-all ${
+                      i === lightbox
+                        ? 'border-[var(--pqube-cyan)] ring-2 ring-[var(--pqube-cyan)]/30 bg-white'
+                        : 'border-[var(--pqube-gray-200)] bg-white hover:border-[var(--pqube-cyan)]/50'
+                    } ${i === 2 ? '!bg-black' : ''}`}
+                    aria-label={`View ${cert.label}`}
+                  >
+                    <img src={cert.src} alt="" className="max-h-full max-w-full object-contain" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }
