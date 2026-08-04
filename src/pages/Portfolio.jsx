@@ -717,7 +717,7 @@ export default function Portfolio() {
                 clients, testimonials and case studies — all in a single shareable deck.
               </p>
               <ul className="text-left space-y-2.5 mb-8">
-                {['Drag pages like a real booklet', 'Autoplay flips pages for you', 'Full-screen view on any page'].map((line) => (
+                {['Autoplay flips pages for you', 'Full-screen view on any page'].map((line) => (
                   <li key={line} className="flex items-start gap-2.5 text-sm text-white/80">
                     <span className="w-5 h-5 rounded-full bg-[var(--pqube-cyan)]/15 text-[var(--pqube-cyan)] flex items-center justify-center shrink-0 mt-0.5">
                       <Check size={12} strokeWidth={3} />

@@ -103,7 +103,7 @@ export default function Header() {
               lineColor="#29ABE2"
               textColor="#FFFFFF"
               intensity={1.3}
-              onClick={() => navigate('/contact')}
+              onClick={() => window.open('https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true', '_blank', 'noopener,noreferrer')}
             >
               Schedule Free Demo
             </SpecularButton>

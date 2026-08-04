@@ -127,7 +127,7 @@ export default function Contact() {
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Prefer a direct conversation?</h2>
           <p className="text-white/80 max-w-xl mx-auto mb-7">Book a free 30-minute discovery call — no pitch, just a clear path forward.</p>
           <SpecularButton
-            href="/contact"
+            href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true"
             size="lg"
             radius={10}
             baseColor="#FFFFFF"

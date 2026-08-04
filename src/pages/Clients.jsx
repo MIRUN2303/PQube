@@ -22,9 +22,6 @@ export default function Clients() {
           <div className="text-center mb-12">
             <ShinyText text="Client Stories" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="What We Build, Together" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
-            <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
-              Every partnership starts in a different corner of the business — pick a client to see how we partnered with them.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

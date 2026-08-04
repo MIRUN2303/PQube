@@ -1,13 +1,25 @@
-import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, Check, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import ShinyText from '../components/ShinyText';
 import BlurReveal from '../components/BlurReveal';
+import SpecularButton from '../components/SpecularButton';
 import { insights } from '../data/insights';
 
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&q=80';
 
 export default function Insights() {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    setSubscribed(true);
+    setEmail('');
+    setTimeout(() => setSubscribed(false), 6000);
+  };
+
   return (
     <main className="bg-[var(--pqube-gray-50)]">
       <PageHero
@@ -57,6 +69,55 @@ export default function Insights() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Subscribe */}
+      <section className="section-padding bg-[var(--pqube-gray-50)]">
+        <div className="container-page">
+          <div className="relative overflow-hidden rounded-3xl bg-[var(--pqube-navy)] px-6 py-14 md:py-20 text-center shadow-[0_30px_80px_-30px_rgba(11,58,110,0.45)]">
+            {/* decorative orbs */}
+            <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[var(--pqube-cyan)]/25 blur-3xl pointer-events-none" aria-hidden="true" />
+            <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-[var(--pqube-blue)]/35 blur-3xl pointer-events-none" aria-hidden="true" />
+            <div className="absolute top-10 right-10 border border-white/[0.06] rounded-3xl w-40 h-40 rotate-45 pointer-events-none" aria-hidden="true" />
+
+            <div className="relative max-w-2xl mx-auto">
+              <span className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.25em] text-[var(--pqube-cyan)] bg-[var(--pqube-cyan)]/10 border border-[var(--pqube-cyan)]/30 rounded-full px-4 py-1.5 mb-5">
+                <Mail size={13} /> Newsletter
+              </span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">Subscribe to Our Insights</h2>
+              <p className="text-white/60 max-w-xl mx-auto mb-8 leading-relaxed">
+                One thoughtful email a month — ideas on technology, business strategy and digital transformation, practical enough to act on today.
+              </p>
+
+              {subscribed ? (
+                <div className="flex flex-col items-center justify-center gap-3 py-4">
+                  <div className="w-14 h-14 rounded-full bg-[var(--pqube-cyan)]/15 border border-[var(--pqube-cyan)]/30 flex items-center justify-center">
+                    <Check size={24} className="text-[var(--pqube-cyan)]" />
+                  </div>
+                  <p className="text-white font-semibold">You&apos;re subscribed!</p>
+                  <p className="text-sm text-white/50">Watch your inbox for the next edition.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" noValidate>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your work email"
+                    aria-label="Email address"
+                    className="flex-1 min-w-0 px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--pqube-cyan)] focus:border-transparent transition-all"
+                  />
+                  <SpecularButton size="md" radius={12} baseColor="#FFFFFF" lineColor="#29ABE2" textColor="#1B2A6B" intensity={1.3}>
+                    Subscribe
+                  </SpecularButton>
+                </form>
+              )}
+
+              <p className="mt-5 text-xs text-white/40">No spam, no fluff — unsubscribe anytime.</p>
+            </div>
           </div>
         </div>
       </section>

@@ -73,6 +73,39 @@ export default function About() {
     }
   }, []);
 
+  // The cube grid sits behind the 3D badge (pointer-events-none), so the stage
+  // forwards pointer events here; re-dispatch them natively on the Cubes scene.
+  const lastPointerRef = useRef({ x: 0, y: 0 });
+  useEffect(() => {
+    const scene = () => teamStageRef.current?.querySelector('.default-animation--scene');
+    const onMove = (evt) => {
+      const el = scene();
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const d = evt.detail;
+      lastPointerRef.current = {
+        x: rect.left + (d.x / d.width) * rect.width,
+        y: rect.top + (d.y / d.height) * rect.height
+      };
+      el.dispatchEvent(new PointerEvent('pointermove', { clientX: lastPointerRef.current.x, clientY: lastPointerRef.current.y }));
+    };
+    const onLeave = () => scene()?.dispatchEvent(new PointerEvent('pointerleave'));
+    const onClick = () => {
+      const el = scene();
+      if (!el) return;
+      const { x, y } = lastPointerRef.current;
+      el.dispatchEvent(new PointerEvent('click', { clientX: x, clientY: y }));
+    };
+    window.addEventListener('team-cubes-pointermove', onMove);
+    window.addEventListener('team-cubes-pointerleave', onLeave);
+    window.addEventListener('team-cubes-click', onClick);
+    return () => {
+      window.removeEventListener('team-cubes-pointermove', onMove);
+      window.removeEventListener('team-cubes-pointerleave', onLeave);
+      window.removeEventListener('team-cubes-click', onClick);
+    };
+  }, []);
+
   return (
     <main className="bg-[var(--pqube-gray-50)]">
       <PageHero
@@ -213,9 +246,6 @@ export default function About() {
           <div className="text-center mb-12">
             <ShinyText text="Our Journey" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="From 2013 to Today" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
-            <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
-              Tap any milestone to expand it and read the story behind it.
-            </p>
           </div>
 
           <div className="max-w-4xl mx-auto pt-56 md:pt-52">
@@ -305,9 +335,6 @@ export default function About() {
           <div className="text-center mb-12">
             <ShinyText text="The Team" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="Select a Profile" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
-            <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
-              Pick a profile — their badge hangs from the strap and swings as you drag it, over a living cube-grid.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -360,9 +387,6 @@ export default function About() {
                   <p className="text-xs text-white/60 mt-0.5">{activeMember.phone}</p>
                 </div>
               </div>
-              <p className="mt-3 text-center text-xs text-[var(--pqube-gray-500)]">
-                Drag the badge — it hangs and swings like a real ID card over a living cube-grid.
-              </p>
             </div>
 
             {/* Profile selector */}

@@ -105,9 +105,9 @@ export default function MobileDrawer({ isOpen, onClose }) {
 
         {/* Bottom CTA */}
         <div className="px-5 py-4 border-t border-[var(--pqube-gray-200)] shrink-0 space-y-2">
-          <Link to="/contact" onClick={onClose} className="flex items-center justify-center w-full px-5 py-3 text-sm font-semibold text-white bg-[var(--pqube-navy)] hover:bg-[var(--pqube-blue)] rounded-lg transition-all">
+          <a href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true" target="_blank" rel="noopener noreferrer" onClick={onClose} className="flex items-center justify-center w-full px-5 py-3 text-sm font-semibold text-white bg-[var(--pqube-navy)] hover:bg-[var(--pqube-blue)] rounded-lg transition-all">
             Schedule Free Demo
-          </Link>
+          </a>
           <a href="tel:+919731249009" onClick={onClose} className="flex items-center justify-center gap-2 w-full px-5 py-3 text-sm font-medium text-[var(--pqube-navy)] border border-[var(--pqube-gray-200)] rounded-lg hover:bg-[var(--pqube-gray-50)] transition-colors">
             <Phone size={14} /> +91 97312 49009
           </a>

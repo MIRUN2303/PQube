@@ -27,7 +27,7 @@ export default function Hero() {
 
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <a
-                href="/contact"
+                href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true"
                 className="inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
                 Schedule Free Demo

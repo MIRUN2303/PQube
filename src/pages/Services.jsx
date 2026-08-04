@@ -74,7 +74,7 @@ export default function Services() {
         <div className="container-page text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Not sure where to start?</h2>
           <p className="text-white/80 max-w-xl mx-auto mb-7">Tell us your challenge — we'll map the right services and a clear path forward in a free consultation.</p>
-          <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-[var(--pqube-navy)] bg-white rounded-xl hover:bg-[var(--pqube-gray-50)] transition-all shadow-lg">
+          <a href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-[var(--pqube-navy)] bg-white rounded-xl hover:bg-[var(--pqube-gray-50)] transition-all shadow-lg">
             Schedule Free Demo <ArrowRight size={18} />
           </a>
         </div>

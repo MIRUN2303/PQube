@@ -237,7 +237,8 @@ const SpecularButton = ({
   );
 
   if (href) {
-    return <a href={href} {...baseProps}>{content}</a>;
+    const external = /^https?:\/\//.test(href);
+    return <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...baseProps}>{content}</a>;
   }
 
   return <button type={type} {...baseProps}>{content}</button>;
