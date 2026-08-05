@@ -127,17 +127,9 @@ export default function Contact() {
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Prefer a direct conversation?</h2>
           <span className="block w-16 h-1 rounded-full mx-auto mb-6 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           <p className="text-white/80 max-w-xl mx-auto mb-7">Book a free 30-minute discovery call — no pitch, just a clear path forward.</p>
-          <SpecularButton
-            href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true"
-            size="lg"
-            radius={10}
-            baseColor="#FFFFFF"
-            lineColor="#D4A017"
-            textColor="#1B2A6B"
-            intensity={1.2}
-          >
+          <a href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E] rounded-xl hover:opacity-90 transition-all shadow-lg shadow-[#B8722C]/30">
             Schedule Free Demo
-          </SpecularButton>
+          </a>
         </div>
       </section>
     </main>

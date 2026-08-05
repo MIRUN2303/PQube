@@ -70,11 +70,12 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] py-14">
+      <section className="bg-[#1A1A1A] py-14">
         <div className="container-page text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Not sure where to start?</h2>
+          <span className="block w-16 h-1 rounded-full mx-auto mb-6 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           <p className="text-white/80 max-w-xl mx-auto mb-7">Tell us your challenge — we'll map the right services and a clear path forward in a free consultation.</p>
-          <a href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-[var(--pqube-navy)] bg-white rounded-xl hover:bg-[var(--pqube-gray-50)] transition-all shadow-lg">
+          <a href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E] rounded-xl hover:opacity-90 transition-all shadow-lg shadow-[#B8722C]/30">
             Schedule Free Demo <ArrowRight size={18} />
           </a>
         </div>

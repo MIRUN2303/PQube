@@ -17,6 +17,7 @@ export default function ProcessTimeline() {
             className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3"
           />
           <BlurReveal text="Our Engagement Roadmap" className="text-3xl md:text-4xl font-extrabold text-white" blur={12} y={24} rotate={5} stagger={0.12} />
+          <span className="block w-16 h-1 rounded-full mx-auto mt-4 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           <p className="text-white/60 max-w-xl mx-auto mt-4">
             A proven methodology built on two decades of delivery experience.
           </p>

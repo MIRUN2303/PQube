@@ -225,12 +225,12 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="bg-[var(--pqube-navy)] py-14">
+      <section className="bg-[#1A1A1A] py-14">
         <div className="container-page">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {portfolioStats.map((s) => (
               <div key={s.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[var(--pqube-cyan)] to-[#7FD4F5] mb-2">
+                <div className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E] mb-2">
                   {s.value}
                 </div>
                 <div className="text-xs md:text-sm text-white/70 leading-snug">{s.label}</div>
@@ -246,6 +246,7 @@ export default function About() {
           <div className="text-center mb-12">
             <ShinyText text="Our Journey" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="From 2013 to Today" className="text-3xl md:text-4xl font-extrabold text-white" blur={12} y={24} rotate={5} stagger={0.12} />
+            <span className="block w-16 h-1 rounded-full mx-auto mt-4 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           </div>
 
           <div className="max-w-4xl mx-auto pt-56 md:pt-52">
@@ -446,9 +447,9 @@ export default function About() {
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">Let&apos;s Build What&apos;s Next</h2>
           <span className="block w-16 h-1 rounded-full mx-auto mb-6 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           <p className="text-white/80 max-w-xl mx-auto mb-8">Tell us about your platform, your problem, or your curiosity. We&apos;ll come back within 24 hours.</p>
-          <SpecularButton href="/contact" size="lg" radius={10} baseColor="#FFFFFF" lineColor="#D4A017" textColor="#1B2A6B" intensity={1.2}>
-            Get a Free Consultation <ArrowRight size={16} />
-          </SpecularButton>
+          <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E] rounded-xl hover:opacity-90 transition-all shadow-lg shadow-[#B8722C]/30">
+            Get a Free Consultation <ArrowRight size={18} />
+          </a>
         </div>
       </section>
     </main>

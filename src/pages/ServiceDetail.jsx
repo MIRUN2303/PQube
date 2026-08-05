@@ -4,7 +4,6 @@ import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import ShinyText from '../components/ShinyText';
 import BlurReveal from '../components/BlurReveal';
-import SpecularButton from '../components/SpecularButton';
 import ClutchReviews from '../components/ClutchReviews';
 import { services, serviceCategories, outcomes } from '../data/services';
 
@@ -125,18 +124,11 @@ export default function ServiceDetail() {
       <section className="bg-[#1A1A1A] py-14">
         <div className="container-page text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Ready to start this journey?</h2>
+          <span className="block w-16 h-1 rounded-full mx-auto mb-6 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           <p className="text-white/80 max-w-xl mx-auto mb-7">Tell us the outcome you're after — we'll scope it, price it, and plan it together.</p>
-          <SpecularButton
-            href="/contact"
-            size="lg"
-            radius={10}
-            baseColor="#FFFFFF"
-            lineColor="#D4A017"
-            textColor="#1B2A6B"
-            intensity={1.2}
-          >
+          <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E] rounded-xl hover:opacity-90 transition-all shadow-lg shadow-[#B8722C]/30">
             Start a Conversation
-          </SpecularButton>
+          </a>
         </div>
       </section>
     </main>

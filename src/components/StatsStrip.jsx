@@ -28,7 +28,7 @@ function AnimatedCounter({ end, suffix, label }) {
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-cyan)] mb-1">{count}{suffix}</div>
+      <div className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E] mb-1">{count}{suffix}</div>
       <div className="text-sm text-white/60">{label}</div>
     </div>
   );
@@ -43,7 +43,7 @@ export default function StatsStrip() {
   ];
 
   return (
-    <section className="bg-[var(--pqube-navy)] py-12 md:py-16">
+    <section className="bg-[#1A1A1A] py-12 md:py-16">
       <div className="container-page">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s) => <AnimatedCounter key={s.label} {...s} />)}

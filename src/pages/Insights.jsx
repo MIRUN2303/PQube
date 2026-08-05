@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import ShinyText from '../components/ShinyText';
 import BlurReveal from '../components/BlurReveal';
-import SpecularButton from '../components/SpecularButton';
 import { insights } from '../data/insights';
 
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&q=80';
