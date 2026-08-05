@@ -54,7 +54,7 @@ export default function ClutchReviews() {
     <section className="section-padding bg-[var(--pqube-gray-50)] overflow-hidden">
       <div className="container-page">
         <div className="text-center mb-12">
-          <ShinyText text="Clutch Reviews" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText text="Clutch Reviews" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="Rated by the Clients We Serve" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
             Our engagements are scored independently on Clutch. Here is how clients rate working with PQube.
@@ -96,7 +96,7 @@ export default function ClutchReviews() {
                 <div>
                   <div className="flex items-end gap-2">
                     <span className="text-4xl font-extrabold leading-none">{reviewSummary.average}</span>
-                    <span className="text-lg font-bold text-white/70 mb-0.5">/ 5</span>
+                    <span className="text-lg font-bold text-white mb-0.5">/ 5</span>
                     <div className="mb-0.5 ml-2">{renderStars(5)}</div>
                   </div>
                   <p className="mt-1.5 text-sm text-white/75">
@@ -110,7 +110,7 @@ export default function ClutchReviews() {
                   <div key={s.label} className="text-center lg:text-left">
                     <div className="text-2xl font-extrabold">
                       {s.value}
-                      {s.suffix && <span className="text-sm font-bold text-[var(--pqube-cyan)]">{s.suffix}</span>}
+                      {s.suffix && <span className="text-sm font-bold text-white">{s.suffix}</span>}
                     </div>
                     <div className="mt-1 text-[10px] font-medium text-white/70 uppercase tracking-wide leading-snug">{s.label}</div>
                   </div>

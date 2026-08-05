@@ -128,7 +128,7 @@ export default function About() {
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="What is PQube" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="What is PQube" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="P × P × P = Q" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
               Two equations govern everything we do — one for the quality we deliver, one for the quantum of the business we build.
@@ -137,11 +137,11 @@ export default function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {Object.entries(pqubeFormula).map(([key, formula]) => (
-              <div key={key} className="bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl p-6 md:p-8 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-shadow">
+              <div key={key} className="bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl p-6 md:p-8 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-shadow">
                 <div className="flex items-center justify-center gap-2.5 md:gap-3 mb-4">
                   {formula.terms.map((t, i) => (
                     <div key={t.word} className="flex items-center gap-2.5 md:gap-3">
-                      {i > 0 && <span className="text-lg font-bold text-[var(--pqube-cyan)]">+</span>}
+                      {i > 0 && <span className="text-lg font-bold text-[#D4A017]">+</span>}
                       <div className="text-center">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center text-white font-extrabold text-lg mb-1">
                           {t.letter}
@@ -150,7 +150,7 @@ export default function About() {
                       </div>
                     </div>
                   ))}
-                  <span className="text-xl font-extrabold text-[var(--pqube-cyan)]">=</span>
+                  <span className="text-xl font-extrabold text-[#D4A017]">=</span>
                   <div className="text-center">
                     <div className="w-10 h-10 rounded-xl bg-[var(--pqube-navy)] flex items-center justify-center text-white font-extrabold text-lg mb-1">
                       {formula.result}
@@ -169,12 +169,12 @@ export default function About() {
       <section className="section-padding bg-[var(--pqube-gray-50)]">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Why We Exist" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Why We Exist" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="Three Things That Anchor Us" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {PRINCIPLES.map((p) => (
-              <div key={p.title} className="bg-white border border-[var(--pqube-gray-200)] rounded-2xl p-6 hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-all">
+              <div key={p.title} className="bg-white border border-[var(--pqube-gray-200)] rounded-2xl p-6 hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center mb-4">
                   <p.icon size={22} />
                 </div>
@@ -190,7 +190,7 @@ export default function About() {
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Values & Purpose" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Values & Purpose" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="What We Stand For" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
@@ -203,7 +203,7 @@ export default function About() {
                   className={`w-full text-left rounded-2xl px-5 py-4 border transition-all duration-300 ${
                     active.id === tab.id
                       ? 'bg-[var(--pqube-navy)] border-[var(--pqube-blue)] text-white shadow-lg shadow-[var(--pqube-blue)]/20'
-                      : 'bg-[var(--pqube-gray-50)] border-[var(--pqube-gray-200)] text-[var(--pqube-navy)] hover:border-[var(--pqube-blue)]/40'
+                      : 'bg-[var(--pqube-gray-50)] border-[var(--pqube-gray-200)] text-[var(--pqube-navy)] hover:border-[#D4A017]/50'
                   }`}
                 >
                   <span className="text-sm font-bold">{tab.label}</span>
@@ -334,7 +334,7 @@ export default function About() {
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="The Team" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="The Team" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="Select a Profile" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
@@ -402,7 +402,7 @@ export default function About() {
                       className={`w-full text-left rounded-2xl px-4 py-3.5 border transition-all duration-300 ${
                         active
                           ? 'bg-[var(--pqube-gray-50)] border-[var(--pqube-blue)]/50 shadow-lg shadow-[var(--pqube-blue)]/10'
-                          : 'bg-white border-[var(--pqube-gray-200)] hover:border-[var(--pqube-blue)]/40 hover:shadow-md'
+                          : 'bg-white border-[var(--pqube-gray-200)] hover:border-[#D4A017]/50 hover:shadow-md'
                       }`}
                     >
                       <div className="flex items-center gap-4">
@@ -423,7 +423,7 @@ export default function About() {
                             </div>
                           )}
                         </div>
-                        <span className={`text-[var(--pqube-cyan)] transition-transform duration-300 ${active ? 'rotate-90' : ''}`}>
+                        <span className={`text-[#D4A017] transition-transform duration-300 ${active ? 'rotate-90' : ''}`}>
                           <ArrowRight size={16} />
                         </span>
                       </div>

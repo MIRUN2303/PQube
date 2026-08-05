@@ -93,7 +93,7 @@ export default function HeroSlideshow() {
             <div className="container-page relative z-10 h-full flex items-center">
               <div className="w-full py-16 md:py-20 flex flex-col md:flex-row md:items-center md:justify-between gap-10">
                 <div className="max-w-2xl">
-                <span className="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-[var(--pqube-cyan)] mb-5 opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+                <span className="inline-block text-xs font-semibold uppercase tracking-[0.15em] text-[#D4A017] mb-5 opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
                   {s.kicker}
                 </span>
                 <h1 className="text-[clamp(1.75rem,5vw,3.75rem)] font-extrabold leading-[1.1] tracking-tight text-white max-w-3xl mb-5 opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>

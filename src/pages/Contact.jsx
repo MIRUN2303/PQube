@@ -77,21 +77,21 @@ export default function Contact() {
                 <h3 className="text-lg md:text-xl font-extrabold mb-4">Direct Contact</h3>
                 <div className="space-y-4">
                   <a href={contactInfo.phoneHref} className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
-                    <Phone size={20} className="text-[var(--pqube-cyan)]" />
+                    <Phone size={20} className="text-[#D4A017]" />
                     <div>
                       <p className="text-xs text-[var(--pqube-cyan)] uppercase tracking-wider">Call Us</p>
                       <p className="font-medium">{contactInfo.phone}</p>
                     </div>
                   </a>
                   <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
-                    <Mail size={20} className="text-[var(--pqube-cyan)]" />
+                    <Mail size={20} className="text-[#D4A017]" />
                     <div>
                       <p className="text-xs text-[var(--pqube-cyan)] uppercase tracking-wider">Email Us</p>
                       <p className="font-medium">{contactInfo.email}</p>
                     </div>
                   </a>
                   <div className="flex items-start gap-3 text-white/80">
-                    <MapPin size={20} className="text-[var(--pqube-cyan)] mt-1 shrink-0" />
+                    <MapPin size={20} className="text-[#D4A017] mt-1 shrink-0" />
                     <div>
                       <p className="text-xs text-[var(--pqube-cyan)] uppercase tracking-wider">Visit Us</p>
                       <p className="font-medium leading-snug">{contactInfo.address}</p>
@@ -103,17 +103,17 @@ export default function Contact() {
               <div className="bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl p-6">
                 <h3 className="text-lg font-extrabold text-[var(--pqube-navy)] mb-3">Quick Actions</h3>
                 <div className="space-y-3">
-                  <Link to="/services" className="flex items-center gap-3 px-4 py-3 bg-white border border-[var(--pqube-gray-200)] rounded-xl hover:border-[var(--pqube-blue)]/40 hover:shadow-lg transition-all">
+                  <Link to="/services" className="flex items-center gap-3 px-4 py-3 bg-white border border-[var(--pqube-gray-200)] rounded-xl hover:border-[#D4A017]/50 hover:shadow-lg transition-all">
                     <span className="text-sm font-semibold text-[var(--pqube-navy)]">Explore All Services</span>
-                    <ArrowRight size={16} className="text-[var(--pqube-blue)] shrink-0" />
+                    <ArrowRight size={16} className="text-[#D4A017] shrink-0" />
                   </Link>
-                  <Link to="/clients" className="flex items-center gap-3 px-4 py-3 bg-white border border-[var(--pqube-gray-200)] rounded-xl hover:border-[var(--pqube-blue)]/40 hover:shadow-lg transition-all">
+                  <Link to="/clients" className="flex items-center gap-3 px-4 py-3 bg-white border border-[var(--pqube-gray-200)] rounded-xl hover:border-[#D4A017]/50 hover:shadow-lg transition-all">
                     <span className="text-sm font-semibold text-[var(--pqube-navy)]">View Client Stories</span>
-                    <ArrowRight size={16} className="text-[var(--pqube-blue)] shrink-0" />
+                    <ArrowRight size={16} className="text-[#D4A017] shrink-0" />
                   </Link>
-                  <Link to="/insights" className="flex items-center gap-3 px-4 py-3 bg-white border border-[var(--pqube-gray-200)] rounded-xl hover:border-[var(--pqube-blue)]/40 hover:shadow-lg transition-all">
+                  <Link to="/insights" className="flex items-center gap-3 px-4 py-3 bg-white border border-[var(--pqube-gray-200)] rounded-xl hover:border-[#D4A017]/50 hover:shadow-lg transition-all">
                     <span className="text-sm font-semibold text-[var(--pqube-navy)]">Read Latest Insights</span>
-                    <ArrowRight size={16} className="text-[var(--pqube-blue)] shrink-0" />
+                    <ArrowRight size={16} className="text-[#D4A017] shrink-0" />
                   </Link>
                 </div>
               </div>

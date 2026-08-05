@@ -42,7 +42,7 @@ export default function ClientStory() {
               <div className="flex items-center justify-center gap-3 mb-1.5">
                 <h1 className="text-2xl md:text-3xl font-extrabold text-[var(--pqube-navy)] tracking-tight">{client.name}</h1>
               </div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--pqube-blue)] mb-1">{client.sector} · {client.location}</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#D4A017] mb-1">{client.sector} · {client.location}</p>
               <p className="text-sm text-[var(--pqube-gray-600)] leading-relaxed max-w-xl mx-auto">{client.desc}</p>
             </div>
           </div>
@@ -65,10 +65,10 @@ export default function ClientStory() {
                 <Package size={18} />
               </span>
               <div className="flex-1">
-                <ShinyText text="What We Delivered" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-1" />
+                <ShinyText text="What We Delivered" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-1" />
                 <div className="h-0.5 mt-1.5 w-24 rounded-full bg-gradient-to-r from-[var(--pqube-cyan)] to-transparent" />
               </div>
-              <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-[var(--pqube-cyan)] bg-[var(--pqube-cyan)]/10 border border-[var(--pqube-cyan)]/25 px-3 py-1.5 rounded-full">
+              <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-[#D4A017] bg-[#D4A017]/10 border border-[#D4A017]/25 px-3 py-1.5 rounded-full">
                 {client.highlights.length} outcomes
               </span>
             </div>
@@ -77,7 +77,7 @@ export default function ClientStory() {
               {client.highlights.map((h, i) => (
                 <div
                   key={h}
-                  className="group flex flex-col p-6 bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 hover:-translate-y-1 transition-all"
+                  className="group flex flex-col p-6 bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 hover:-translate-y-1 transition-all"
                 >
                   <span className="shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center text-sm font-extrabold shadow-md shadow-[var(--pqube-blue)]/20 mb-5 transition-transform duration-300 group-hover:scale-105">
                     {String(i + 1).padStart(2, '0')}
@@ -95,7 +95,7 @@ export default function ClientStory() {
                 <Sparkles size={18} />
               </span>
               <div className="flex-1">
-                <ShinyText text="Keep Exploring" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-1" />
+                <ShinyText text="Keep Exploring" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-1" />
                 <div className="h-0.5 mt-1.5 w-24 rounded-full bg-gradient-to-r from-[var(--pqube-cyan)] to-transparent" />
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function ClientStory() {
                 <Link
                   key={o.slug}
                   to={o.link}
-                  className="group flex items-center gap-4 p-5 bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 hover:-translate-y-1 transition-all"
+                  className="group flex items-center gap-4 p-5 bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 hover:-translate-y-1 transition-all"
                 >
                   <span className="shrink-0 w-14 h-14 rounded-xl bg-white border border-[var(--pqube-gray-200)] flex items-center justify-center p-2">
                     <img src={o.logo} alt={`${o.name} logo`} className="max-h-full w-auto max-w-full object-contain" loading="lazy" />
@@ -114,7 +114,7 @@ export default function ClientStory() {
                     <div className="text-sm font-extrabold text-[var(--pqube-navy)] group-hover:text-[var(--pqube-blue)] transition-colors truncate">{o.name}</div>
                     <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--pqube-gray-400)] mt-0.5">{o.sector}</div>
                   </div>
-                  <ArrowRight size={15} className="shrink-0 text-[var(--pqube-cyan)] transition-transform duration-200 group-hover:translate-x-1" />
+                  <ArrowRight size={15} className="shrink-0 text-[#D4A017] transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               ))}
             </div>

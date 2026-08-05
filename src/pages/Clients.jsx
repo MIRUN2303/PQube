@@ -20,7 +20,7 @@ export default function Clients() {
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Client Stories" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Client Stories" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="What We Build, Together" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
@@ -29,20 +29,20 @@ export default function Clients() {
               <Link
                 key={c.slug}
                 to={c.link}
-                className="group flex flex-col bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl p-6 hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-all"
+                className="group flex flex-col bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl p-6 hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all"
               >
                 <div className="flex items-center justify-between mb-5">
                   <span className="inline-flex items-center h-12 px-3 bg-white rounded-xl border border-[var(--pqube-gray-200)]">
                     <img src={c.logo} alt={`${c.name} logo`} className="max-h-8 w-auto max-w-[120px] object-contain grayscale group-hover:grayscale-0 transition-all duration-300" loading="lazy" />
                   </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--pqube-blue)] bg-[var(--pqube-blue)]/10 border border-[var(--pqube-blue)]/20 px-2.5 py-1 rounded-full">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D4A017] bg-[#D4A017]/10 border border-[#D4A017]/25 px-2.5 py-1 rounded-full">
                     {c.sector}
                   </span>
                 </div>
                 <h3 className="text-lg font-extrabold text-[var(--pqube-navy)] mb-1">{c.name}</h3>
                 <p className="text-xs text-[var(--pqube-gray-500)] mb-3">{c.desc}</p>
                 <p className="text-sm text-[var(--pqube-gray-500)] leading-relaxed flex-1">{c.summary}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--pqube-blue)] mt-4">
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#D4A017] mt-4">
                   Read their story
                   <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
                 </span>

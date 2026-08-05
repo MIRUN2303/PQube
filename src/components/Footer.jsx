@@ -222,14 +222,14 @@ export default function Footer() {
                 />
                 <button
                   onClick={() => setLightbox((lightbox - 1 + CERT_ITEMS.length) % CERT_ITEMS.length)}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-[var(--pqube-gray-200)] shadow-md flex items-center justify-center text-[var(--pqube-navy)] hover:border-[var(--pqube-cyan)] transition-colors"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-[var(--pqube-gray-200)] shadow-md flex items-center justify-center text-[var(--pqube-navy)] hover:border-[#D4A017] transition-colors"
                   aria-label="Previous certificate"
                 >
                   <ChevronLeft size={16} />
                 </button>
                 <button
                   onClick={() => setLightbox((lightbox + 1) % CERT_ITEMS.length)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-[var(--pqube-gray-200)] shadow-md flex items-center justify-center text-[var(--pqube-navy)] hover:border-[var(--pqube-cyan)] transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-[var(--pqube-gray-200)] shadow-md flex items-center justify-center text-[var(--pqube-navy)] hover:border-[#D4A017] transition-colors"
                   aria-label="Next certificate"
                 >
                   <ChevronRight size={16} />
@@ -245,7 +245,7 @@ export default function Footer() {
                     className={`w-16 md:w-full h-14 md:h-16 rounded-xl border flex items-center justify-center p-1.5 transition-all ${
                       i === lightbox
                         ? 'border-[var(--pqube-cyan)] ring-2 ring-[var(--pqube-cyan)]/30 bg-white'
-                        : 'border-[var(--pqube-gray-200)] bg-white hover:border-[var(--pqube-cyan)]/50'
+                        : 'border-[var(--pqube-gray-200)] bg-white hover:border-[#D4A017]/50'
                     } ${i === 2 ? '!bg-black' : ''}`}
                     aria-label={`View ${cert.label}`}
                   >

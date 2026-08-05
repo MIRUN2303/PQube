@@ -10,7 +10,7 @@ export default function ClientsMarquee() {
     <section className="section-padding bg-white">
       <div className="container-page">
         <div className="text-center mb-12">
-          <ShinyText text="Our Clients" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText text="Our Clients" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="Trusted by Industry Leaders" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)] mb-4" blur={12} y={24} rotate={5} stagger={0.12} />
           <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto">
             We are proud to partner with organizations across sectors — from pharma and manufacturing to retail and fintech.
@@ -23,7 +23,7 @@ export default function ClientsMarquee() {
         </div>
 
         <div className="text-center mt-10">
-          <a href="/clients" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--pqube-navy)] hover:text-[var(--pqube-blue)] transition-colors">
+          <a href="/clients" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--pqube-navy)] hover:text-[#D4A017] transition-colors">
             View All Client Stories <span aria-hidden="true">&rarr;</span>
           </a>
         </div>

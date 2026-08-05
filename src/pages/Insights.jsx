@@ -31,7 +31,7 @@ export default function Insights() {
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Latest Articles" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Latest Articles" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="All Insights" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
@@ -40,7 +40,7 @@ export default function Insights() {
               <Link
                 key={article.id}
                 to={article.link}
-                className="group flex flex-col bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl overflow-hidden hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-all"
+                className="group flex flex-col bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl overflow-hidden hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all"
               >
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img
@@ -61,7 +61,7 @@ export default function Insights() {
                   </div>
                   <h3 className="text-base font-bold text-[var(--pqube-navy)] leading-snug mb-2 line-clamp-2">{article.title}</h3>
                   <p className="text-sm text-[var(--pqube-gray-500)] leading-relaxed flex-1 line-clamp-3">{article.excerpt}</p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--pqube-blue)] mt-4">
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#D4A017] mt-4">
                     Read article
                     <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
                   </span>

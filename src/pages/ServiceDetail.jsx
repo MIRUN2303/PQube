@@ -30,7 +30,7 @@ export default function ServiceDetail() {
         <div className="container-page max-w-4xl">
           <div className="mb-8 p-5 bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl text-center">
             <h1 className="text-xl md:text-2xl font-extrabold text-[var(--pqube-navy)]">{service.title}</h1>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--pqube-cyan)] mt-1">{service.category}</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#D4A017] mt-1">{service.category}</p>
           </div>
 
           <div className="space-y-10">
@@ -49,11 +49,11 @@ export default function ServiceDetail() {
 
             {/* Key Capabilities — card grid */}
             <div>
-              <ShinyText text="Key Capabilities" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-4" />
+              <ShinyText text="Key Capabilities" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-4" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {service.features.map((f) => (
-                  <div key={f} className="group flex items-start gap-3 p-4 md:p-5 bg-white border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 hover:-translate-y-0.5 transition-all">
-                    <span className="shrink-0 mt-0.5 w-8 h-8 rounded-full bg-[var(--pqube-cyan)]/10 border border-[var(--pqube-cyan)]/25 text-[var(--pqube-cyan)] flex items-center justify-center group-hover:bg-[var(--pqube-cyan)] group-hover:text-white transition-colors">
+                  <div key={f} className="group flex items-start gap-3 p-4 md:p-5 bg-white border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 hover:-translate-y-0.5 transition-all">
+                    <span className="shrink-0 mt-0.5 w-8 h-8 rounded-full bg-[#D4A017]/10 border border-[#D4A017]/25 text-[#D4A017] flex items-center justify-center group-hover:bg-[#D4A017] group-hover:text-white transition-colors">
                       <CheckCircle2 size={16} />
                     </span>
                     <span className="text-sm md:text-[15px] text-[var(--pqube-gray-700)] leading-relaxed">{f}</span>
@@ -91,7 +91,7 @@ export default function ServiceDetail() {
       <section className="section-padding bg-[var(--pqube-gray-50)]">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Why PQube" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Why PQube" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="Outcomes You Can Count On" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -99,7 +99,7 @@ export default function ServiceDetail() {
               <Link
                 key={o.title}
                 to={service.link}
-                className="group flex flex-col bg-white border border-[var(--pqube-gray-200)] rounded-2xl overflow-hidden hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-all"
+                className="group flex flex-col bg-white border border-[var(--pqube-gray-200)] rounded-2xl overflow-hidden hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all"
               >
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img src={o.image} alt="" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" loading="lazy" />
@@ -109,7 +109,7 @@ export default function ServiceDetail() {
                 <div className="flex flex-col flex-1 p-5">
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
                     {o.chips.map((c) => (
-                      <span key={c} className="text-[10px] font-medium text-[var(--pqube-cyan)] bg-[var(--pqube-cyan)]/10 border border-[var(--pqube-cyan)]/25 px-2 py-1 rounded-full">{c}</span>
+                      <span key={c} className="text-[10px] font-medium text-[#D4A017] bg-[#D4A017]/10 border border-[#D4A017]/25 px-2 py-1 rounded-full">{c}</span>
                     ))}
                   </div>
                   <h3 className="text-base font-bold text-[var(--pqube-navy)] leading-snug mb-2">{o.title}</h3>

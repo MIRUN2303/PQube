@@ -210,7 +210,7 @@ export default function Portfolio() {
           className="container-page relative z-10 h-full flex flex-col items-center justify-center text-center pt-28 pb-12"
           style={{ opacity: fade, transform: `translateY(${scrollY * 0.3}px)` }}
         >
-          <ShinyText text="Our Portfolio" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText text="Our Portfolio" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="Work That Delivers" className="text-4xl md:text-5xl font-extrabold text-white mb-4" blur={12} y={24} rotate={5} stagger={0.12} />
           <p className="text-white/70 max-w-2xl mx-auto mb-8">
             Three decades of building people, platforms and businesses — from 1.4-million-SKU commerce to enterprise ERP, across retail, manufacturing, healthcare, fintech and beyond.
@@ -230,7 +230,7 @@ export default function Portfolio() {
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="What is PQube" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="What is PQube" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="P × P × P = Q" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
               We invest in building people who transform businesses.
@@ -243,7 +243,7 @@ export default function Portfolio() {
                 <div className="flex items-center justify-center gap-2.5 md:gap-3 mb-4">
                   {formula.terms.map((t, i) => (
                     <div key={t.word} className="flex items-center gap-2.5 md:gap-3">
-                      {i > 0 && <span className="text-lg font-bold text-[var(--pqube-cyan)]">+</span>}
+                      {i > 0 && <span className="text-lg font-bold text-[#D4A017]">+</span>}
                       <div className="text-center">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center text-white font-extrabold text-lg mb-1">
                           {t.letter}
@@ -252,7 +252,7 @@ export default function Portfolio() {
                       </div>
                     </div>
                   ))}
-                  <span className="text-xl font-extrabold text-[var(--pqube-cyan)]">=</span>
+                  <span className="text-xl font-extrabold text-[#D4A017]">=</span>
                   <div className="text-center">
                     <div className="w-10 h-10 rounded-xl bg-[var(--pqube-navy)] flex items-center justify-center text-white font-extrabold text-lg mb-1">
                       {formula.result}
@@ -287,13 +287,13 @@ export default function Portfolio() {
       <section className="section-padding bg-[var(--pqube-gray-50)]">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Accreditations" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Accreditations" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="Recognized & Certified" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
             {accreditations.map((a) => (
-              <div key={a.label} className="group w-full sm:w-[calc(25%-12px)] md:w-[calc(20%-13px)] bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 flex flex-col items-center justify-center gap-3 min-h-[120px] hover:border-[var(--pqube-cyan)]/50 hover:shadow-md transition-all" title={a.label}>
+              <div key={a.label} className="group w-full sm:w-[calc(25%-12px)] md:w-[calc(20%-13px)] bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 flex flex-col items-center justify-center gap-3 min-h-[120px] hover:border-[#D4A017]/50 hover:shadow-md transition-all" title={a.label}>
                 <img src={a.image} alt={a.label} className="max-h-14 w-auto max-w-full object-contain" loading="lazy" />
                 <span className="text-[10px] md:text-xs text-center text-[var(--pqube-gray-500)] leading-snug">{a.label}</span>
               </div>
@@ -301,7 +301,7 @@ export default function Portfolio() {
 
             {mediaMentions.map((m) => (
               <div key={m.title} className="w-full sm:w-[calc(25%-12px)] md:w-[calc(25%-13px)] bg-[var(--pqube-navy)] rounded-xl p-4 flex flex-col justify-center gap-2 min-h-[120px]">
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--pqube-cyan)]">
+                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#D4A017]">
                   <Award size={11} /> {m.date}
                 </span>
                 <p className="text-[11px] md:text-xs text-white/85 leading-snug">{m.title}</p>
@@ -317,7 +317,7 @@ export default function Portfolio() {
         <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-[var(--pqube-blue)]/20 blur-3xl pointer-events-none" />
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Services" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Services" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="What We Deliver" className="text-3xl md:text-4xl font-extrabold text-white" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
@@ -371,7 +371,7 @@ export default function Portfolio() {
                         {(() => { const Icon = portfolioServices[activeService].icon; return <Icon size={20} />; })()}
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold tabular-nums tracking-[0.2em] text-[var(--pqube-cyan)]">
+                        <p className="text-[10px] font-bold tabular-nums tracking-[0.2em] text-[#D4A017]">
                           {String(activeService + 1).padStart(2, '0')} / {String(portfolioServices.slice(0, 6).length).padStart(2, '0')}
                         </p>
                         <h3 className="text-xl font-extrabold text-[var(--pqube-navy)]">{portfolioServices[activeService].title}</h3>
@@ -432,7 +432,7 @@ export default function Portfolio() {
       <section id="industries" className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-10">
-            <ShinyText text="Industries We Serve" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Industries We Serve" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="Across the Sectors That Matter" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
@@ -454,7 +454,7 @@ export default function Portfolio() {
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="The People" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="The People" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="The Team Behind PQube" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
               A leadership core in Bengaluru, backed by a 45+ strong delivery team across every engagement.
@@ -462,7 +462,7 @@ export default function Portfolio() {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
             {team.map((m) => (
-              <div key={m.name} className="bg-white border border-[var(--pqube-gray-200)] rounded-2xl p-4 text-center hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-all">
+              <div key={m.name} className="bg-white border border-[var(--pqube-gray-200)] rounded-2xl p-4 text-center hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all">
                 <img src={m.photo} alt={m.name} className="w-20 h-20 mx-auto rounded-full object-cover ring-2 ring-[var(--pqube-gray-200)] mb-3" loading="lazy" />
                 <h3 className="text-sm font-bold text-[var(--pqube-navy)]">{m.name}</h3>
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-[var(--pqube-cyan)] mt-0.5">{m.role}</p>
@@ -476,7 +476,7 @@ export default function Portfolio() {
       <section className="section-padding bg-[var(--pqube-gray-50)]">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Our Clients" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Our Clients" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="Trusted Across Industries" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
               From global pharma and Fortune 500 manufacturers to ambitious startups — these brands have trusted PQube with their platforms.
@@ -485,7 +485,7 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {portfolioClients.map((c) => (
-              <div key={c.file} className="group bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 flex flex-col items-center justify-center gap-2 min-h-[104px] hover:border-[var(--pqube-cyan)]/50 hover:shadow-md transition-all" title={c.name}>
+              <div key={c.file} className="group bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 flex flex-col items-center justify-center gap-2 min-h-[104px] hover:border-[#D4A017]/50 hover:shadow-md transition-all" title={c.name}>
                 <img
                   src={`/images/portfolio/clients/${c.file}`}
                   alt={`${c.name} logo`}
@@ -503,13 +503,13 @@ export default function Portfolio() {
       <section className="section-padding bg-white">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Case Studies" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Case Studies" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="Proof, Not Promises" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {caseStudies.map((cs) => (
-              <div key={cs.title} className="group flex flex-col bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl p-5 hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-all">
+              <div key={cs.title} className="group flex flex-col bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl p-5 hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[var(--pqube-blue)] to-[var(--pqube-cyan)] px-2.5 py-1 rounded-full">{cs.industry}</span>
                   <span className="text-[10px] font-medium text-[var(--pqube-gray-500)]">{cs.period}</span>
@@ -517,7 +517,7 @@ export default function Portfolio() {
                 <h3 className="text-sm font-bold text-[var(--pqube-navy)] mb-2 leading-snug">{cs.title}</h3>
                 <p className="text-xs text-[var(--pqube-gray-500)] leading-relaxed flex-1 mb-4">{cs.description}</p>
                 <div className="flex items-center gap-2 pt-3 border-t border-[var(--pqube-gray-200)]">
-                  <Users size={13} className="text-[var(--pqube-cyan)]" />
+                  <Users size={13} className="text-[#D4A017]" />
                   <span className="text-xs font-semibold text-[var(--pqube-navy)]">Team of {cs.team}</span>
                 </div>
               </div>
@@ -530,7 +530,7 @@ export default function Portfolio() {
       <section className="section-padding bg-[var(--pqube-gray-50)]">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Testimonials" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Testimonials" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="In Their Own Words" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-sm text-[var(--pqube-gray-500)] mt-4">
               {reviewSummary.average}/5 average rating · {reviewSummary.total} verified reviews on Clutch
@@ -662,7 +662,7 @@ export default function Portfolio() {
       {/* Tech stack marquee */}
       <section className="py-14 bg-white overflow-hidden">
         <div className="text-center mb-8">
-          <ShinyText text="Technology Stack" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em]" />
+          <ShinyText text="Technology Stack" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em]" />
         </div>
         <div className="group">
           <div className="flex gap-12 items-center animate-marquee w-max group-hover:[animation-play-state:paused]">

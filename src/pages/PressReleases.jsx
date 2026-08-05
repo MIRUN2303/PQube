@@ -44,7 +44,7 @@ export default function PressReleases() {
           style={{ opacity: fade, transform: `translateY(${scrollY * 0.3}px)` }}
         >
           <div>
-            <ShinyText text="Press Releases" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Press Releases" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="PQube in the News" className="text-3xl md:text-4xl font-extrabold text-white mb-4" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-white/70 max-w-2xl mx-auto">
               Milestones and announcements from PQube — from our rebranding to Microsoft competency achievements and global expansion.
@@ -69,7 +69,7 @@ export default function PressReleases() {
           <ScrollStackItem key={release.id}>
             <div className="h-full flex flex-col md:flex-row gap-6 md:gap-10">
               <div className="md:w-48 shrink-0">
-                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-[var(--pqube-cyan)] bg-[var(--pqube-cyan)]/10 border border-[var(--pqube-cyan)]/25 px-3 py-1.5 rounded-full">
+                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-[#D4A017] bg-[#D4A017]/10 border border-[#D4A017]/25 px-3 py-1.5 rounded-full">
                   {release.date}
                 </span>
               </div>
@@ -87,7 +87,7 @@ export default function PressReleases() {
                     <p className="text-sm italic text-[var(--pqube-navy)]/80 leading-relaxed">
                       &ldquo;{release.quote}&rdquo;
                     </p>
-                    <footer className="mt-2 text-xs font-semibold uppercase tracking-wider text-[var(--pqube-blue)]">
+                    <footer className="mt-2 text-xs font-semibold uppercase tracking-wider text-[#D4A017]">
                       — {release.author}
                     </footer>
                   </blockquote>
@@ -98,13 +98,13 @@ export default function PressReleases() {
                     href={release.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--pqube-blue)] hover:text-[var(--pqube-cyan)] transition-colors group"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#D4A017] hover:text-[#F0C75E] transition-colors group"
                   >
                     Read Press Release
                     <ExternalLink size={14} className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                   </a>
                 ) : (
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--pqube-blue)]">
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#D4A017]">
                     Read Press Release
                   </span>
                 )}

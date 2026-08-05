@@ -69,7 +69,7 @@ export default function WhyPQubeTabs() {
 
       <div className="w-full max-w-[1600px] mx-auto px-6 md:px-8">
         <div className="text-center mb-8 md:mb-10">
-          <ShinyText text="Why PQube" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText text="Why PQube" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="What Drives Us" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
         </div>
 
@@ -185,7 +185,7 @@ export default function WhyPQubeTabs() {
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#29ABE2] to-[#1B6FD6] flex items-center justify-center shadow-lg shadow-[#29ABE2]/30 shrink-0">
                           <Quote size={16} className="text-white" />
                         </div>
-                        <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[var(--pqube-cyan)] bg-[var(--pqube-cyan)]/10 rounded-full px-2.5 py-1">
+                        <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#D4A017] bg-[#D4A017]/10 rounded-full px-2.5 py-1">
                           0{idx + 1} / 0{total}
                         </span>
                       </div>

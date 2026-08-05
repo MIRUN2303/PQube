@@ -29,7 +29,7 @@ export default function FAQAccordion() {
     <section className="section-padding bg-[var(--pqube-gray-50)]">
       <div className="container-page">
         <div className="text-center mb-12">
-          <ShinyText text="FAQ" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText text="FAQ" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="Frequently Asked Questions" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
         </div>
 

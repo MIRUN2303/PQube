@@ -41,9 +41,9 @@ function NewsCard({ article }) {
       {/* Back panel — revealed when the text sheet folds down */}
       <div className="absolute bottom-0 left-0 right-0 h-1/2 rounded-b-xl bg-gradient-to-br from-[var(--pqube-navy)] to-[#141e4a] p-5 flex flex-col items-center justify-center gap-2">
         <span className="inline-flex items-center gap-1.5 text-sm font-bold text-white">
-          Read More <ArrowRight size={15} className="text-[var(--pqube-cyan)]" />
+          Read More <ArrowRight size={15} className="text-[#D4A017]" />
         </span>
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--pqube-cyan)]">
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#D4A017]">
           {article.category}
         </span>
       </div>
@@ -59,7 +59,7 @@ function NewsCard({ article }) {
           willChange: 'transform',
         }}
       >
-        <span className="inline-block text-[10px] font-semibold uppercase tracking-wider text-[var(--pqube-cyan)]">
+        <span className="inline-block text-[10px] font-semibold uppercase tracking-wider text-[#D4A017]">
           {article.category}
         </span>
         <h3 className="text-sm md:text-base font-bold text-[var(--pqube-navy)] leading-snug line-clamp-3">
@@ -113,7 +113,7 @@ export default function InsightsGrid() {
     <section className="section-padding bg-white">
       <div className="container-page">
         <div className="text-center mb-12">
-          <ShinyText text="Insights" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText text="Insights" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="Latest News & Insights" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)] mb-4" blur={12} y={24} rotate={5} stagger={0.12} />
           <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto">
             Thoughts on technology, business strategy, and digital transformation from the PQube team.

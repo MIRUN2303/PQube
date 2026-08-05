@@ -18,7 +18,7 @@ const NavCard = ({ label, bg, links, onLinkClick, minHeight = '210px' }) => (
           onClick={onLinkClick}
           className="flex items-center gap-1.5 py-1 text-sm text-white/80 hover:text-white transition-opacity duration-300"
         >
-          <ArrowUpRight size={14} className="text-[var(--pqube-cyan)] shrink-0" />
+          <ArrowUpRight size={14} className="text-[#D4A017] shrink-0" />
           {l.label}
         </Link>
       ))}

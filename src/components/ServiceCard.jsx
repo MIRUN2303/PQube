@@ -53,12 +53,12 @@ export default function ServiceCard({ service }) {
         </p>
 
         {service.tag && (
-          <span className="inline-block text-[10px] uppercase tracking-wider bg-[var(--pqube-cyan)]/10 text-[var(--pqube-cyan)] px-2 py-0.5 rounded mb-3">
+          <span className="inline-block text-[10px] uppercase tracking-wider bg-[#D4A017]/10 text-[#D4A017] px-2 py-0.5 rounded mb-3">
             {service.tag}
           </span>
         )}
 
-        <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--pqube-navy)] group-hover:text-[var(--pqube-blue)] transition-colors">
+        <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--pqube-navy)] group-hover:text-[#D4A017] transition-colors">
           Learn more <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
         </span>
       </div>

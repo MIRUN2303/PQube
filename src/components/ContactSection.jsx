@@ -20,7 +20,7 @@ export default function ContactSection() {
     <section className="section-padding bg-white" id="contact">
       <div className="container-page">
         <div className="text-center mb-12">
-          <ShinyText text="Contact" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText text="Contact" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="Get a Free Consultation" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
           <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
             Tell us about your project and we&apos;ll get back to you within 24 hours with a no-obligation assessment.
@@ -85,7 +85,7 @@ export default function ContactSection() {
           <div className="space-y-6">
             <div className="bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-xl p-6">
               <div className="flex items-start gap-4 group">
-                <MapPin size={20} className="text-[var(--pqube-cyan)] mt-1 shrink-0 group-hover:text-[var(--pqube-blue)] transition-colors" />
+                <MapPin size={20} className="text-[#D4A017] mt-1 shrink-0 group-hover:text-[#F0C75E] transition-colors" />
                 <div>
                   <h3 className="text-sm font-bold text-[var(--pqube-navy)] group-hover:text-[var(--pqube-blue)] transition-colors mb-1">Bengaluru, India (HQ)</h3>
                   <p className="text-sm text-[var(--pqube-gray-500)] leading-relaxed">PQube Business Solutions<br />Bengaluru, Karnataka, India</p>
@@ -103,7 +103,7 @@ export default function ContactSection() {
 
             <div className="bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-xl p-6">
               <div className="flex items-start gap-4">
-                <MapPin size={20} className="text-[var(--pqube-cyan)] mt-1 shrink-0" />
+                <MapPin size={20} className="text-[#D4A017] mt-1 shrink-0" />
                 <div>
                   <h3 className="text-sm font-bold text-[var(--pqube-navy)] mb-1">Delaware, USA</h3>
                   <p className="text-sm text-[var(--pqube-gray-500)] leading-relaxed">PQube Business Solutions<br />Delaware, United States</p>

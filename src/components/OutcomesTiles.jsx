@@ -6,19 +6,19 @@ import BlurReveal from './BlurReveal';
 const ACCENTS = [
   {
     grad: 'from-[#29ABE2] to-[#1B6FD6]',
-    chip: 'bg-[#29ABE2]/10 text-[#0e6ab3] border-[#29ABE2]/25',
+    chip: 'bg-[#D4A017]/10 text-[#B8722C] border-[#D4A017]/25',
     watermark: 'text-[#29ABE2]/10',
     blob: 'bg-[#29ABE2]/15',
   },
   {
     grad: 'from-[#1B6FD6] to-[#0B3A6E]',
-    chip: 'bg-[#1B6FD6]/10 text-[#12539f] border-[#1B6FD6]/25',
+    chip: 'bg-[#D4A017]/10 text-[#B8722C] border-[#D4A017]/25',
     watermark: 'text-[#1B6FD6]/10',
     blob: 'bg-[#1B6FD6]/15',
   },
   {
     grad: 'from-[#4C5BD4] to-[#29ABE2]',
-    chip: 'bg-[#4C5BD4]/10 text-[#3b4bc0] border-[#4C5BD4]/25',
+    chip: 'bg-[#D4A017]/10 text-[#B8722C] border-[#D4A017]/25',
     watermark: 'text-[#4C5BD4]/10',
     blob: 'bg-[#4C5BD4]/15',
   },
@@ -29,7 +29,7 @@ export default function OutcomesTiles() {
     <section className="section-padding bg-white">
       <div className="container-page">
         <div className="text-center mb-12">
-          <ShinyText text="Outcomes" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+          <ShinyText text="Outcomes" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
           <BlurReveal text="Why Our Business Solutions" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
         </div>
 

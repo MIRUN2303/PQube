@@ -71,7 +71,7 @@ export default function MobileDrawer({ isOpen, onClose }) {
                       <Link key={s.id} to={s.link} className="flex items-center gap-3 px-3 py-2 text-sm rounded-lg hover:bg-[var(--pqube-gray-50)] transition-colors" onClick={onClose}>
                         <Icon size={15} className="text-[var(--pqube-blue)] shrink-0" />
                         <span>{s.title}</span>
-                        {s.tag && <span className="text-[9px] uppercase bg-[var(--pqube-cyan)]/10 text-[var(--pqube-cyan)] px-1.5 py-0.5 rounded">{s.tag}</span>}
+                        {s.tag && <span className="text-[9px] uppercase bg-[#D4A017]/10 text-[#D4A017] px-1.5 py-0.5 rounded">{s.tag}</span>}
                       </Link>
                     );
                   })}
