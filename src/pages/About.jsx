@@ -241,11 +241,11 @@ export default function About() {
       </section>
 
       {/* Journey */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-[#1A1A1A]">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Our Journey" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
-            <BlurReveal text="From 2013 to Today" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
+            <ShinyText text="Our Journey" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <BlurReveal text="From 2013 to Today" className="text-3xl md:text-4xl font-extrabold text-white" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 
           <div className="max-w-4xl mx-auto pt-56 md:pt-52">
@@ -255,7 +255,7 @@ export default function About() {
               onMouseEnter={() => setJourneyHover(true)}
               onMouseLeave={() => setJourneyHover(false)}
             >
-              <div className="absolute top-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[var(--pqube-cyan)] via-[var(--pqube-blue)] to-[var(--pqube-cyan)]/30" />
+              <div className="absolute top-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#D4A017] via-[#F0C75E] to-[#D4A017]/30" />
               <div className="flex items-start justify-between">
                 {journey.map((m, idx) => {
                   const active = activeJourney === idx;
@@ -275,27 +275,27 @@ export default function About() {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: -8, scale: 0.97 }}
                             transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-                            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-60 md:w-72 bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] rounded-2xl p-4 shadow-xl shadow-[var(--pqube-blue)]/25 text-left"
+                            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-60 md:w-72 bg-[#242424] border border-[#D4A017]/30 rounded-2xl p-4 shadow-xl shadow-black/40 text-left"
                           >
                             <div className="flex items-center gap-2 mb-1">
-                              <Clock size={12} className="text-white/80" />
-                              <span className="text-[10px] font-bold uppercase tracking-wider text-white/80">{m.year}</span>
+                              <Clock size={12} className="text-[#D4A017]" />
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-[#F0C75E]">{m.year}</span>
                             </div>
                             <h3 className="text-sm font-bold text-white mb-1.5 leading-snug">{m.title}</h3>
                             <p className="text-xs text-white/90 leading-relaxed">{m.detail}</p>
                           </motion.div>
                         )}
                       </AnimatePresence>
-                      <span className={`absolute top-1 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 rounded-[3px] border-2 border-white bg-gradient-to-br from-[var(--pqube-cyan)] to-[var(--pqube-blue)] transition-all duration-300 ${
-                        active ? 'w-4 h-4 rotate-45 ring-4 ring-[var(--pqube-cyan)]/30 scale-110' : 'w-3 h-3 rotate-45 group-hover:scale-125'
+                      <span className={`absolute top-1 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 rounded-[3px] border-2 border-white bg-gradient-to-br from-[#D4A017] to-[#F0C75E] transition-all duration-300 ${
+                        active ? 'w-4 h-4 rotate-45 ring-4 ring-[#D4A017]/30 scale-110' : 'w-3 h-3 rotate-45 group-hover:scale-125'
                       }`} />
                       <div className="flex flex-col items-center justify-end h-16">
                         <span className={`text-[10px] md:text-xs font-bold transition-colors ${
-                          active ? 'text-[var(--pqube-blue)]' : 'text-[var(--pqube-gray-500)] group-hover:text-[var(--pqube-blue)]'
+                          active ? 'text-[#F0C75E]' : 'text-[var(--pqube-gray-400)] group-hover:text-[#D4A017]'
                         }`}>
                           {m.year}
                         </span>
-                        <span className="mt-1 text-[10px] md:text-[11px] font-medium leading-snug text-center text-[var(--pqube-gray-400)] group-hover:text-[var(--pqube-gray-600)] transition-colors w-full line-clamp-2">
+                        <span className="mt-1 text-[10px] md:text-[11px] font-medium leading-snug text-center text-white/50 group-hover:text-white/80 transition-colors w-full line-clamp-2">
                           {m.title}
                         </span>
                       </div>
@@ -441,11 +441,12 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] py-16">
+      <section className="bg-[#1A1A1A] py-16">
         <div className="container-page text-center">
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">Let&apos;s Build What&apos;s Next</h2>
+          <span className="block w-16 h-1 rounded-full mx-auto mb-6 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           <p className="text-white/80 max-w-xl mx-auto mb-8">Tell us about your platform, your problem, or your curiosity. We&apos;ll come back within 24 hours.</p>
-          <SpecularButton href="/contact" size="lg" radius={10} baseColor="#FFFFFF" lineColor="#1B2A6B" textColor="#1B2A6B" intensity={1.2}>
+          <SpecularButton href="/contact" size="lg" radius={10} baseColor="#FFFFFF" lineColor="#D4A017" textColor="#1B2A6B" intensity={1.2}>
             Get a Free Consultation <ArrowRight size={16} />
           </SpecularButton>
         </div>

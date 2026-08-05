@@ -122,16 +122,17 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] py-16">
+      <section className="bg-[#1A1A1A] py-16">
         <div className="container-page text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Prefer a direct conversation?</h2>
+          <span className="block w-16 h-1 rounded-full mx-auto mb-6 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           <p className="text-white/80 max-w-xl mx-auto mb-7">Book a free 30-minute discovery call — no pitch, just a clear path forward.</p>
           <SpecularButton
             href="https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true"
             size="lg"
             radius={10}
             baseColor="#FFFFFF"
-            lineColor="#1B2A6B"
+            lineColor="#D4A017"
             textColor="#1B2A6B"
             intensity={1.2}
           >

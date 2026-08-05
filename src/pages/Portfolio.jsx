@@ -676,13 +676,13 @@ export default function Portfolio() {
       </section>
 
       {/* Full deck — booklet */}
-      <section id="deck" className="section-padding bg-[var(--pqube-navy)] relative overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[var(--pqube-cyan)]/10 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-[var(--pqube-blue)]/10 blur-3xl pointer-events-none" />
+      <section id="deck" className="section-padding bg-[#1A1A1A] relative overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#D4A017]/10 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#F0C75E]/10 blur-3xl pointer-events-none" />
 
         <div className="container-page relative">
           <div className="text-center mb-10">
-            <ShinyText text="Company Profile" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Company Profile" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="The Full Deck" className="text-3xl md:text-4xl font-extrabold text-white" blur={12} y={24} rotate={5} stagger={0.12} />
             <p className="text-white/60 max-w-xl mx-auto mt-4">
               Flip through the booklet — drag a page or click to send it to the back.
@@ -706,11 +706,11 @@ export default function Portfolio() {
             </div>
 
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-[var(--pqube-cyan)]/10 border border-[var(--pqube-cyan)]/30 rounded-full px-4 py-1.5 text-xs font-semibold text-[var(--pqube-cyan)] mb-5">
+              <div className="inline-flex items-center gap-2 bg-[#D4A017]/10 border border-[#D4A017]/30 rounded-full px-4 py-1.5 text-xs font-semibold text-[#D4A017] mb-5">
                 <FileText size={14} /> 14-page brochure · PDF
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                One Booklet, <span className="text-[var(--pqube-cyan)]">Everything PQube</span>
+                One Booklet, <span className="bg-gradient-to-r from-[#D4A017] to-[#F0C75E] bg-clip-text text-transparent">Everything PQube</span>
               </h3>
               <p className="text-white/60 mb-6 leading-relaxed">
                 Who we are, why clients choose us, our services, journey, accreditations, team,
@@ -719,7 +719,7 @@ export default function Portfolio() {
               <ul className="text-left space-y-2.5 mb-8">
                 {['Autoplay flips pages for you', 'Full-screen view on any page'].map((line) => (
                   <li key={line} className="flex items-start gap-2.5 text-sm text-white/80">
-                    <span className="w-5 h-5 rounded-full bg-[var(--pqube-cyan)]/15 text-[var(--pqube-cyan)] flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="w-5 h-5 rounded-full bg-[#D4A017]/15 text-[#D4A017] flex items-center justify-center shrink-0 mt-0.5">
                       <Check size={12} strokeWidth={3} />
                     </span>
                     {line}
@@ -730,7 +730,7 @@ export default function Portfolio() {
                 <a
                   href="/images/portfolio/PQube-Company-Profile.pdf"
                   download="PQube-Company-Profile.pdf"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#D4A017] to-[#F0C75E] text-white font-semibold text-sm hover:opacity-90 transition-opacity"
                 >
                   <Download size={16} /> Download Brochure (PDF)
                 </a>
@@ -747,7 +747,7 @@ export default function Portfolio() {
       </section>
 
       {/* Contact band */}
-      <section className="bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] py-16">
+      <section className="bg-[#1A1A1A] py-16">
         <div className="container-page">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">Thank You</h2>
@@ -756,28 +756,28 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
             <a href={contactInfo.phoneHref} className="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-colors">
-              <Phone size={18} className="text-white shrink-0" />
+              <Phone size={18} className="text-[#D4A017] shrink-0" />
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-0.5">Call us</div>
                 <div className="text-sm font-semibold text-white">{contactInfo.phone}</div>
               </div>
             </a>
             <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-colors">
-              <Mail size={18} className="text-white shrink-0" />
+              <Mail size={18} className="text-[#D4A017] shrink-0" />
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-0.5">Email</div>
                 <div className="text-sm font-semibold text-white">{contactInfo.email}</div>
               </div>
             </a>
             <a href="https://www.pqube.in" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl p-4 hover:bg-white/20 transition-colors">
-              <Globe size={18} className="text-white shrink-0" />
+              <Globe size={18} className="text-[#D4A017] shrink-0" />
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-0.5">Website</div>
                 <div className="text-sm font-semibold text-white">{contactInfo.web}</div>
               </div>
             </a>
             <div className="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl p-4">
-              <MapPin size={18} className="text-white shrink-0" />
+              <MapPin size={18} className="text-[#D4A017] shrink-0" />
               <div>
                 <div className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-0.5">HQ</div>
                 <div className="text-sm font-semibold text-white leading-snug">{contactInfo.address}</div>
@@ -786,7 +786,7 @@ export default function Portfolio() {
           </div>
 
           <div className="text-center mt-10">
-            <SpecularButton href="/contact" size="lg" radius={10} baseColor="#FFFFFF" lineColor="#1B2A6B" textColor="#1B2A6B" intensity={1.2}>
+            <SpecularButton href="/contact" size="lg" radius={10} baseColor="#FFFFFF" lineColor="#D4A017" textColor="#1B2A6B" intensity={1.2}>
               Get a Free Consultation <ArrowRight size={16} />
             </SpecularButton>
           </div>

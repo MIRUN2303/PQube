@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Golden Orange & Matte Black — Theme Reference</title>
+<style>
+  :root{
+    --gold-dark: #B8722C;
+    --gold-bright: #D4A017;
+    --black-matte: #1A1A1A;
+    --black-deep: #0D0D0D;
+    --text-white: #FFFFFF;
+    --page-bg: #FAFAFA;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    padding:60px 20px;
+    background: var(--page-bg);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:50px;
+  }
+
+  /* ---- Swatch strip ---- */
+  .swatches{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:center;
+    max-width:720px;
+  }
+  .swatch{
+    width:110px;
+    text-align:center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  .swatch-color{
+    height:70px;
+    border-radius:6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .swatch-label{
+    font-size:11px;
+    color:#333;
+    margin-top:6px;
+    letter-spacing:0.3px;
+  }
+  .swatch-hex{
+    font-size:11px;
+    color:#888;
+    font-family: monospace;
+  }
+
+  /* ---- Main container card ---- */
+  .card{
+    width:100%;
+    max-width:480px;
+    background: var(--black-matte);
+    border-radius: 10px;
+    padding: 44px 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    position:relative;
+  }
+
+  .card-icon{
+    width:46px;
+    height:46px;
+    margin-bottom:22px;
+  }
+
+  .card-eyebrow{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:12px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color: var(--gold-bright);
+    margin-bottom:10px;
+  }
+
+  .card-title{
+    color: var(--text-white);
+    font-size:28px;
+    font-weight:600;
+    margin:0 0 14px 0;
+    padding-bottom:16px;
+    border-bottom: 2px solid var(--gold-dark);
+    display:inline-block;
+  }
+
+  .card-body{
+    color: var(--text-white);
+    opacity:0.85;
+    font-size:15px;
+    line-height:1.7;
+    margin-top:18px;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .card-footer{
+    margin-top:28px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .card-footer-line{
+    flex:1;
+    height:1px;
+    background: linear-gradient(to right, var(--gold-dark), transparent);
+  }
+
+  .card-footer-text{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:12px;
+    color: var(--gold-bright);
+    letter-spacing:1px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Color swatches -->
+  <div class="swatches">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#B8722C;"></div>
+      <div class="swatch-label">Dark Gold Orange</div>
+      <div class="swatch-hex">#B8722C</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#D4A017;"></div>
+      <div class="swatch-label">Bright Gold</div>
+      <div class="swatch-hex">#D4A017</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1A1A1A;"></div>
+      <div class="swatch-label">Matte Black</div>
+      <div class="swatch-hex">#1A1A1A</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0D0D0D;"></div>
+      <div class="swatch-label">Deep Black</div>
+      <div class="swatch-hex">#0D0D0D</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF; border:1px solid #ddd;"></div>
+      <div class="swatch-label">Pure White</div>
+      <div class="swatch-hex">#FFFFFF</div>
+    </div>
+  </div>
+
+  <!-- Reference container -->
+  <div class="card">
+    <svg class="card-icon" viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="22" stroke="#D4A017" stroke-width="2"/>
+      <path d="M24 12 L28 22 L38 22 L30 28 L33 38 L24 32 L15 38 L18 28 L10 22 L20 22 Z" fill="#B8722C"/>
+    </svg>
+
+    <div class="card-eyebrow">Signature Element</div>
+    <h2 class="card-title">Golden Hour</h2>
+
+    <p class="card-body">
+      This container demonstrates the theme: a matte black card resting on a
+      white page, white body text, and gold used only where it earns its place —
+      the icon, the underline border, and the closing rule.
+    </p>
+
+    <div class="card-footer">
+      <div class="card-footer-line"></div>
+      <div class="card-footer-text">CRAFTED IN GOLD</div>
+    </div>
+  </div>
+
+</body>
+</html>

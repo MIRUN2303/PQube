@@ -68,20 +68,20 @@ export default function ServiceDetail() {
 
       <ClutchReviews />
 
-      <section className="section-padding -mt-2 bg-[var(--pqube-gray-50)]">
+      <section className="section-padding -mt-2 bg-[#1A1A1A]">
         <div className="container-page">
           <div className="pt-6">
-            <ShinyText text="Related Services" color="#29ABE2" shineColor="#ffffff" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-4" />
+            <ShinyText text="Related Services" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-4" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {otherServices.slice(0, 6).map((s) => (
                 <Link
                   key={s.id}
                   to={s.link}
-                  className="group flex flex-col p-5 bg-white border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[var(--pqube-blue)]/40 hover:shadow-lg hover:shadow-[var(--pqube-blue)]/10 transition-all"
+                  className="group flex flex-col p-5 bg-white/10 border border-white/15 rounded-2xl hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all"
                 >
-                  <s.icon size={24} className="text-[var(--pqube-cyan)] mb-3 shrink-0" />
-                  <h3 className="text-base font-bold text-[var(--pqube-navy)] mb-1 group-hover:text-[var(--pqube-blue)] transition-colors">{s.title}</h3>
-                  <p className="text-sm text-[var(--pqube-gray-500)] flex-1">{s.description}</p>
+                  <s.icon size={24} className="text-[#D4A017] mb-3 shrink-0" />
+                  <h3 className="text-base font-bold text-white mb-1 group-hover:text-[#F0C75E] transition-colors">{s.title}</h3>
+                  <p className="text-sm text-white/60 flex-1">{s.description}</p>
                 </Link>
               ))}
             </div>
@@ -122,7 +122,7 @@ export default function ServiceDetail() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] py-14">
+      <section className="bg-[#1A1A1A] py-14">
         <div className="container-page text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Ready to start this journey?</h2>
           <p className="text-white/80 max-w-xl mx-auto mb-7">Tell us the outcome you're after — we'll scope it, price it, and plan it together.</p>
@@ -131,7 +131,7 @@ export default function ServiceDetail() {
             size="lg"
             radius={10}
             baseColor="#FFFFFF"
-            lineColor="#1B2A6B"
+            lineColor="#D4A017"
             textColor="#1B2A6B"
             intensity={1.2}
           >

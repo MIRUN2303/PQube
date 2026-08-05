@@ -5,19 +5,19 @@ import BlurReveal from './BlurReveal';
 
 export default function ProcessTimeline() {
   return (
-    <section className="section-padding bg-[var(--pqube-gray-50)] overflow-hidden">
+    <section className="section-padding bg-[#1A1A1A] overflow-hidden">
       <div className="container-page">
         <div className="text-center mb-10 md:mb-14">
           <ShinyText
             text="How We Work"
-            color="#29ABE2"
-            shineColor="#ffffff"
+            color="#D4A017"
+            shineColor="#F0C75E"
             speed={3}
             spread={120}
             className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3"
           />
-          <BlurReveal text="Our Engagement Roadmap" className="text-3xl md:text-4xl font-extrabold text-[var(--pqube-navy)]" blur={12} y={24} rotate={5} stagger={0.12} />
-          <p className="text-[var(--pqube-gray-500)] max-w-xl mx-auto mt-4">
+          <BlurReveal text="Our Engagement Roadmap" className="text-3xl md:text-4xl font-extrabold text-white" blur={12} y={24} rotate={5} stagger={0.12} />
+          <p className="text-white/60 max-w-xl mx-auto mt-4">
             A proven methodology built on two decades of delivery experience.
           </p>
         </div>
@@ -165,7 +165,7 @@ function DesktopRoadmap() {
         <path
           d={pathD}
           fill="none"
-          stroke="var(--pqube-gray-200)"
+          stroke="rgba(255,255,255,0.15)"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -182,8 +182,8 @@ function DesktopRoadmap() {
         />
         <defs>
           <linearGradient id="roadGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="var(--pqube-cyan)" />
-            <stop offset="100%" stopColor="var(--pqube-blue)" />
+            <stop offset="0%" stopColor="#B8722C" />
+            <stop offset="100%" stopColor="#F0C75E" />
           </linearGradient>
         </defs>
       </svg>
@@ -198,7 +198,7 @@ function DesktopRoadmap() {
             <div key={step.id} className="flex flex-col items-center w-48 shrink-0">
               {/* Number dot */}
               <div className="desk-dot">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg bg-gradient-to-br from-[var(--pqube-cyan)] to-[var(--pqube-blue)]">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg bg-gradient-to-br from-[#B8722C] to-[#F0C75E]">
                   {idx + 1}
                 </div>
               </div>
@@ -208,15 +208,15 @@ function DesktopRoadmap() {
 
               {/* Card */}
               <div className="desk-card">
-                <div className="bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-[#242424]/95 backdrop-blur-xl border border-white/15 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[var(--pqube-cyan)]">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#F0C75E]">
                       Step {idx + 1}
                     </span>
-                    <Icon size={14} className="text-[var(--pqube-navy)] shrink-0" />
+                    <Icon size={14} className="text-[#D4A017] shrink-0" />
                   </div>
-                  <h3 className="text-base font-bold text-[var(--pqube-navy)] mb-1">{step.title}</h3>
-                  <p className="text-xs text-[var(--pqube-gray-500)] leading-relaxed">{step.description}</p>
+                  <h3 className="text-base font-bold text-white mb-1">{step.title}</h3>
+                  <p className="text-xs text-white/60 leading-relaxed">{step.description}</p>
                 </div>
               </div>
             </div>
@@ -273,11 +273,11 @@ function MobileRoadmap() {
   return (
     <div ref={containerRef} className="relative max-w-md mx-auto">
       {/* Grey track */}
-      <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[var(--pqube-gray-200)]" />
+      <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-white/15" />
       {/* Animated gradient fill */}
       <div
         ref={lineProgressRef}
-        className="absolute left-4 top-0 w-0.5 bg-gradient-to-b from-[var(--pqube-cyan)] to-[var(--pqube-blue)]"
+        className="absolute left-4 top-0 w-0.5 bg-gradient-to-b from-[#B8722C] to-[#F0C75E]"
         style={{ height: '0%', transition: 'height 0.65s ease-in-out' }}
       />
 
@@ -294,19 +294,19 @@ function MobileStep({ step, index }) {
   const Icon = step.icon;
   return (
     <div className="relative flex items-start gap-4 pl-10">
-      <div className="mob-dot absolute left-4 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md z-10 bg-gradient-to-br from-[var(--pqube-cyan)] to-[var(--pqube-blue)]">
+      <div className="mob-dot absolute left-4 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md z-10 bg-gradient-to-br from-[#B8722C] to-[#F0C75E]">
         {index + 1}
       </div>
       <div className="mob-card flex-1">
-        <div className="bg-white border border-[var(--pqube-gray-200)] rounded-xl p-4 shadow-sm">
+<div className="bg-[#242424]/95 backdrop-blur-xl border border-white/15 rounded-xl p-4 shadow-sm">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[var(--pqube-cyan)]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#F0C75E]">
               Step {index + 1}
             </span>
-            <Icon size={14} className="text-[var(--pqube-navy)] shrink-0" />
+            <Icon size={14} className="text-[#D4A017] shrink-0" />
           </div>
-          <h3 className="text-base font-bold text-[var(--pqube-navy)] mb-1">{step.title}</h3>
-          <p className="text-xs text-[var(--pqube-gray-500)] leading-relaxed">{step.description}</p>
+          <h3 className="text-base font-bold text-white mb-1">{step.title}</h3>
+          <p className="text-xs text-white/60 leading-relaxed">{step.description}</p>
         </div>
       </div>
     </div>
