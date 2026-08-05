@@ -30,7 +30,7 @@ export default function MegaMenu({ label, active = false }) {
       </button>
 
       <div
-        className={`absolute top-full left-1/2 -translate-x-1/2 w-[760px] bg-white shadow-xl border border-[var(--pqube-gray-200)] rounded-xl p-3 transition-all duration-200 ${
+        className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 w-[760px] bg-white shadow-xl border border-[var(--pqube-gray-200)] rounded-xl p-3 transition-all duration-200 before:content-[''] before:absolute before:-top-2 before:left-0 before:right-0 before:h-2 ${
           open ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
         }`}
       >

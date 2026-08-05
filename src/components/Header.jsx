@@ -63,10 +63,10 @@ export default function Header() {
         }`}
         style={{ top: scrolled ? '0' : '0' }}
       >
-        <div className={`container-page flex items-center justify-between transition-all duration-200 ${scrolled ? 'h-14' : 'h-[72px]'}`}>
+        <div className="container-page flex items-center justify-between h-[72px]">
           {/* Logo */}
           <a href="/" className="flex items-center shrink-0">
-            <img src="/logo/3.png" alt="PQube" className="h-16 w-auto" />
+            <img src="/logo/3.png" alt="PQube" className="h-[88px] w-auto" />
           </a>
 
           {/* Desktop Nav */}
@@ -80,7 +80,7 @@ export default function Header() {
                     {item.label}
                     <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
                   </Link>
-                  <div className="absolute top-full left-0 mt-0 w-72 bg-white shadow-xl border border-[var(--pqube-gray-200)] rounded-xl p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="absolute top-full mt-2 left-0 w-72 bg-white shadow-xl border border-[var(--pqube-gray-200)] rounded-xl p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 before:content-[''] before:absolute before:-top-2 before:left-0 before:right-0 before:h-2">
                     <NavCard label="About PQube" bg="#1B2A6B" minHeight="190px" links={item.dropdown.map((sub) => ({ label: sub.label, to: sub.to }))} />
                   </div>
                 </div>
