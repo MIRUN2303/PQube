@@ -66,7 +66,7 @@ export default function Contact() {
                   <label htmlFor="message" className="block text-sm font-medium text-[var(--pqube-navy)] mb-1">Message</label>
                   <textarea id="message" name="message" rows={5} required className="w-full px-4 py-3 border border-[var(--pqube-gray-300)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--pqube-cyan)] focus:border-transparent transition-all resize-none" placeholder="Describe your challenge, timeline, budget range — anything that helps us prepare."></textarea>
                 </div>
-                <SpecularButton type="submit" size="lg" radius={10} baseColor="#1B2A6B" lineColor="#29ABE2" textColor="#FFFFFF" intensity={1.3} className="w-full md:w-auto">
+                <SpecularButton type="submit" size="lg" radius={10} baseColor="linear-gradient(135deg, #B8722C 0%, #D4A017 50%, #F0C75E 100%)" lineColor="#FFF6D8" textColor="#1B2A6B" intensity={1.3} className="w-full md:w-auto">
                   <span className="flex items-center gap-2">Submit Enquiry <ArrowRight size={18} /></span>
                 </SpecularButton>
               </form>

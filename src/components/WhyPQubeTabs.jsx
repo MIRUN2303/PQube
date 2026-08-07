@@ -65,7 +65,7 @@ export default function WhyPQubeTabs() {
     <section className="section-padding bg-[var(--pqube-gray-50)] relative overflow-hidden">
       {/* Ambient background orbs */}
       <div className="pointer-events-none absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[var(--pqube-cyan)]/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[var(--pqube-blue)]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[#D4A017]/10 blur-3xl" />
 
       <div className="w-full max-w-[1600px] mx-auto px-6 md:px-8">
         <div className="text-center mb-8 md:mb-10">
@@ -78,32 +78,32 @@ export default function WhyPQubeTabs() {
           <div className="hidden xl:flex justify-end">
             <aside className="w-full z-0">
               <div className="rounded-2xl bg-gradient-to-br from-[#1B2A6B] to-[#0B3A6E] text-white shadow-[0_18px_44px_-16px_rgba(11,58,110,0.5)] p-5">
-                <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#7FD1F2] mb-4">The PQube Formula</p>
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#F0C75E] mb-4">The PQube Formula</p>
                 <ul className="space-y-2.5">
                   <li className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-white/10 text-[#7FD1F2] flex items-center justify-center"><Users size={13} /></span>
+                    <span className="w-7 h-7 rounded-lg bg-black/40 border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center"><Users size={13} /></span>
                     <span className="text-sm font-semibold">People</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-white/10 text-[#7FD1F2] flex items-center justify-center"><ShieldCheck size={13} /></span>
+                    <span className="w-7 h-7 rounded-lg bg-black/40 border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center"><ShieldCheck size={13} /></span>
                     <span className="text-sm font-semibold">Principles</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-white/10 text-[#7FD1F2] flex items-center justify-center"><TrendingUp size={13} /></span>
+                    <span className="w-7 h-7 rounded-lg bg-black/40 border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center"><TrendingUp size={13} /></span>
                     <span className="text-sm font-semibold">Prosperity</span>
                   </li>
                 </ul>
                 <div className="mt-4 pt-3.5 border-t border-dashed border-white/20 flex items-center justify-between">
                   <span className="text-sm font-extrabold">= Quantum</span>
-                  <Sparkles size={14} className="text-[#7FD1F2]" />
+                  <Sparkles size={14} className="text-[#F0C75E]" />
                 </div>
               </div>
             </aside>
           </div>
 
           <div className="relative max-w-5xl mx-auto w-full z-10">
-            <span className="hidden xl:block absolute top-1/2 -translate-y-1/2 -left-6 w-6 h-[2px] bg-gradient-to-r from-[var(--pqube-cyan)]/40 to-[var(--pqube-cyan)]" />
-            <span className="hidden xl:block absolute top-1/2 -translate-y-1/2 -right-6 w-6 h-[2px] bg-gradient-to-l from-[var(--pqube-cyan)]/40 to-[var(--pqube-cyan)]" />
+            <span className="hidden xl:block absolute top-1/2 -translate-y-1/2 -left-6 w-6 h-[2px] bg-gradient-to-r from-[#D4A017]/40 to-[#D4A017]" />
+            <span className="hidden xl:block absolute top-1/2 -translate-y-1/2 -right-6 w-6 h-[2px] bg-gradient-to-l from-[#D4A017]/40 to-[#D4A017]" />
             <div className="relative bg-white rounded-3xl shadow-[0_24px_70px_-24px_rgba(11,58,110,0.25)] border border-[var(--pqube-gray-200)] overflow-hidden flex flex-col" style={{ height: '540px' }}>
             {/* Tab pills — inside container top */}
             <div className="relative z-20 flex flex-wrap justify-center gap-2 px-4 pt-6 pb-4" role="tablist">
@@ -115,7 +115,7 @@ export default function WhyPQubeTabs() {
                   onClick={() => goTo(idx)}
                   className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                     activeIdx === idx
-                      ? 'bg-gradient-to-r from-[#29ABE2] to-[#1B6FD6] text-white shadow-md shadow-[#29ABE2]/30 scale-105'
+                      ? 'bg-gradient-to-r from-[#D4A017] to-[#B8722C] text-white shadow-md shadow-[#D4A017]/30 scale-105'
                       : 'bg-[var(--pqube-gray-50)] text-[var(--pqube-gray-500)] hover:bg-[var(--pqube-gray-200)] border border-[var(--pqube-gray-200)]'
                   }`}
                 >
@@ -127,7 +127,7 @@ export default function WhyPQubeTabs() {
             {/* Auto-advance timer — doubles as the divider */}
             <div className="h-1 z-30 bg-[var(--pqube-gray-200)] shrink-0">
               <div
-                className="h-full bg-gradient-to-r from-[var(--pqube-cyan)] to-[var(--pqube-blue)] transition-none"
+                className="h-full bg-gradient-to-r from-[#D4A017] to-[#F0C75E] transition-none"
                 style={{ width: `${progress * 100}%` }}
               />
             </div>
@@ -182,8 +182,8 @@ export default function WhyPQubeTabs() {
                     {/* Frosted glass content panel */}
                     <div className="absolute inset-x-3 bottom-3 md:inset-y-4 md:right-4 md:left-auto md:w-[46%] bg-white/85 backdrop-blur-xl rounded-2xl border border-white/60 shadow-xl p-6 md:p-8 overflow-y-auto">
                       <div className="flex items-start justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#29ABE2] to-[#1B6FD6] flex items-center justify-center shadow-lg shadow-[#29ABE2]/30 shrink-0">
-                          <Quote size={16} className="text-white" />
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center shadow-lg shadow-black/30 shrink-0">
+                          <Quote size={16} className="text-[#F0C75E]" />
                         </div>
                         <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#D4A017] bg-[#D4A017]/10 rounded-full px-2.5 py-1">
                           0{idx + 1} / 0{total}
@@ -196,7 +196,7 @@ export default function WhyPQubeTabs() {
                       </div>
 
                       {/* Decorative accent line */}
-                      <div className="mt-6 h-px w-16 bg-gradient-to-r from-[#29ABE2] to-transparent" />
+                      <div className="mt-6 h-px w-16 bg-gradient-to-r from-[#D4A017] to-transparent" />
                     </div>
                   </div>
                 );
@@ -209,7 +209,7 @@ export default function WhyPQubeTabs() {
           <div className="hidden xl:flex justify-start">
             <aside className="w-full z-0">
               <div className="rounded-2xl bg-gradient-to-br from-[#1B2A6B] to-[#0B3A6E] text-white shadow-[0_18px_44px_-16px_rgba(11,58,110,0.5)] p-5">
-                <Quote size={16} className="text-[#29ABE2]" />
+                <Quote size={16} className="text-[#F0C75E]" />
                 <p className="mt-3 text-sm font-bold leading-snug">"Build People to Build Business®"</p>
                 <p className="mt-1 text-[11px] text-white/60">Our operating philosophy since day one.</p>
                 <div className="mt-4 grid grid-cols-2 gap-2">
@@ -255,7 +255,7 @@ export default function WhyPQubeTabs() {
                   <circle
                     cx="14" cy="14" r="11"
                     fill="none"
-                    stroke="var(--pqube-cyan)"
+                    stroke="#D4A017"
                     strokeWidth="2.5"
                     strokeDasharray={Math.PI * 22}
                     strokeDashoffset={Math.PI * 22 * (1 - progress)}
@@ -292,7 +292,7 @@ export default function WhyPQubeTabs() {
 
         {/* CTA — fixed outside container, centered */}
         <div className="max-w-5xl mx-auto mt-6 text-center">
-          <SpecularButton href="/about" size="md" radius={10} baseColor="#1B2A6B" lineColor="#29ABE2" textColor="#FFFFFF" intensity={1.3}>
+          <SpecularButton href="/about" size="md" radius={10} baseColor="linear-gradient(135deg, #B8722C 0%, #D4A017 50%, #F0C75E 100%)" lineColor="#FFF6D8" textColor="#1B2A6B" intensity={1.3}>
             Learn More About PQube &rarr;
           </SpecularButton>
         </div>

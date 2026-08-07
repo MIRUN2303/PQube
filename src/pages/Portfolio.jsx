@@ -197,14 +197,14 @@ export default function Portfolio() {
   return (
     <main className="bg-[var(--pqube-gray-50)]">
       {/* Hero banner */}
-      <section className="relative h-[420px] md:h-[500px] overflow-hidden bg-[var(--pqube-navy)]">
+      <section className="relative h-[420px] md:h-[500px] overflow-hidden bg-black">
         <img
           src="https://img.magnific.com/free-vector/flat-illustration-social-media-day-celebration_23-2150340632.jpg?semt=ais_hybrid&w=740&q=80"
           alt=""
           className="absolute inset-0 w-full h-full object-cover will-change-transform"
           style={{ transform: `translateY(${scrollY * 0.2}px) scale(1.08)` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--pqube-navy)]/85 via-[var(--pqube-navy)]/65 to-[var(--pqube-gray-50)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-[var(--pqube-gray-50)]" />
 
         <div
           className="container-page relative z-10 h-full flex flex-col items-center justify-center text-center pt-28 pb-12"
@@ -216,7 +216,7 @@ export default function Portfolio() {
             Three decades of building people, platforms and businesses — from 1.4-million-SKU commerce to enterprise ERP, across retail, manufacturing, healthcare, fintech and beyond.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <SpecularButton href="#deck" size="md" radius={10} baseColor="#29ABE2" lineColor="#FFFFFF" textColor="#0B1233" intensity={1.3}>
+            <SpecularButton href="#deck" size="md" radius={10} baseColor="linear-gradient(135deg, #B8722C 0%, #D4A017 50%, #F0C75E 100%)" lineColor="#FFF6D8" textColor="#1B2A6B" intensity={1.3}>
               Browse the Full Deck <ArrowRight size={16} />
             </SpecularButton>
             <SpecularButton href="/contact" size="md" radius={10} baseColor="#FFFFFF" lineColor="#29ABE2" textColor="#1B2A6B" tintOpacity={0.12} intensity={1.1}>
@@ -245,7 +245,7 @@ export default function Portfolio() {
                     <div key={t.word} className="flex items-center gap-2.5 md:gap-3">
                       {i > 0 && <span className="text-lg font-bold text-[#D4A017]">+</span>}
                       <div className="text-center">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center text-white font-extrabold text-lg mb-1">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center text-[#F0C75E] font-extrabold text-lg mb-1">
                           {t.letter}
                         </div>
                         <div className="text-xs font-semibold text-[var(--pqube-navy)]">{t.word}</div>
@@ -254,7 +254,7 @@ export default function Portfolio() {
                   ))}
                   <span className="text-xl font-extrabold text-[#D4A017]">=</span>
                   <div className="text-center">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--pqube-navy)] flex items-center justify-center text-white font-extrabold text-lg mb-1">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center font-extrabold text-lg mb-1">
                       {formula.result}
                     </div>
                     <div className="text-xs font-semibold text-[var(--pqube-navy)]">{formula.label}</div>
@@ -367,7 +367,7 @@ export default function Portfolio() {
                     className="relative"
                   >
                     <div className="flex items-center gap-3 mb-5">
-                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center shrink-0">
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center shrink-0">
                         {(() => { const Icon = portfolioServices[activeService].icon; return <Icon size={20} />; })()}
                       </div>
                       <div>
@@ -384,7 +384,7 @@ export default function Portfolio() {
                       {portfolioServices.slice(0, 6).map((_, idx) => (
                         <span
                           key={idx}
-                          className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeService ? 'w-8 bg-[var(--pqube-cyan)]' : 'w-3 bg-[var(--pqube-gray-200)]'}`}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${idx === activeService ? 'w-8 bg-[#D4A017]' : 'w-3 bg-[var(--pqube-gray-200)]'}`}
                         />
                       ))}
                     </div>
@@ -465,7 +465,7 @@ export default function Portfolio() {
               <div key={m.name} className="bg-white border border-[var(--pqube-gray-200)] rounded-2xl p-4 text-center hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all">
                 <img src={m.photo} alt={m.name} className="w-20 h-20 mx-auto rounded-full object-cover ring-2 ring-[var(--pqube-gray-200)] mb-3" loading="lazy" />
                 <h3 className="text-sm font-bold text-[var(--pqube-navy)]">{m.name}</h3>
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-[var(--pqube-cyan)] mt-0.5">{m.role}</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-[#B8722C] mt-0.5">{m.role}</p>
               </div>
             ))}
           </div>
@@ -511,7 +511,7 @@ export default function Portfolio() {
             {caseStudies.map((cs) => (
               <div key={cs.title} className="group flex flex-col bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl p-5 hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[var(--pqube-blue)] to-[var(--pqube-cyan)] px-2.5 py-1 rounded-full">{cs.industry}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#F0C75E] bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 px-2.5 py-1 rounded-full">{cs.industry}</span>
                   <span className="text-[10px] font-medium text-[var(--pqube-gray-500)]">{cs.period}</span>
                 </div>
                 <h3 className="text-sm font-bold text-[var(--pqube-navy)] mb-2 leading-snug">{cs.title}</h3>
@@ -543,13 +543,13 @@ export default function Portfolio() {
             onMouseLeave={() => setTPaused(false)}
             style={{
               backgroundImage:
-                "linear-gradient(135deg, rgba(16,26,66,0.94) 0%, rgba(27,42,107,0.88) 45%, rgba(34,52,138,0.82) 100%), url('/images/grainy-gradient-bg.jpg')",
+                "linear-gradient(135deg, rgba(8,8,10,0.95) 0%, rgba(18,18,22,0.9) 45%, rgba(28,28,32,0.85) 100%), url('/images/grainy-gradient-bg.jpg')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
           >
-            <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[var(--pqube-cyan)]/15 blur-3xl pointer-events-none" aria-hidden="true" />
-            <div className="absolute -bottom-28 -right-20 w-[420px] h-[420px] rounded-full bg-[var(--pqube-blue)]/20 blur-3xl pointer-events-none" aria-hidden="true" />
+            <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[var(--pqube-blue)]/25 blur-3xl pointer-events-none" aria-hidden="true" />
+            <div className="absolute -bottom-28 -right-20 w-[420px] h-[420px] rounded-full bg-[#D4A017]/15 blur-3xl pointer-events-none" aria-hidden="true" />
             <div className="absolute top-1/3 right-1/4 w-24 h-24 rounded-3xl border border-white/5 rotate-45 pointer-events-none" aria-hidden="true" />
 
             <div
@@ -611,7 +611,7 @@ export default function Portfolio() {
                   onClick={() => setTIdx(i)}
                   aria-label={`Go to testimonial ${i + 1}`}
                   className={`h-2.5 rounded-full transition-all duration-300 ${
-                    i === tIdx ? 'w-8 bg-[var(--pqube-cyan)]' : 'w-2.5 bg-white/25 hover:bg-white/50'
+                    i === tIdx ? 'w-8 bg-[#D4A017]' : 'w-2.5 bg-white/25 hover:bg-white/50'
                   }`}
                 />
               ))}
@@ -627,7 +627,7 @@ export default function Portfolio() {
                     <motion.span
                       key={i}
                       className="w-[3px] h-3.5 rounded-full"
-                      style={{ background: tRunning ? 'var(--pqube-cyan)' : 'rgba(255,255,255,0.35)' }}
+                      style={{ background: tRunning ? '#D4A017' : 'rgba(255,255,255,0.35)' }}
                       animate={
                         tRunning
                           ? { scaleY: [0.3, 1, 0.45, 0.8, 0.3], opacity: [0.6, 1, 0.7, 1, 0.6] }
@@ -646,7 +646,7 @@ export default function Portfolio() {
                   {tRunning && (
                     <motion.div
                       key={tIdx}
-                      className="h-full rounded-full origin-left bg-[var(--pqube-cyan)]"
+                      className="h-full rounded-full origin-left bg-[#D4A017]"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ duration: TESTIMONIAL_INTERVAL / 1000, ease: 'linear' }}

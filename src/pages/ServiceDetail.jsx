@@ -29,7 +29,7 @@ export default function ServiceDetail() {
       <section className="section-padding bg-white">
         <div className="container-page max-w-4xl">
           <div className="mb-8 p-5 bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl text-center">
-            <h1 className="text-xl md:text-2xl font-extrabold text-[var(--pqube-navy)]">{service.title}</h1>
+            <h1 className="text-xl md:text-2xl font-extrabold text-[var(--pqube-cyan)]">{service.title}</h1>
             <p className="text-xs font-semibold uppercase tracking-wider text-[#D4A017] mt-1">{service.category}</p>
           </div>
 
@@ -39,8 +39,8 @@ export default function ServiceDetail() {
               <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full bg-[var(--pqube-cyan)]/10 blur-2xl pointer-events-none" />
               <div className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full bg-[var(--pqube-blue)]/10 blur-2xl pointer-events-none" />
               <div className="relative">
-                <div className="mx-auto mb-5 w-16 h-16 md:w-[72px] md:h-[72px] rounded-2xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center text-white shadow-lg shadow-[var(--pqube-blue)]/25">
-                  <Icon size={32} />
+                <div className="mx-auto mb-5 w-16 h-16 md:w-[72px] md:h-[72px] rounded-2xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center shadow-lg shadow-black/30">
+                  <Icon size={32} className="text-[#F0C75E]" />
                 </div>
                 <ShinyText text="What We Deliver" color="#1B7FC4" shineColor="#29ABE2" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
                 <p className="text-base md:text-lg text-[var(--pqube-gray-700)] leading-relaxed max-w-2xl mx-auto">{service.overview}</p>

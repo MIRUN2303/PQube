@@ -75,8 +75,8 @@ export default function OutcomesTiles() {
                     <div className={`pointer-events-none absolute -bottom-20 -left-20 w-64 h-64 rounded-full blur-3xl ${a.blob} ${flipped ? '' : 'md:left-auto md:-right-20'}`} />
 
                     <div className="relative">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${a.grad} flex items-center justify-center shadow-lg mb-6`}>
-                        <Icon size={22} className="text-white" />
+                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center shadow-lg mb-6`}>
+                        <Icon size={22} className="text-[#F0C75E]" />
                       </div>
 
                       <h3 className="text-xl md:text-2xl font-extrabold text-[var(--pqube-navy)] mb-4">{item.title}</h3>

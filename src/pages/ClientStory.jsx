@@ -48,7 +48,7 @@ export default function ClientStory() {
           </div>
 
           {/* The Story — featured panel */}
-          <div className="relative p-6 md:p-8 rounded-3xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] shadow-xl shadow-[var(--pqube-blue)]/20 mb-12 overflow-hidden">
+          <div className="relative p-6 md:p-8 rounded-3xl bg-gradient-to-br from-[#1C1C1C] to-[#000000] shadow-xl shadow-black/30 mb-12 overflow-hidden">
             <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/10 blur-3xl pointer-events-none" />
             <div className="relative">
               <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-white/80 mb-4">
@@ -61,12 +61,12 @@ export default function ClientStory() {
           {/* What We Delivered — card grid */}
           <div className="mb-12">
             <div className="flex items-center gap-4 mb-8">
-              <span className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center shadow-lg shadow-[var(--pqube-blue)]/20">
+              <span className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center shadow-lg shadow-black/30">
                 <Package size={18} />
               </span>
               <div className="flex-1">
                 <ShinyText text="What We Delivered" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-1" />
-                <div className="h-0.5 mt-1.5 w-24 rounded-full bg-gradient-to-r from-[var(--pqube-cyan)] to-transparent" />
+                <div className="h-0.5 mt-1.5 w-24 rounded-full bg-gradient-to-r from-[#D4A017] to-transparent" />
               </div>
               <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-[#D4A017] bg-[#D4A017]/10 border border-[#D4A017]/25 px-3 py-1.5 rounded-full">
                 {client.highlights.length} outcomes
@@ -79,7 +79,7 @@ export default function ClientStory() {
                   key={h}
                   className="group flex flex-col p-6 bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 hover:-translate-y-1 transition-all"
                 >
-                  <span className="shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center text-sm font-extrabold shadow-md shadow-[var(--pqube-blue)]/20 mb-5 transition-transform duration-300 group-hover:scale-105">
+                  <span className="shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center text-sm font-extrabold shadow-md shadow-black/30 mb-5 transition-transform duration-300 group-hover:scale-105">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <p className="text-sm text-[var(--pqube-gray-600)] leading-relaxed">{h}</p>
@@ -91,12 +91,12 @@ export default function ClientStory() {
           {/* More Stories */}
           <div className="mb-6">
             <div className="flex items-center gap-4 mb-8">
-              <span className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center shadow-lg shadow-[var(--pqube-blue)]/20">
+              <span className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center shadow-lg shadow-black/30">
                 <Sparkles size={18} />
               </span>
               <div className="flex-1">
                 <ShinyText text="Keep Exploring" color="#D4A017" shineColor="#F0C75E" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-1" />
-                <div className="h-0.5 mt-1.5 w-24 rounded-full bg-gradient-to-r from-[var(--pqube-cyan)] to-transparent" />
+                <div className="h-0.5 mt-1.5 w-24 rounded-full bg-gradient-to-r from-[#D4A017] to-transparent" />
               </div>
             </div>
 

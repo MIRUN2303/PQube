@@ -30,7 +30,7 @@ export default function Services() {
           {serviceCategories.map((cat, ci) => (
             <div key={cat.name} className="mb-16">
               <div className="flex items-center gap-4 mb-8">
-                <span className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center text-sm font-extrabold shadow-lg shadow-[var(--pqube-blue)]/20">
+                <span className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center text-sm font-extrabold shadow-lg shadow-black/30">
                   {String(ci + 1).padStart(2, '0')}
                 </span>
                 <div className="flex-1">
@@ -51,12 +51,12 @@ export default function Services() {
                       className="group flex flex-col p-6 bg-[var(--pqube-gray-50)] border border-[var(--pqube-gray-200)] rounded-2xl hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 hover:-translate-y-1 transition-all"
                     >
                       <div className="flex items-center gap-3 mb-5">
-                        <span className="shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center shadow-md shadow-[var(--pqube-blue)]/20 transition-transform duration-300 group-hover:scale-105">
-                          <Icon size={22} />
+                        <span className="shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center shadow-md shadow-black/30 transition-transform duration-300 group-hover:scale-105">
+                          <Icon size={22} className="text-[#F0C75E]" />
                         </span>
                         {s.tag && <span className="text-[9px] font-bold uppercase tracking-wider bg-[#D4A017]/10 text-[#D4A017] border border-[#D4A017]/25 px-2.5 py-1 rounded-full">{s.tag}</span>}
                       </div>
-                      <h3 className="text-lg font-extrabold text-[var(--pqube-navy)] mb-2 group-hover:text-[var(--pqube-blue)] transition-colors">{s.title}</h3>
+                      <h3 className="text-lg font-extrabold text-[var(--pqube-cyan)] mb-2 group-hover:text-[var(--pqube-blue)] transition-colors">{s.title}</h3>
                       <p className="text-sm text-[var(--pqube-gray-500)] leading-relaxed flex-1 mb-5">{s.description}</p>
                       <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#D4A017] mt-auto pt-4 border-t border-[var(--pqube-gray-200)]/70">
                         View Details <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />

@@ -80,7 +80,6 @@ const SpecularButton = ({
   followMouse = true,
   proximity = 250,
   autoAnimate = false,
-  animated = false,
   disabled = false,
   onClick,
   className = '',
@@ -94,7 +93,6 @@ const SpecularButton = ({
   propsRef.current = { radius, lineColor, baseColor, intensity, shineSize, shineFade, thickness, speed, followMouse, proximity, autoAnimate };
 
   useEffect(() => {
-    if (!animated) return;
     const btn = btnRef.current;
     const fx = fxRef.current;
     if (!btn || !fx) return;
@@ -212,7 +210,7 @@ const SpecularButton = ({
       if (gl.canvas.parentNode === fx) fx.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [animated]);
+  }, []);
 
   const baseProps = {
     ref: btnRef,
@@ -225,13 +223,13 @@ const SpecularButton = ({
       '--sb-tint-opacity': tintOpacity,
       '--sb-blur': `${blur}px`,
       '--sb-text-color': textColor,
-      backgroundColor: baseColor
+      background: baseColor
     }
   };
 
   const content = (
     <>
-      {animated && <span ref={fxRef} className="specular-button__fx" aria-hidden="true" />}
+      <span ref={fxRef} className="specular-button__fx" aria-hidden="true" />
       <span className="specular-button__label">{children}</span>
     </>
   );

@@ -71,7 +71,7 @@ export default function ContactSection() {
                     className="w-full px-4 py-2.5 bg-white border border-[var(--pqube-gray-200)] rounded-lg text-sm text-[var(--pqube-ink)] placeholder-[var(--pqube-gray-500)] focus:outline-none focus:ring-2 focus:ring-[var(--pqube-blue)] focus:border-transparent transition-all resize-y"
                     placeholder="Tell us about your project..." />
                 </div>
-                <SpecularButton type="submit" size="md" radius={10} tint="#1B2A6B" tintOpacity={1} baseColor="#1B2A6B" lineColor="#29ABE2" textColor="#FFFFFF" intensity={1.3} className="w-full justify-center group">
+                <SpecularButton type="submit" size="md" radius={10} tint="#1B2A6B" tintOpacity={1} baseColor="linear-gradient(135deg, #B8722C 0%, #D4A017 50%, #F0C75E 100%)" lineColor="#FFF6D8" textColor="#1B2A6B" intensity={1.3} className="w-full justify-center group">
                   <Send
                     size={16}
                     className="transition-all duration-300 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1 group-hover:rotate-[-20deg] group-hover:scale-110"

@@ -54,7 +54,7 @@ export default function InsightArticle() {
               Want to put these ideas to work in your business? We&apos;re one message away.
             </p>
             <div className="flex flex-wrap gap-4">
-              <SpecularButton href="/contact" size="md" radius={10} baseColor="#1B2A6B" lineColor="#29ABE2" textColor="#FFFFFF" intensity={1.2}>
+              <SpecularButton href="/contact" size="md" radius={10} baseColor="linear-gradient(135deg, #B8722C 0%, #D4A017 50%, #F0C75E 100%)" lineColor="#FFF6D8" textColor="#1B2A6B" intensity={1.2}>
                 Talk to Our Team
               </SpecularButton>
               <SpecularButton href="/services" size="md" radius={10} baseColor="#FFFFFF" lineColor="#1B2A6B" textColor="#1B2A6B" tintOpacity={0.12} intensity={1.1}>

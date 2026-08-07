@@ -27,25 +27,25 @@ export default function ServiceCard({ service }) {
   return (
     <a
       href={service.link}
-      className="group relative overflow-hidden bg-gradient-to-br from-[#F0F6FF] via-[#E3EEFF] to-[#D2E2FC] border border-[var(--pqube-blue)]/20 rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--pqube-blue)]/10"
+      className="group relative overflow-hidden bg-gradient-to-br from-white via-[#F5F7FC] to-[#E9EDF7] border border-black/8 rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10"
     >
       {/* Liquid image reveal — a soft blob of the service image blooms outward on hover */}
       <div
         className="card-liquid"
         style={{
-          backgroundImage: `linear-gradient(135deg, rgba(240,246,255,0.78) 0%, rgba(211,226,252,0.55) 100%), url(${service.image})`,
+          backgroundImage: `linear-gradient(135deg, rgba(8,12,28,0.82) 0%, rgba(14,18,40,0.62) 100%), url(${service.image})`,
         }}
         aria-hidden="true"
       />
 
       <div className="relative z-10">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center mb-4 shadow-md shadow-[var(--pqube-blue)]/30 transition-transform duration-200 group-hover:scale-110">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center mb-4 shadow-md shadow-black/30 transition-transform duration-200 group-hover:scale-110">
           <span className={`icon-wrap ${animClass}`}>
-            <Icon size={22} className="text-white" />
+            <Icon size={22} className="text-[#F0C75E]" />
           </span>
         </div>
 
-        <h3 className="text-lg font-bold text-[var(--pqube-navy)] mb-2 group-hover:text-[var(--pqube-blue)] transition-colors">
+        <h3 className="text-lg font-bold text-[var(--pqube-cyan)] mb-2 group-hover:text-[#9BDCFF] transition-colors">
           {service.title}
         </h3>
         <p className="text-sm text-[var(--pqube-gray-500)] leading-relaxed mb-4 line-clamp-3 transition-colors duration-500 group-hover:text-white group-hover:[text-shadow:0_1px_2px_rgba(10,15,40,0.65),0_3px_10px_rgba(10,15,40,0.4)]">

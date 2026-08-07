@@ -115,7 +115,7 @@ export default function About() {
         image={HERO_IMAGE}
       >
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-          <SpecularButton href="/portfolio" size="md" radius={10} baseColor="#29ABE2" lineColor="#FFFFFF" textColor="#0B1233" intensity={1.3}>
+          <SpecularButton href="/portfolio" size="md" radius={10} baseColor="linear-gradient(135deg, #B8722C 0%, #D4A017 50%, #F0C75E 100%)" lineColor="#FFF6D8" textColor="#1B2A6B" intensity={1.3}>
             View Our Portfolio <ArrowRight size={16} />
           </SpecularButton>
           <SpecularButton href="/contact" size="md" radius={10} baseColor="#FFFFFF" lineColor="#29ABE2" textColor="#1B2A6B" tintOpacity={0.12} intensity={1.1}>
@@ -143,7 +143,7 @@ export default function About() {
                     <div key={t.word} className="flex items-center gap-2.5 md:gap-3">
                       {i > 0 && <span className="text-lg font-bold text-[#D4A017]">+</span>}
                       <div className="text-center">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] flex items-center justify-center text-white font-extrabold text-lg mb-1">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center text-[#F0C75E] font-extrabold text-lg mb-1">
                           {t.letter}
                         </div>
                         <div className="text-xs font-semibold text-[var(--pqube-navy)]">{t.word}</div>
@@ -152,7 +152,7 @@ export default function About() {
                   ))}
                   <span className="text-xl font-extrabold text-[#D4A017]">=</span>
                   <div className="text-center">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--pqube-navy)] flex items-center justify-center text-white font-extrabold text-lg mb-1">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center text-[#F0C75E] font-extrabold text-lg mb-1">
                       {formula.result}
                     </div>
                     <div className="text-xs font-semibold text-[var(--pqube-navy)]">{formula.label}</div>
@@ -175,7 +175,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {PRINCIPLES.map((p) => (
               <div key={p.title} className="bg-white border border-[var(--pqube-gray-200)] rounded-2xl p-6 hover:border-[#D4A017]/50 hover:shadow-lg hover:shadow-[#D4A017]/10 transition-all">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)] text-white flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 text-[#F0C75E] flex items-center justify-center mb-4">
                   <p.icon size={22} />
                 </div>
                 <h3 className="text-lg font-bold text-[var(--pqube-navy)] mb-2">{p.title}</h3>
@@ -310,10 +310,10 @@ export default function About() {
       </section>
 
       {/* Accreditations */}
-      <section className="section-padding bg-gradient-to-br from-[var(--pqube-blue)] to-[var(--pqube-cyan)]">
+      <section className="section-padding bg-gradient-to-br from-[var(--pqube-navy)] via-[var(--pqube-blue)] to-[var(--pqube-cyan)]">
         <div className="container-page">
           <div className="text-center mb-12">
-            <ShinyText text="Certified & Recognized" color="#ffffff" shineColor="#29ABE2" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
+            <ShinyText text="Certified & Recognized" color="#F0C75E" shineColor="#FFF6D8" speed={3} spread={120} className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3" />
             <BlurReveal text="The Credentials Behind the Work" className="text-3xl md:text-4xl font-extrabold text-white" blur={12} y={24} rotate={5} stagger={0.12} />
           </div>
 

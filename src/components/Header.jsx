@@ -58,15 +58,15 @@ export default function Header() {
 
       {/* Main Header */}
       <header
-        className={`sticky top-0 z-50 bg-white transition-all duration-200 ${
+        className={`sticky top-0 z-50 bg-white rounded-b-[28px] transition-all duration-200 ${
           scrolled ? 'shadow-sm border-b border-[var(--pqube-gray-200)]' : ''
         }`}
         style={{ top: scrolled ? '0' : '0' }}
       >
-        <div className="container-page flex items-center justify-between h-[72px]">
+        <div className="container-page flex items-center justify-between h-[110px]">
           {/* Logo */}
           <a href="/" className="flex items-center shrink-0">
-            <img src="/logo/3.png" alt="PQube" className="h-[88px] w-auto" />
+            <img src="/logo/3.png" alt="PQube" className="h-[108px] mt-2 w-auto" />
           </a>
 
           {/* Desktop Nav */}
@@ -99,9 +99,9 @@ export default function Header() {
               radius={10}
               tint="#1B2A6B"
               tintOpacity={1}
-              baseColor="#1B2A6B"
-              lineColor="#29ABE2"
-              textColor="#FFFFFF"
+              baseColor="linear-gradient(135deg, #B8722C 0%, #D4A017 50%, #F0C75E 100%)"
+              lineColor="#FFF6D8"
+              textColor="#1B2A6B"
               intensity={1.3}
               onClick={() => window.open('https://bookings.cloud.microsoft/book/PQubeBusinessSolutions@pqube.in/?ismsaljsauthenabled=true', '_blank', 'noopener,noreferrer')}
             >

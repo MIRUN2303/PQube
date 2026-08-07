@@ -6,4 +6,7 @@ export default defineConfig({
   base: '/',
   plugins: [react(), tailwindcss()],
   assetsInclude: ['**/*.glb'],
+  server: {
+    allowedHosts: true,
+  },
 })

@@ -30,14 +30,14 @@ export default function PressReleases() {
 
   return (
     <main className="bg-[var(--pqube-gray-50)]">
-      <section className="relative h-[340px] md:h-[420px] overflow-hidden bg-[var(--pqube-navy)]">
+      <section className="relative h-[340px] md:h-[420px] overflow-hidden bg-black">
         <img
           src={BANNER_IMAGE}
           alt=""
           className="absolute inset-0 w-full h-full object-cover will-change-transform"
           style={{ transform: `translateY(${scrollY * 0.2}px) scale(1.08)` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--pqube-navy)]/85 via-[var(--pqube-navy)]/65 to-[var(--pqube-gray-50)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-[var(--pqube-gray-50)]" />
 
         <div
           className="container-page relative z-10 h-full flex items-center justify-center text-center pt-24 pb-10"
@@ -83,7 +83,7 @@ export default function PressReleases() {
                 </p>
 
                 {release.quote && (
-                  <blockquote className="border-l-4 border-[var(--pqube-cyan)] pl-4 mb-4">
+                  <blockquote className="border-l-4 border-[#D4A017] pl-4 mb-4">
                     <p className="text-sm italic text-[var(--pqube-navy)]/80 leading-relaxed">
                       &ldquo;{release.quote}&rdquo;
                     </p>

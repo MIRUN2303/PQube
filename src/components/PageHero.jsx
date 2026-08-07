@@ -24,7 +24,7 @@ export default function PageHero({ overline, title, subtitle, image, children, h
   const fade = Math.max(0, 1 - scrollY / 320);
 
   return (
-    <section className={`relative ${height} overflow-hidden bg-[var(--pqube-navy)]`}>
+    <section className={`relative ${height} overflow-hidden bg-black`}>
       {image && (
         <img
           src={image}
@@ -33,7 +33,7 @@ export default function PageHero({ overline, title, subtitle, image, children, h
           style={{ transform: `translateY(${scrollY * 0.2}px) scale(1.08)` }}
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--pqube-navy)]/85 via-[var(--pqube-navy)]/65 to-[var(--pqube-gray-50)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-[var(--pqube-gray-50)]" />
 
       <div
         className="container-page relative z-10 h-full flex flex-col items-center justify-center text-center pt-24 pb-10"
@@ -41,8 +41,8 @@ export default function PageHero({ overline, title, subtitle, image, children, h
       >
         <ShinyText
           text={overline}
-          color="#29ABE2"
-          shineColor="#ffffff"
+          color="#F0C75E"
+          shineColor="#FFF6D8"
           speed={3}
           spread={120}
           className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3"

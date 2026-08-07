@@ -109,49 +109,29 @@ function DesktopRoadmap() {
       path.style.strokeDashoffset = String(totalLen);
     }
 
-    let revealed = 0;
-    let raf = 0;
-
     // Show the first `count` steps and draw the path up to them
     const apply = (count) => {
       const c = Math.max(0, Math.min(n, Math.round(count)));
-      if (c === revealed) return;
-      revealed = c;
       dots.forEach((dot, i) => dot.classList.toggle('rm-show', i < c));
       cards.forEach((card, i) => card.classList.toggle('rm-show', i < c));
       if (path) {
-        // Line ends exactly at the dot of the last revealed step
-        const frac = Math.min(1, Math.max(0, (revealed - 1) / segs));
+        const frac = Math.min(1, Math.max(0, (c - 1) / segs));
         path.style.transition = 'stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1)';
         path.style.strokeDashoffset = String(totalLen * (1 - frac));
       }
     };
 
-    // Scroll progress: container top enters at 92% of the viewport (step 1),
-    // all steps are revealed once it reaches 12% — each step needs a scroll
-    const measure = () => {
-      const rect = container.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const start = vh * 0.92;
-      const end = vh * 0.12;
-      const span = start - end;
-      const p = Math.min(1, Math.max(0, (start - rect.top) / span));
-      apply(p * n);
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(measure);
-    };
-
-    measure();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
+    // One-time reveal when the roadmap scrolls into view (no scroll-progress coupling)
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        apply(n);
+        obs.disconnect();
+      },
+      { threshold: 0.25 }
+    );
+    obs.observe(container);
+    return () => obs.disconnect();
   }, []);
 
   return (
@@ -239,36 +219,25 @@ function MobileRoadmap() {
 
     const dots = Array.from(container.querySelectorAll('.mob-dot'));
     const cards = Array.from(container.querySelectorAll('.mob-card'));
-    const totalSteps = dots.length;
-    let maxRevealed = 0;
+    const lineEl = lineProgressRef.current;
 
-    const observers = dots.map((dot, i) => {
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            // Reveal dot first, then card with a small delay
+    // One-time staggered reveal when the list enters the viewport
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        dots.forEach((dot, i) => {
+          setTimeout(() => {
             dot.classList.add('rm-show');
-            setTimeout(() => cards[i]?.classList.add('rm-show'), 130);
-
-            maxRevealed = Math.max(maxRevealed, i + 1);
-
-            // Grow the colored vertical line
-            const lineEl = lineProgressRef.current;
-            if (lineEl) {
-              const pct = Math.min((maxRevealed / totalSteps) * 100, 100);
-              lineEl.style.height = `${pct}%`;
-            }
-
-            obs.disconnect();
-          }
-        },
-        { threshold: 0.45, rootMargin: '0px 0px -30px 0px' }
-      );
-      obs.observe(dot);
-      return obs;
-    });
-
-    return () => observers.forEach((obs) => obs.disconnect());
+            cards[i]?.classList.add('rm-show');
+          }, i * 120);
+        });
+        if (lineEl) lineEl.style.height = '100%';
+        obs.disconnect();
+      },
+      { threshold: 0.2 }
+    );
+    obs.observe(container);
+    return () => obs.disconnect();
   }, []);
 
   return (

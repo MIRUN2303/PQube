@@ -14,7 +14,7 @@ function Avatar({ t, className = '', initialsClass = '', radius = '20px' }) {
   if (err) {
     return (
       <div
-        className={`bg-gradient-to-br from-[var(--pqube-cyan)] to-[var(--pqube-blue)] flex items-center justify-center font-bold text-white shrink-0 ${className} ${initialsClass}`}
+        className={`bg-gradient-to-br from-[#2B2B2B] to-[#101010] border border-[#D4A017]/40 flex items-center justify-center font-bold text-[#F0C75E] shrink-0 ${className} ${initialsClass}`}
         style={{ borderRadius: radius }}
         aria-hidden="true"
       >
@@ -100,8 +100,8 @@ export default function TestimonialsPlaceholder() {
         <div className="text-center mb-12">
           <ShinyText
             text="Testimonials"
-            color="#29ABE2"
-            shineColor="#ffffff"
+            color="#F0C75E"
+            shineColor="#FFF6D8"
             speed={3}
             spread={120}
             className="inline-block text-xs font-semibold uppercase tracking-[0.15em] mb-3"
@@ -116,22 +116,21 @@ export default function TestimonialsPlaceholder() {
           />
         </div>
 
-        {/* Rounded panel — grainy dark-blue texture blended with the PQube theme gradient.
-            Fixed height: arrows on top, card fills the remaining space (constant size per slide) */}
+        {/* Rounded panel — grainy black texture blended with the gold theme. */}
         <div
           className="relative overflow-hidden rounded-[40px] md:rounded-[60px] px-5 md:px-14 pt-10 pb-6 md:pt-12 md:pb-8 h-[480px] md:h-[540px] lg:h-[560px] flex flex-col"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           style={{
             backgroundImage:
-              "linear-gradient(135deg, rgba(16,26,66,0.94) 0%, rgba(27,42,107,0.88) 45%, rgba(34,52,138,0.82) 100%), url('/images/grainy-gradient-bg.jpg')",
+              "linear-gradient(135deg, rgba(8,8,10,0.95) 0%, rgba(18,18,22,0.9) 45%, rgba(28,28,32,0.85) 100%), url('/images/grainy-gradient-bg.jpg')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
           {/* Theme glow blobs */}
-          <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[var(--pqube-cyan)]/15 blur-3xl pointer-events-none" aria-hidden="true" />
-          <div className="absolute -bottom-28 -right-20 w-[420px] h-[420px] rounded-full bg-[var(--pqube-blue)]/20 blur-3xl pointer-events-none" aria-hidden="true" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[var(--pqube-blue)]/25 blur-3xl pointer-events-none" aria-hidden="true" />
+          <div className="absolute -bottom-28 -right-20 w-[420px] h-[420px] rounded-full bg-[#D4A017]/15 blur-3xl pointer-events-none" aria-hidden="true" />
           <div className="absolute top-1/3 right-1/4 w-24 h-24 rounded-3xl border border-white/5 rotate-45 pointer-events-none" aria-hidden="true" />
 
           {/* Decorative curvy heading-style watermark inside the panel background */}
@@ -188,7 +187,7 @@ export default function TestimonialsPlaceholder() {
                 onClick={() => setIdx(i)}
                 aria-label={`Go to testimonial ${i + 1}`}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  i === idx ? 'w-8 bg-[var(--pqube-cyan)]' : 'w-2.5 bg-white/25 hover:bg-white/50'
+                  i === idx ? 'w-8 bg-[#D4A017]' : 'w-2.5 bg-white/25 hover:bg-white/50'
                 }`}
               />
             ))}
@@ -207,7 +206,7 @@ export default function TestimonialsPlaceholder() {
                   <motion.span
                     key={i}
                     className="w-[3px] h-3.5 rounded-full"
-                    style={{ background: running ? 'var(--pqube-cyan)' : 'rgba(255,255,255,0.35)' }}
+                    style={{ background: running ? '#D4A017' : 'rgba(255,255,255,0.35)' }}
                     animate={
                       running
                         ? { scaleY: [0.3, 1, 0.45, 0.8, 0.3], opacity: [0.6, 1, 0.7, 1, 0.6] }
@@ -227,7 +226,7 @@ export default function TestimonialsPlaceholder() {
                 {running && (
                   <motion.div
                     key={idx}
-                    className="h-full rounded-full origin-left bg-[var(--pqube-cyan)]"
+                    className="h-full rounded-full origin-left bg-[#D4A017]"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: INTERVAL / 1000, ease: 'linear' }}

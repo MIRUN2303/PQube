@@ -68,7 +68,7 @@ export default function ClutchReviews() {
               type="button"
               onClick={() => carouselRef.current?.prev()}
               aria-label="Previous review"
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white border border-[var(--pqube-gray-200)] text-[var(--pqube-navy)] shadow-lg shadow-black/10 flex items-center justify-center hover:bg-[var(--pqube-cyan)] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--pqube-cyan)]"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white border border-[var(--pqube-gray-200)] text-[var(--pqube-navy)] shadow-lg shadow-black/10 flex items-center justify-center hover:bg-[#D4A017] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#D4A017]/50"
             >
               <ChevronLeft size={22} />
             </button>
@@ -77,7 +77,7 @@ export default function ClutchReviews() {
               type="button"
               onClick={() => carouselRef.current?.next()}
               aria-label="Next review"
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white border border-[var(--pqube-gray-200)] text-[var(--pqube-navy)] shadow-lg shadow-[var(--pqube-blue)]/10 flex items-center justify-center hover:bg-[var(--pqube-cyan)] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--pqube-cyan)]"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white border border-[var(--pqube-gray-200)] text-[var(--pqube-navy)] shadow-lg shadow-black/10 flex items-center justify-center hover:bg-[#D4A017] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#D4A017]/50"
             >
               <ChevronRight size={22} />
             </button>
