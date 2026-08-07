@@ -25,7 +25,7 @@ export default function Footer() {
   }, [lightbox]);
 
   return (
-    <footer className="bg-[var(--pqube-navy)] text-white" role="contentinfo">
+    <footer className="bg-gradient-to-b from-[#0E1530] via-[#0A0D1E] to-black text-white" role="contentinfo">
 
       {/* ── Notch bar ──────────────────────────────────────────────────────────
           Wrapped in container-page so the logo left-edge aligns perfectly
@@ -33,7 +33,7 @@ export default function Footer() {
       ──────────────────────────────────────────────────────────────────────── */}
       <div className="container-page">
         <div
-          className="bg-white rounded-b-[28px] inline-flex items-center px-6 md:px-8 py-2.5"
+          className="bg-white rounded-b-[28px] inline-flex items-center px-6 md:px-8 py-2.5 shadow-[0_10px_30px_-10px_rgba(212,160,23,0.35)]"
           aria-label="PQube logo"
         >
           <img src="/logo/3.png" alt="PQube" className="h-20 md:h-[84px] w-auto" />
@@ -55,7 +55,7 @@ export default function Footer() {
                 { href: '#', label: 'Glassdoor', isText: true },
               ].map((social) => (
                 <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--pqube-cyan)] hover:ring-2 hover:ring-[var(--pqube-cyan)]/40 transition-all"
+                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-br hover:from-[#D4A017] hover:to-[#F0C75E] hover:ring-2 hover:ring-[#D4A017]/40 transition-all"
                   aria-label={social.label}>
                   {social.isText ? (
                     <span className="text-[9px] font-bold">GD</span>
@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* Column 2: What We Do */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-white/70">What We Do</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#F0C75E] via-[#FFF6D8] to-[#D4A017]">What We Do</h3>
             <ul className="space-y-2.5">
               {services.map((s) => (
                 <li key={s.id}>
@@ -95,7 +95,7 @@ export default function Footer() {
 
           {/* Column 3: Company */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-white/70">Company</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#F0C75E] via-[#FFF6D8] to-[#D4A017]">Company</h3>
             <ul className="space-y-2.5">
               {[
                 { label: 'About Us', href: '/about' },
@@ -115,29 +115,29 @@ export default function Footer() {
 
           {/* Column 4: Get In Touch */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-white/70">Get In Touch</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#F0C75E] via-[#FFF6D8] to-[#D4A017]">Get In Touch</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin size={16} className="mt-0.5 text-white/30 shrink-0" />
+                <MapPin size={16} className="mt-0.5 text-[#D4A017] shrink-0" />
                 <a href="https://maps.app.goo.gl/LZXzMktEGX8Wr7S56" target="_blank" rel="noopener noreferrer" className="group">
-                  <p className="text-sm font-medium text-white/70 group-hover:text-[var(--pqube-cyan)] transition-colors">Bengaluru, India (HQ)</p>
+                  <p className="text-sm font-medium text-white/70 group-hover:text-[#F0C75E] transition-colors">Bengaluru, India (HQ)</p>
                   <p className="text-xs text-white/40 mt-0.5">Karnataka, India</p>
                 </a>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin size={16} className="mt-0.5 text-white/30 shrink-0" />
+                <MapPin size={16} className="mt-0.5 text-[#D4A017] shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-white/70">Delaware, USA</p>
                   <p className="text-xs text-white/40 mt-0.5">United States</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Phone size={16} className="text-white/30 shrink-0" />
-                <a href="tel:+919731249009" className="text-sm text-white/50 hover:text-white transition-colors">+91 97312 49009</a>
+                <Phone size={16} className="text-[#D4A017] shrink-0" />
+                <a href="tel:+919731249009" className="text-sm text-white/50 hover:text-[#F0C75E] transition-colors">+91 97312 49009</a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail size={16} className="text-white/30 shrink-0" />
-                <a href="mailto:info@pqube.in" className="text-sm text-white/50 hover:text-white transition-colors">info@pqube.in</a>
+                <Mail size={16} className="text-[#D4A017] shrink-0" />
+                <a href="mailto:info@pqube.in" className="text-sm text-white/50 hover:text-[#F0C75E] transition-colors">info@pqube.in</a>
               </div>
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function Footer() {
       ──────────────────────────────────────────────────────────────────────── */}
       <div className="border-t border-white/10">
         <div className="container-page py-8 md:py-12">
-          <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] text-white/40">
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.22em] text-transparent bg-clip-text bg-gradient-to-r from-[#F0C75E] via-[#FFF6D8] to-[#D4A017]">
             Certifications &amp; Partnerships
           </p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 max-w-4xl mx-auto">

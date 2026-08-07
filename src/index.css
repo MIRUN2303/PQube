@@ -1,15 +1,33 @@
 @import "tailwindcss";
 
+/* ── Primitives ──────────────────────────────────────────────── */
 :root {
   --pqube-cyan: #29ABE2;
+  --pqube-cyan-light: #9BDCFF;
   --pqube-blue: #1B7FC4;
   --pqube-navy: #1B2A6B;
+  --pqube-white: #FFFFFF;
+
+  /* Gold + black (45% accent family) */
+  --pqube-gold: #D4A017;
+  --pqube-gold-light: #F0C75E;
+  --pqube-gold-dark: #B8722C;
+  --pqube-gold-shine: #FFF6D8;
+  --pqube-on-gold: #1B2A6B;
+  --pqube-tile-1: #2B2B2B;
+  --pqube-tile-2: #101010;
+
   --pqube-ink: #0D1B2A;
   --pqube-white: #FFFFFF;
   --pqube-gray-50: #F7F9FC;
   --pqube-gray-200: #E3E8EF;
   --pqube-gray-500: #6B7686;
   --pqube-gray-700: #3D4756;
+
+  --pqube-gold-gradient: linear-gradient(135deg, #B8722C 0%, #D4A017 50%, #F0C75E 100%);
+  --pqube-tile-gradient: linear-gradient(135deg, #2B2B2B 0%, #101010 100%);
+  --pqube-navy-band: linear-gradient(135deg, #1B2A6B 0%, #1B7FC4 55%, #29ABE2 100%);
+  --pqube-border-gold: rgba(212, 160, 23, 0.4);
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --max-width: 1280px;
@@ -20,6 +38,47 @@
   --shadow-md: 0 4px 12px rgba(13, 27, 42, 0.08);
   --shadow-lg: 0 8px 24px rgba(13, 27, 42, 0.10);
   --transition: 200ms ease;
+}
+
+/* ── Semantics ──────────────────────────────────────────────── */
+:root {
+  --color-surface-page: var(--pqube-gray-50);
+  --color-surface-card: var(--pqube-white);
+  --color-brand-band: var(--pqube-navy-band);          /* blue 55% */
+  --color-band-ink: var(--pqube-navy);                 /* large dark-blue surfaces */
+  --color-ink: var(--pqube-ink);
+
+  --color-heading: var(--pqube-navy);
+  --color-heading-soft: var(--pqube-cyan);
+  --color-heading-hover: var(--pqube-cyan-light);
+
+  --color-icon-tile: var(--pqube-tile-gradient);       /* gold+black 45% */
+  --color-icon-tile-border: var(--pqube-border-gold);
+  --color-icon: var(--pqube-gold-light);
+
+  --color-accent: var(--pqube-gold);
+  --color-accent-strong: var(--pqube-gold-light);
+  --color-accent-sheen: var(--pqube-gold-shine);
+  --color-accent-ink: var(--pqube-on-gold);
+}
+
+/* ── Component tokens: Buttons ──────────────────────────────── */
+/* Exactly two button variants sitewide: gold-primary (CTA) and white-secondary */
+:root {
+  --btn-primary-bg: var(--pqube-gold-gradient);
+  --btn-primary-fg: var(--pqube-on-gold);
+  --btn-primary-line: var(--pqube-gold-shine);
+
+  --btn-secondary-bg: var(--pqube-white);
+  --btn-secondary-fg: var(--pqube-on-gold);
+  --btn-secondary-line: var(--pqube-on-gold);
+}
+
+/* ── Icon tile (universal 45%) ──────────────────────────────── */
+:root {
+  --tile-bg: var(--pqube-tile-gradient);
+  --tile-border: var(--pqube-border-gold);
+  --tile-icon: var(--pqube-gold-light);
 }
 
 html { scroll-behavior: smooth; }

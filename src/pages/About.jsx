@@ -447,7 +447,7 @@ export default function About() {
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-3">Let&apos;s Build What&apos;s Next</h2>
           <span className="block w-16 h-1 rounded-full mx-auto mb-6 bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E]" aria-hidden="true" />
           <p className="text-white/80 max-w-xl mx-auto mb-8">Tell us about your platform, your problem, or your curiosity. We&apos;ll come back within 24 hours.</p>
-          <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E] rounded-xl hover:opacity-90 transition-all shadow-lg shadow-[#B8722C]/30">
+          <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-[#1B2A6B] bg-gradient-to-r from-[#B8722C] via-[#D4A017] to-[#F0C75E] rounded-xl hover:opacity-90 transition-all shadow-lg shadow-[#B8722C]/30">
             Get a Free Consultation <ArrowRight size={18} />
           </a>
         </div>
